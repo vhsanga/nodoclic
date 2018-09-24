@@ -1,0 +1,21 @@
+{
+    "apps": [
+        {
+            "name": "CLIENT",
+            "script": "npm",
+            "args": "start",
+            "ignore-watch": [
+                "./src/stylus",
+                "./src/public"
+            ],
+            "watch_options": {
+                "usePolling": true
+            },
+            "error_file": "./logs/app-error.log",
+            "out_file": "./logs/app-out.log",
+            "env": {
+                "NODE_ENV": "development"
+            }
+        }
+    ]
+}
