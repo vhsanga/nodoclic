@@ -1,0 +1,33 @@
+extends ../layout
+block contenido 
+  section.content-header
+    h1
+      | Mis compras
+      
+   
+  // Main content
+  section.content.container-fluid
+    table#tablaCompras.table.table-bordered.table-hover
+      thead
+        tr
+          th Producto
+          |                   
+          th Detales
+          |                   
+          th Cantidas
+          |                   
+          th Precio
+          |                   
+          th Fecha Compra
+          |                   
+          th Factura
+          |                   
+          th Proveedor        
+      |                 
+      tbody
+block javascript
+
+  link(rel="stylesheet" href="bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css") 
+  script(src="/bower_components/datatables.net/js/jquery.dataTables.min.js")
+  script(src="/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js")
+  script(src="/js-app/compras/compras.init.js")

@@ -5,6 +5,7 @@ var bcrypt=require('bcryptjs');
 //variables de ruteo
 var index;
 var home;
+var compras;
 
     
 
@@ -15,9 +16,11 @@ module.exports = function (app) {
     var passport = require('passport');
     //seteando las rutas...
     index = require('./index');
+    compras = require('./comprasController');
 
     //implantacion d las rutas
     app.use('/', index);
+    app.use('/compras',AuthMiddleware.isLogged, compras);
 
 
     //app.use('/home',AuthMiddleware.isLogged, home);
