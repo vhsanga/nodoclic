@@ -7,27 +7,25 @@ block contenido
    
   // Main content
   section.content.container-fluid
-    table#tablaCompras.table.table-bordered.table-hover
-      thead
-        tr
-          th Producto
-          |                   
-          th Detales
-          |                   
-          th Cantidas
-          |                   
-          th Precio
-          |                   
-          th Fecha Compra
-          |                   
-          th Factura
-          |                   
-          th Proveedor        
-      |                 
-      tbody
+    div.row
+      div.col-xs-12
+        div.box
+          div.box-header
+             h3.box-title Hover Data Table
+          div.box-body
+            table#tablaCompras.table.table-bordered.table-hover
+              thead
+                tr
+                  th Producto
+                  th Detales
+                  th Cantidas
+                  th Precio
+                  th Fecha Compra
+                  th Factura
+                  th Proveedor        
+                tbody
 block javascript
-
-  link(rel="stylesheet" href="bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css") 
+  
   script(src="/bower_components/datatables.net/js/jquery.dataTables.min.js")
-  script(src="/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js")
+  link(rel="stylesheet" href="/bower_components/datatables.net-bs4/css/dataTables.bootstrap4.min.css")      	
   script(src="/js-app/compras/compras.init.js")

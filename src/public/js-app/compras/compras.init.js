@@ -1,14 +1,17 @@
 $(function() {
   console.log("iniciando");
-  //loadTablacompras();
-   $('#tablaCompras').DataTable()
+  loadTablacompras();
   initElementos();
 });
 
 
 function loadTablacompras(){
   $('#tablaCompras').dataTable( {
-    "ajax": "/compras/list",
+
+    "ajax": {
+        url: "/compras/list",
+        dataSrc:''
+      } ,
     "columns": [
         { "data": "nombre" },
         { "data": "detalle" },
