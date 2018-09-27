@@ -28,8 +28,7 @@ bower_components
 src/public/bower_components/
 src/public/plugins/
 
-src/public/bower_components/
-src/public/plugins/
+dist/
 
 # node-waf configuration
 .lock-wscript
