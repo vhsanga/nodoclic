@@ -6,6 +6,7 @@ var bcrypt=require('bcryptjs');
 var index;
 var home;
 var compras;
+var proveedor;
 
     
 
@@ -17,10 +18,12 @@ module.exports = function (app) {
     //seteando las rutas...
     index = require('./index');
     compras = require('./comprasController');
+    proveedor = require('./proveedorController');
 
     //implantacion d las rutas
     app.use('/', index);
     app.use('/compras',AuthMiddleware.isLogged, compras);
+    app.use('/proveedor',AuthMiddleware.isLogged, proveedor);
 
 
     //app.use('/home',AuthMiddleware.isLogged, home);
