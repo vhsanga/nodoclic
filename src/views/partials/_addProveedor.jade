@@ -1,0 +1,30 @@
+#modalCrearProveedor.modal.fade
+  .modal-dialog.modal-sm
+    .modal-content
+      .modal-header
+        button.close(type='button', data-dismiss='modal', aria-label='Close')
+          span(aria-hidden='true') &times;
+        |                 
+        h4.modal-title Ingresar Proveedor
+      |               
+      .modal-body
+        form
+          .form-group
+            label(for='nombrePv') Nombre Proveedor:
+            input#nombrePv.form-control(type='text', placeholder=' Nombre del Proveedor')
+          .form-group
+            label(for='direccionPv') Dirección:
+            input#direccionPv.form-control(type='text', placeholder=' Dirección')
+          .form-group
+            label(for='dtelefonoPv') Teléfono de contacto:
+            input#dtelefonoPv.form-control(type='text', placeholder='Teléfono') 
+          .form-group
+            label(for='representntePv') Nombre del Representante:
+            input#representntePv.form-control(type='text', placeholder='Representante')
+          
+
+      .modal-footer
+        button#btnGuardarProveedor.btn.btn-primary(type='button') Guardar Proveedor
+    // /.modal-content
+  // /.modal-dialog
+// /.modal
