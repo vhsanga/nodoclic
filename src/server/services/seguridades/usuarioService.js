@@ -24,9 +24,9 @@ class usuarioService {
 
     getUsuarioByUsername(username) { 
         return models.sequelize.query(
-            'SELECT u.id, u.usuario, u.pass, u.nombres '+
-            'FROM usuario u  '+
-            'WHERE usuario="'+username+'" AND u.eliminado=FALSE; ',            
+            'SELECT  u.id, u.usuario, u.pass, u.nombres, u.id_compania, c.nombre  '+
+            ' FROM usuario u INNER JOIN  compania c ON u.id_compania=c.id  '+
+            ' WHERE u.usuario="'+username+'" AND u.eliminado=FALSE; ',            
             {type: models.sequelize.QueryTypes.SELECT});    
     };
 

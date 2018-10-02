@@ -7,6 +7,7 @@ var index;
 var home;
 var compras;
 var proveedor;
+var cliente;
 
     
 
@@ -18,12 +19,15 @@ module.exports = function (app) {
     //seteando las rutas...
     index = require('./index');
     compras = require('./comprasController');
+    compras = require('./comprasController');
     proveedor = require('./proveedorController');
+    cliente = require('./clienteController');
 
     //implantacion d las rutas
     app.use('/', index);
     app.use('/compras',AuthMiddleware.isLogged, compras);
     app.use('/proveedor',AuthMiddleware.isLogged, proveedor);
+    app.use('/cliente',AuthMiddleware.isLogged, cliente);
 
 
     //app.use('/home',AuthMiddleware.isLogged, home);
