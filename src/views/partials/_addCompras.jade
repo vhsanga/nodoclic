@@ -20,16 +20,25 @@
           .form-group
             label(for='detallePd') Detalle del Producto:
             input#detallePd.form-control(type='text', placeholder='Marca, color, tamaño') 
-          .form-group
-            label(for='cantidadPd') Cantidad Comprada:
-            input#cantidadPd.form-control(type='text', placeholder='0')
+          
           .form-group.row
-              .col-md-6
-                label(for='precioConpraPd') Precio total de compra:
-                input#precioConpraPd.form-control(type='text', placeholder='0.00')
-              .col-md-6
-                label(for='cantidadPd') Cantidad Comprada:
-                input#cantidadPd.form-control(type='text', placeholder='0') 
+            .col-md-4
+              label(for='precioConpraPd') Precio total de compra:
+              input#precioConpraPd.form-control(type='number', placeholder='0.00' onkeyup="calcularPUC()")
+            .col-md-4
+              label(for='cantidadPd') Cantidad Comprada:
+              input#cantidadPd.form-control(type='number', placeholder='0' onkeyup="calcularPUC()") 
+            .col-md-4
+              label(for='puc') Precio Unitario Compra:
+              label#puc.form-control 0.00
+
+          .form-group.row
+            .col-md-4
+              label(for='pvu') Precio Venta Unitario
+              input#pvu.form-control(type='number', placeholder='En cuando va a vendar este producto?',  onkeyup="calcularPorcentaje()")
+            .col-md-4
+              label(for='porcentajeGanancia') Porcentaje de Ganancia:
+              input#porcentajeGanancia.form-control(type='number', placeholder='%' onkeyup="calcularPrecioVentaUnit()") 
 
           .form-group
             label(for='fechaCompraPd') Fecha de Compra:

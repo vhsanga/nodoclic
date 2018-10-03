@@ -59,12 +59,16 @@ function initElementos(){
   $( "#fechaCompraPd" ).val("hoy, " +today);
 
   $("#btnGuardarProveedor").click(function(){
-      guardarProveedor();  //esta en proveedor/proveedor.fn.js
+      guardarProveedor_compra();
   });
+  
 
 
 }
 
 function abrirModalCrearProveedor(){
+    $('#modalCrearProveedor').modal({backdrop: 'static', keyboard: false}) 
+}
+function calcularPUC(){
     $('#modalCrearProveedor').modal({backdrop: 'static', keyboard: false}) 
 }

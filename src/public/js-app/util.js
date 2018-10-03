@@ -119,6 +119,11 @@ function idiomaEspaniol(){
 var _CONST={
     NO_HAY_PROVEEDORES:"Todavia no tiene proveedores, ingrese un proveedor",
     VALID_NOMBRE_PROVEEDOR:"Ingrese el nombre del proveedor",
+    VALID_NOMBRE_PRODUCTO:"Ingrese el nombre del produuto",
+    VALID_CANTIDAD:"Ingrese la cantidad comprada",
+    VALID_PRECIO_COMPRA:"Ingrese el precio total de compra",
+    VALID_FECHA_COMPRA:"Ingrese la fecha de compra",
+    SELECIONE_PROVEEDOR:"Selecione el proveedor",
     EXITO_CREAR_PROVEEDOR:"Se ha creado el proveedor",
     ERROR_CREAR_AJAX:"Ha surgido un inconveniente, actualixe la página e intente de nuevo ",
 
