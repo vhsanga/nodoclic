@@ -1,4 +1,5 @@
 var dtCompras=null;
+var idCompraSelecionada=0;
 $(function() {  
   console.log("iniciando");
   loadTablacompras();
@@ -40,7 +41,8 @@ function loadTablacompras(){
         else {
             dtCompras.$('tr.selected').removeClass('selected');
             $(this).addClass('selected');
-            mostrarCompra(dtCompras.row( this ).data().id);
+            idCompraSelecionada=dtCompras.row( this ).data().id;
+            mostrarCompra(idCompraSelecionada);
         }
     } );
 
@@ -72,6 +74,9 @@ function initElementos(){
 
   $("#btnGuardarCompra").click(function(){
       guardarCompraProducto();
+  });
+  $("#btnEditarCompra").click(function(){
+      editarCompra();
   });
   $("#btnGuardarProveedor").click(function(){
       guardarProveedor_compra();

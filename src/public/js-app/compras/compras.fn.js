@@ -64,30 +64,13 @@ function guardarCompraProducto(){
 
 
 function guardarCompra(callback){
-  
-  let validado=validarFormCompra()
+  let validado=validarFormCompra("")
   if(!validado){    
     return false;
-    console.log("retornando con false");
   }
-
- console.log(".... cont");
-  var dataSend={
-    id_proveedor:$("#ProveedorPd").val(),
-    nombre:$("#nombrePd").val(),
-    detalle:$("#detallePd").val(),
-    stock:$("#cantidadPd").val(),
-    precio_compra_total:$("#precioConpraPd").val(),
-    precio_compra:$("#puc").text(),
-    precio_venta:$("#pvu").val(),
-    ganancia:$("#porcentajeGanancia").val(),
-    fecha_compra:$("#fechaCompraPd").val(),
-    referencia:$("#referenciaPd").val(),
-  }
-
+  var dataSend=obtenerCamposCompra("");
   $.post( "/compras/crear",dataSend).done(function( dataRes ) {
     callback(dataSend,dataRes);
-
     }).fail(function(e) {
       try{
            mostrarMensaje(e.responseJSON.error.message, "danger");
@@ -95,6 +78,23 @@ function guardarCompra(callback){
     }).always(function() { setTimeout(function(){ cerrarMensaje()},18000)  });
 }
 
+
+function editarCompra(){
+  let validado=validarFormCompra("_");
+  if(!validado){    
+    return false;
+  }
+  var dataSend=obtenerCamposCompra("_");
+  dataSend["id"]=idCompraSelecionada;
+  $.post( "/compras/editar",dataSend).done(function( dataRes ) {
+        loadTablacompras()
+        document.getElementById("fomrEditarCompra").reset();
+    }).fail(function(e) {
+      try{
+           mostrarMensaje(e.responseJSON.error.message, "danger");
+       }catch(e){  mostrarMensaje(ERROR_CREAR_AJAX, "danger"); }
+    }).always(function() { setTimeout(function(){ cerrarMensaje()},18000)  });
+}
 
 
 function mostrarCompra(id){
@@ -108,7 +108,7 @@ function mostrarCompra(id){
         $("#precioConpraPd_").val(data.precio);
         $("#puc_").text(data.precio_compra);
         $("#pvu_").val(data.precio_venta);
-        $("#porcentajeGanancia_").val(data.ganancia);
+        $("#porcentajeGanancia_").val(data.procentaje_ganancia);
         $("#fechaCompraPd_").val(data.fecha_compra);
         $("#referenciaPd_").val(data.referencia);
         $('#modalEditarCompra').modal({backdrop: 'static', keyboard: false})    
@@ -121,6 +121,20 @@ function mostrarCompra(id){
 }
 
 
+function obtenerCamposCompra(char){
+  return {
+    id_proveedor:$("#ProveedorPd"+char).val(),
+    nombre:$("#nombrePd"+char).val(),
+    detalle:$("#detallePd"+char).val(),
+    stock:$("#cantidadPd"+char).val(),
+    precio_compra_total:$("#precioConpraPd"+char).val(),
+    precio_compra:$("#puc"+char).text(),
+    precio_venta:$("#pvu"+char).val(),
+    ganancia:$("#porcentajeGanancia"+char).val(),
+    fecha_compra:$("#fechaCompraPd"+char).val(),
+    referencia:$("#referenciaPd"+char).val(),
+  }
+}
 
 
 function calcularPUC(){
@@ -164,34 +178,34 @@ function calcularPrecioVentaUnit(){
 
 
 
-function validarFormCompra(){
+function validarFormCompra(char){
   var elemento="";
   var res=true;
   var msj="";
   
-  if($("#fechaCompraPd").val()===""){
-    elemento="fechaCompraPd";
+  if($("#fechaCompraPd"+char).val()===""){
+    elemento="fechaCompraPd"+char;
     res=false;
     msj=_CONST.VALID_FECHA_COMPRA;
   }
-   if($("#precioConpraPd").val()===""){
-    elemento="precioConpraPd";
+   if($("#precioConpraPd"+char).val()===""){
+    elemento="precioConpraPd"+char;
     res=false;
     msj=_CONST.VALID_PRECIO_COMPRA;
   }
-  if($("#cantidadPd").val()===""){
-    elemento="cantidadPd";
+  if($("#cantidadPd"+char).val()===""){
+    elemento="cantidadPd"+char;
     res=false;
     msj=_CONST.VALID_CANTIDAD;
   }
-  if($("#nombrePd").val()===""){
-    elemento="nombrePd";
+  if($("#nombrePd"+char).val()===""){
+    elemento="nombrePd"+char;
     res=false;
     msj=_CONST.VALID_NOMBRE_PRODUCTO;
   }
 
-  if($("#ProveedorPd").val()==="0"){
-    elemento="ProveedorPd";
+  if($("#ProveedorPd"+char).val()==="0"){
+    elemento="ProveedorPd"+char;
     res=false;
     msj=_CONST.SELECIONE_PROVEEDOR;
   }
