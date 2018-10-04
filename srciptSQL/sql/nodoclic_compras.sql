@@ -33,8 +33,10 @@ CREATE TABLE `compras` (
   `eliminado` tinyint(4) DEFAULT '0',
   PRIMARY KEY (`id`),
   KEY `fk_compras_producto_idx` (`id_producto`),
+  KEY `fk_compras_compania_idx` (`id_compania`),
+  CONSTRAINT `fk_compras_compania` FOREIGN KEY (`id_compania`) REFERENCES `compania` (`id`),
   CONSTRAINT `fk_compras_producto` FOREIGN KEY (`id_producto`) REFERENCES `producto` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -43,7 +45,7 @@ CREATE TABLE `compras` (
 
 LOCK TABLES `compras` WRITE;
 /*!40000 ALTER TABLE `compras` DISABLE KEYS */;
-INSERT INTO `compras` VALUES (1,1,12,12.5,'2018-09-27','Fac0025',NULL,0),(3,14,10,10.05,'2018-09-30','Fccc22',NULL,0),(4,15,10,6.33,'2018-09-30','Fcdcdc4',NULL,0);
+INSERT INTO `compras` VALUES (1,1,12,12.5,'2018-09-27','Fac0025',NULL,0),(3,14,10,10.05,'2018-09-30','Fccc22',NULL,0),(4,15,10,6.33,'2018-09-30','Fcdcdc4',NULL,0),(5,21,12,41.5,'2018-10-03','fact554',1,0);
 /*!40000 ALTER TABLE `compras` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -56,4 +58,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-10-01 17:19:32
+-- Dump completed on 2018-10-03 18:59:57

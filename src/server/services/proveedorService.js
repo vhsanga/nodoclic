@@ -18,7 +18,7 @@ class proveedorService {
     crearProveedor(data, idCompania) { 
         return models.sequelize.query(
             "INSERT INTO proveedor (nombre, direccion, telefono, representante) "+
-            "VALUES ('"+data.nombre+"', '"+data.direccion+"', '"+data.telefono+"', '"+data.representante+"');",            
+            "VALUE ('"+data.nombre+"', '"+data.direccion+"', '"+data.telefono+"', '"+data.representante+"');",            
             {type: models.sequelize.QueryTypes.INSERT});    
     };
 

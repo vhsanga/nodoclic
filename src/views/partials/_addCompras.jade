@@ -8,7 +8,7 @@
         h4.modal-title Ingresar una compra
       |               
       .modal-body
-        form
+        form#fomrCrearCompra
           .form-group
             label(for='nombrePd') Proveedor:
             select#ProveedorPd.form-control
@@ -40,13 +40,99 @@
               label(for='porcentajeGanancia') Porcentaje de Ganancia:
               input#porcentajeGanancia.form-control(type='number', placeholder='%' onkeyup="calcularPrecioVentaUnit()") 
 
-          .form-group
-            label(for='fechaCompraPd') Fecha de Compra:
-            input#fechaCompraPd.form-control(type='text')
+          .form-group.row
+            .col-md-6
+              label(for='fechaCompraPd') Fecha de Compra:
+              input#fechaCompraPd.form-control(type='text')
+            .col-md-2
+            .col-md-4
+              label(for='fechaCompraPd') Num Factura: 
+              input#referenciaPd.form-control(type='text')
       .modal-footer
         button.btn.btn-default(type='button', data-dismiss='modal') Cancelar
         |                 
-        button.btn.btn-primary(type='button') Guardar
+        button#btnGuardarCompra.btn.btn-primary(type='button') Guardar Producto
+    // /.modal-content
+  // /.modal-dialog
+// /.modal
+
+
+#modalEditarCompra.modal.fade
+  .modal-dialog
+    .modal-content
+      .modal-header
+        button.close(type='button', data-dismiss='modal', aria-label='Close')
+          span(aria-hidden='true') &times;
+        |                 
+        h4.modal-title Datos del Producto
+      |               
+      .modal-body
+        form#fomrCrearCompra
+          .form-group
+            label(for='nombrePd_') Proveedor:
+            select#ProveedorPd_.form-control
+          .form-group
+            label(for='nombrePd_') Nombre del Producto:
+            input#nombrePd_.form-control(type='text', placeholder=' Nombre del Producto')
+          .form-group
+            label(for='detallePd_') Detalle del Producto:
+            input#detallePd_.form-control(type='text', placeholder='Marca, color, tamaño') 
+          
+          .form-group.row
+            .col-md-4
+              label(for='precioConpraPd_') Precio total de compra:
+              input#precioConpraPd_.form-control(type='number', placeholder='0.00' onkeyup="calcularPUC()")
+            .col-md-4
+              label(for='cantidadPd_') Cantidad Comprada:
+              input#cantidadPd_.form-control(type='number', placeholder='0' onkeyup="calcularPUC()") 
+            .col-md-4
+              label(for='puc_') Precio Unitario Compra:
+              label#puc_.form-control 0.00
+
+          .form-group.row
+            .col-md-4
+              label(for='pvu_') Precio Venta Unitario
+              input#pvu_.form-control(type='number', placeholder='En cuando va a vendar este producto?',  onkeyup="calcularPorcentaje()")
+            .col-md-4
+              label(for='porcentajeGanancia_') Porcentaje de Ganancia:
+              input#porcentajeGanancia_.form-control(type='number', placeholder='%' onkeyup="calcularPrecioVentaUnit()") 
+
+          .form-group.row
+            .col-md-6
+              label(for='fechaCompraPd_') Fecha de Compra:
+              input#fechaCompraPd_.form-control(type='text')
+            .col-md-2
+            .col-md-4
+              label(for='referenciaPd_') Num Factura: 
+              input#referenciaPd_.form-control(type='text')
+      .modal-footer
+        button.btn.btn-default(type='button', data-dismiss='modal') Cerrar
+        |                 
+        button#btnEditarCompra.btn.btn-primary(type='button') Guardar Cambios
+    // /.modal-content
+  // /.modal-dialog
+// /.modal
+
+
+
+#modalGenerarCodigoBarra.modal.fade
+  .modal-dialog
+    .modal-content
+      .modal-header
+        button.close(type='button', data-dismiss='modal', aria-label='Close')
+          span(aria-hidden='true') &times;
+        |                 
+        h4.modal-title Código de Barra
+      |               
+      .modal-body
+        h4 Se ha generado el siguiente codigo de Barra: 
+        p 
+          span Producto: 
+          span#productoCD
+        br
+        div#divCD
+      .modal-footer                
+        button#btnImprimirCodBar.btn.btn-primary(type='button') IMPRIMIR
     // /.modal-content
   // /.modal-dialog
 // /.modal

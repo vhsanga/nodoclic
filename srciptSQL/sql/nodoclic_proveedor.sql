@@ -29,7 +29,10 @@ CREATE TABLE `proveedor` (
   `telefono` varchar(45) DEFAULT NULL,
   `representante` varchar(125) DEFAULT NULL,
   `eliminado` tinyint(4) DEFAULT '0',
-  PRIMARY KEY (`id`)
+  `id_compania` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `fk_prov_compania_idx` (`id_compania`),
+  CONSTRAINT `fk_prov_compania` FOREIGN KEY (`id_compania`) REFERENCES `compania` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8 COMMENT='		';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -39,7 +42,7 @@ CREATE TABLE `proveedor` (
 
 LOCK TABLES `proveedor` WRITE;
 /*!40000 ALTER TABLE `proveedor` DISABLE KEYS */;
-INSERT INTO `proveedor` VALUES (1,'DristiFacil','av 10 de agosto OE Velez','022323656','Luis Mancero',0),(2,'DtriVen','Av Velos y carrillo','0326656565','Jose Perez',0),(3,'distribuidora SAMBA','Keretaro y Brazil','032656963','Gloria Moez',0),(4,'Dsitribuidora MEGaTell','','','',0),(5,'Proveeventas','Almagro','','',0),(6,'Prvvvsssss','','','',0),(7,'sdsdsdsdsdsc  xd d ','','','',0),(8,'scscscscs s s s s','','','',0),(9,'ssss','','','',0),(10,'sssscc c c c ','','','',0),(11,'cscsc xxxxxxx','','','',0);
+INSERT INTO `proveedor` VALUES (1,'DristiFacil','av 10 de agosto OE Velez','022323656','Luis Mancero',0,NULL),(2,'DtriVen','Av Velos y carrillo','0326656565','Jose Perez',0,NULL),(3,'distribuidora SAMBA','Keretaro y Brazil','032656963','Gloria Moez',0,NULL),(4,'Dsitribuidora MEGaTell','','','',0,NULL),(5,'Proveeventas','Almagro','','',0,NULL),(6,'Prvvvsssss','','','',0,NULL),(7,'sdsdsdsdsdsc  xd d ','','','',0,NULL),(8,'scscscscs s s s s','','','',0,NULL),(9,'ssss','','','',0,NULL),(10,'sssscc c c c ','','','',0,NULL),(11,'cscsc xxxxxxx','','','',0,NULL);
 /*!40000 ALTER TABLE `proveedor` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -52,4 +55,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-10-01 17:19:31
+-- Dump completed on 2018-10-03 18:59:55

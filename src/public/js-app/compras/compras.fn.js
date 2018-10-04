@@ -12,6 +12,13 @@ function cargarProveedores(callback ){
             $("#ProveedorPd").append('<option value='+data[i].id+'> '+data[i].nombre+' </option>');        
           } 
           $("#ProveedorPd").append('<option value=-1 >   ** (Crear Nuevo Proveedor) **</option>');
+          $("#ProveedorPd_").empty();
+          $("#ProveedorPd_").append('<option value=0> -- Seleccione un proveedor --</option>');
+          for (var i in data){
+            $("#ProveedorPd_").append('<option value='+data[i].id+'> '+data[i].nombre+' </option>');        
+          } 
+          $("#ProveedorPd").append('<option value=-1 >   ** (Crear Nuevo Proveedor) **</option>');
+        
         }
         if(typeof callback === 'function'){
         	callback();
@@ -38,35 +45,48 @@ function guardarProveedor_compra(){
 }
 
 
+function guardarCompraProducto(){
+  console.log("llmando a guardar");
+  guardarCompra(function(dataSend,data){ // esta funcion se encuentra en /proveedor/proeedor.fn.js
+    console.log(data);
+    if(data){
+      loadTablacompras()
+      document.getElementById("fomrCrearCompra").reset();
+      $('#modalCrearCompra').modal('hide'); 
+      $('#productoCD').text(data.nombre+' - '+data.detalle); 
+       $("#divCD").barcode(data.codigo_barra, "codabar"); 
+      $('#modalGenerarCodigoBarra').modal({backdrop: 'static', keyboard: false})  
+      
+    }
+  });
+}
+
+
+
 function guardarCompra(callback){
   
-  let validar=validarFormProveedor()
-  if(!validar.correcto){
-    mostrarMensaje(validar.msj, "warning")
+  let validado=validarFormCompra()
+  if(!validado){    
     return false;
+    console.log("retornando con false");
   }
 
- 
-
-  if($("#fechaCompraPd").val()===""){
-    pintarElemento("fechaCompraPd");
-    res.correcto=false;
-    res.msj=_CONST.VALID_FECHA_COMPRA;
-  }
-
+ console.log(".... cont");
   var dataSend={
     id_proveedor:$("#ProveedorPd").val(),
-    nombre_producto:$("#nombrePd").val(),
-    detalle_producto:$("#detallePd").val(),
-    cantidad:$("#cantidadPd").val(),
-    precio_compra:$("#precioConpraPd").val(),
-    precio_compra:$("#precioConpraPd").val(),
-    precio_compra:$("#precioConpraPd").val(),
-    precio_compra:$("#precioConpraPd").val(),
+    nombre:$("#nombrePd").val(),
+    detalle:$("#detallePd").val(),
+    stock:$("#cantidadPd").val(),
+    precio_compra_total:$("#precioConpraPd").val(),
+    precio_compra:$("#puc").text(),
+    precio_venta:$("#pvu").val(),
+    ganancia:$("#porcentajeGanancia").val(),
+    fecha_compra:$("#fechaCompraPd").val(),
+    referencia:$("#referenciaPd").val(),
   }
 
-  $.post( "/compra/crear",dataSend).done(function( data ) {
-    callback(data);
+  $.post( "/compras/crear",dataSend).done(function( dataRes ) {
+    callback(dataSend,dataRes);
 
     }).fail(function(e) {
       try{
@@ -74,6 +94,34 @@ function guardarCompra(callback){
        }catch(e){  mostrarMensaje(ERROR_CREAR_AJAX, "danger"); }
     }).always(function() { setTimeout(function(){ cerrarMensaje()},18000)  });
 }
+
+
+
+function mostrarCompra(id){
+  mostrarMensaje(_CONST.CARGANDO, "process");
+  $.get( "/compras/list/"+id).done(function( data ) {
+        console.log(data);
+        $("#ProveedorPd_").val(data.id_proveedor);
+        $("#nombrePd_").val(data.nombre);
+        $("#detallePd_").val(data.detalle);
+        $("#cantidadPd_").val(data.cantidad);
+        $("#precioConpraPd_").val(data.precio);
+        $("#puc_").text(data.precio_compra);
+        $("#pvu_").val(data.precio_venta);
+        $("#porcentajeGanancia_").val(data.ganancia);
+        $("#fechaCompraPd_").val(data.fecha_compra);
+        $("#referenciaPd_").val(data.referencia);
+        $('#modalEditarCompra').modal({backdrop: 'static', keyboard: false})    
+        cerrarMensaje();
+    }).fail(function(e) {
+      try{
+            mostrarMensaje(e.responseJSON.error.message, "danger");
+       }catch(e){  mostrarMensaje(ERROR_CREAR_AJAX, "danger"); }
+    }).always(function() { setTimeout(function(){ cerrarMensaje()},18000)  });
+}
+
+
+
 
 function calcularPUC(){
   if ($("#precioConpraPd").val()!=="" && $("#cantidadPd").val()!==""){
@@ -117,36 +165,43 @@ function calcularPrecioVentaUnit(){
 
 
 function validarFormCompra(){
-  var res={
-    correcto:true,
-    msj:""
-  };
-
-  if($("#ProveedorPd").val()==="0"){
-    pintarElemento("ProveedorPd");
-    res.correcto=false;
-    res.msj=_CONST.SELECIONE_PROVEEDOR;
+  var elemento="";
+  var res=true;
+  var msj="";
+  
+  if($("#fechaCompraPd").val()===""){
+    elemento="fechaCompraPd";
+    res=false;
+    msj=_CONST.VALID_FECHA_COMPRA;
   }
-  if($("#nombrePd").val()===""){
-    pintarElemento("nombrePd");
-    res.correcto=false;
-    res.msj=_CONST.VALID_NOMBRE_PRODUCTO;
+   if($("#precioConpraPd").val()===""){
+    elemento="precioConpraPd";
+    res=false;
+    msj=_CONST.VALID_PRECIO_COMPRA;
   }
   if($("#cantidadPd").val()===""){
-    pintarElemento("cantidadPd");
-    res.correcto=false;
-    res.msj=_CONST.VALID_CANTIDAD;
+    elemento="cantidadPd";
+    res=false;
+    msj=_CONST.VALID_CANTIDAD;
   }
-  if($("#precioConpraPd").val()===""){
-    pintarElemento("precioConpraPd");
-    res.correcto=false;
-    res.msj=_CONST.VALID_PRECIO_COMPRA;
+  if($("#nombrePd").val()===""){
+    elemento="nombrePd";
+    res=false;
+    msj=_CONST.VALID_NOMBRE_PRODUCTO;
   }
-  if($("#fechaCompraPd").val()===""){
-    pintarElemento("fechaCompraPd");
-    res.correcto=false;
-    res.msj=_CONST.VALID_FECHA_COMPRA;
+
+  if($("#ProveedorPd").val()==="0"){
+    elemento="ProveedorPd";
+    res=false;
+    msj=_CONST.SELECIONE_PROVEEDOR;
   }
+
+  if(!res){
+    mostrarMensaje(msj, "warning");
+    pintarElemento(elemento);
+  }
+  
+  
   console.log(res);
-  return res
+  return res;
 }

@@ -125,9 +125,11 @@ var _CONST={
     VALID_FECHA_COMPRA:"Ingrese la fecha de compra",
     SELECIONE_PROVEEDOR:"Selecione el proveedor",
     EXITO_CREAR_PROVEEDOR:"Se ha creado el proveedor",
+    EXITO_CREAR_COMPRA:"Se ha creado la compra",
     ERROR_CREAR_AJAX:"Ha surgido un inconveniente, actualixe la página e intente de nuevo ",
 
-    ERROR_CARGAR_AJAX:"Ha surgido un inconveniente al cargar"
+    ERROR_CARGAR_AJAX:"Ha surgido un inconveniente al cargar",
+    CARGANDO:"Cargando Información"
 
 
 

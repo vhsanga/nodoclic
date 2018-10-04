@@ -30,8 +30,11 @@ CREATE TABLE `cliente` (
   `direccion` varchar(125) DEFAULT NULL,
   `telefono` varchar(20) DEFAULT NULL,
   `eliminado` tinyint(4) DEFAULT '0',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `id_compania` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `fk_cliente_compania_idx` (`id_compania`),
+  CONSTRAINT `fk_cliente_compania` FOREIGN KEY (`id_compania`) REFERENCES `compania` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -40,6 +43,7 @@ CREATE TABLE `cliente` (
 
 LOCK TABLES `cliente` WRITE;
 /*!40000 ALTER TABLE `cliente` DISABLE KEYS */;
+INSERT INTO `cliente` VALUES (1,'ss','sss','sss','ss','ss',0,1);
 /*!40000 ALTER TABLE `cliente` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -52,4 +56,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-10-01 17:19:31
+-- Dump completed on 2018-10-03 18:59:57

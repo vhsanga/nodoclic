@@ -12,11 +12,28 @@ class compraService {
 
     getListaCompras() { 
         return models.sequelize.query(
-            'SELECT c.id, c.id_producto, pr.id_proveedor, pr.nombre, pr.detalle, c.cantidad, c.precio, c.fecha_compra, c.referencia, pv.nombre as proveedor '+
+            'SELECT c.id, c.id_producto, pr.id_proveedor, pr.nombre, pr.detalle, pr.codigo_barra, c.cantidad, c.precio, c.fecha_compra, c.referencia, pv.nombre as proveedor '+
             ' FROM compras c '+
             ' inner join producto pr  on c.id_producto=pr.id '+
             ' inner join proveedor pv on pr.id_proveedor=pv.id ',            
             {type: models.sequelize.QueryTypes.SELECT});    
+    };
+
+    getCompraById(id_compra) { 
+        return models.sequelize.query(
+            'SELECT c.id, c.id_producto, pr.id_proveedor, pr.nombre, pr.detalle, pr.codigo_barra, c.cantidad, c.precio, c.fecha_compra, c.referencia, pv.nombre as proveedor '+
+            ' FROM compras c '+
+            ' inner join producto pr  on c.id_producto=pr.id '+
+            ' inner join proveedor pv on pr.id_proveedor=pv.id '+
+            ' WHERE c.id='+id_compra,            
+            {type: models.sequelize.QueryTypes.SELECT});    
+    };
+
+     crearCompra(data, id_compania) { 
+        return models.sequelize.query(
+            "INSERT INTO `nodoclic`.`compras` (`id_producto`, `cantidad`, `precio`, `fecha_compra`, `referencia`, `id_compania`, `eliminado`) "+
+            " VALUES ('"+data.id_producto+"', '"+data.stock+"', '"+data.precio_compra_total+"', '"+data.fecha_compra+"', '"+data.referencia+"', '"+id_compania+"', '0');",            
+            {type: models.sequelize.QueryTypes.INSERT});    
     };
 
    

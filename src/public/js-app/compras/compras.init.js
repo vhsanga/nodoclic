@@ -1,4 +1,5 @@
-$(function() {
+var dtCompras=null;
+$(function() {  
   console.log("iniciando");
   loadTablacompras();
   initElementos();
@@ -7,7 +8,7 @@ $(function() {
 
 
 function loadTablacompras(){
-  var table=$('#tablaCompras').DataTable( {
+  var dtCompras=$('#tablaCompras').DataTable( {
 
     "ajax": {
         url: "/compras/list",
@@ -23,13 +24,24 @@ function loadTablacompras(){
         { "data": "referencia" },
         { "data": "proveedor" }
       ],
-      "language":idiomaEspaniol()
+      "language":idiomaEspaniol(),
+      destroy:true
   });
 
-    table.on( 'order.dt search.dt', function () {
-        table.column(0, {search:'applied', order:'applied'}).nodes().each( function (cell, i) {
+    dtCompras.on( 'order.dt search.dt', function () {
+        dtCompras.column(0, {search:'applied', order:'applied'}).nodes().each( function (cell, i) {
             cell.innerHTML = i+1;
         } );
+    } );
+    dtCompras.on( 'click', 'tr', function () {
+        if ( $(this).hasClass('selected') ) {
+            $(this).removeClass('selected');
+        }
+        else {
+            dtCompras.$('tr.selected').removeClass('selected');
+            $(this).addClass('selected');
+            mostrarCompra(dtCompras.row( this ).data().id);
+        }
     } );
 
            
@@ -40,7 +52,7 @@ function loadTablacompras(){
 function initElementos(){
   var today=moment().format('YYYY-MM-DD');
   $("#openModal").click(function(e){
-      $('#modalCrearCompra').modal({backdrop: 'static', keyboard: false})  
+      $('#modalCrearCompra').modal({backdrop: 'static', keyboard: false});  
   })
   $("#open-crear-prov").click(function(e){
     abrirModalCrearProveedor();
@@ -56,13 +68,16 @@ function initElementos(){
       showButtonPanel: false,
       defaultDate: today
   });
-  $( "#fechaCompraPd" ).val("hoy, " +today);
+  $( "#fechaCompraPd" ).val(today);
 
+  $("#btnGuardarCompra").click(function(){
+      guardarCompraProducto();
+  });
   $("#btnGuardarProveedor").click(function(){
       guardarProveedor_compra();
   });
   
-
+  
 
 }
 
