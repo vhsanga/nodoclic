@@ -29,16 +29,18 @@ router.get('/list', function(req, res, next) {
 });
 
 router.post('/crear', function(req, res, next) {
+	if(req.body.id_proveedor==='null'){
+			req.body.id_proveedor=null;
+	}
 	var item=productoService.crearProducto(req.body, req.user.id_compania);
 	item.then(function(id_prod){
-		console.log("porcuto:"+ id_prod[0]);
 		req.body["id_producto"]=id_prod[0];
 		item=compraService.crearCompra(req.body, req.user.id_compania);
 		item.then(function(id_compra){
 			item=productoService.setCodigoBarra("00"+id_prod[0],id_prod[0]);
 			item.then(function(udt){
 				console.log("compra:"+ id_compra[0]);
-				item=compraService.getComprasById(id_compra[0]);
+				item=compraService.getCompraById(id_compra[0]);
 				item.then(function(compra){
 					
 					res.json(compra[0]);
@@ -47,6 +49,27 @@ router.post('/crear', function(req, res, next) {
 				
 			}).catch(function(err){ console.log("1 ", err); res.json({success: false, error: err}, 400); });
 
+		}).catch(function(err){ console.log("1 ", err); res.json({success: false, error: err}, 400); });
+			
+	}).catch(function(err){ console.log("1 ", err); res.json({success: false, error: err}, 400); });
+});
+
+
+router.post('/editar', function(req, res, next) {
+	if(req.body.id_proveedor==='null'){
+			req.body.id_proveedor=null;
+	}
+	var item=productoService.updateProducto(req.body, req.body.id_producto);
+	item.then(function(id_prod){
+		item=compraService.updateCompra(req.body, req.body.id);
+		item.then(function(id_compra){
+			item=compraService.getCompraById(req.body.id);
+			item.then(function(compra){
+				
+				res.json(compra[0]);
+				
+			}).catch(function(err){ console.log("1 ", err); res.json({success: false, error: err}, 400); });
+				
 		}).catch(function(err){ console.log("1 ", err); res.json({success: false, error: err}, 400); });
 			
 	}).catch(function(err){ console.log("1 ", err); res.json({success: false, error: err}, 400); });

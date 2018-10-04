@@ -17,17 +17,19 @@
           .form-group
             label(for='nombrePd') Nombre del Producto:
             input#nombrePd.form-control(type='text', placeholder=' Nombre del Producto')
+            input#idPd(type='hidden')
+            input#idCp(type='hidden')
           .form-group
             label(for='detallePd') Detalle del Producto:
             input#detallePd.form-control(type='text', placeholder='Marca, color, tamaño') 
           
-          .form-group.row
+          .form-group.row(style="background: #e0e0e0;")
             .col-md-4
               label(for='precioConpraPd') Precio total de compra:
-              input#precioConpraPd.form-control(type='number', placeholder='0.00' onkeyup="calcularPUC()")
+              input#precioConpraPd.form-control(type='number', placeholder='0.00' onkeyup="calcularPUC('')")
             .col-md-4
               label(for='cantidadPd') Cantidad Comprada:
-              input#cantidadPd.form-control(type='number', placeholder='0' onkeyup="calcularPUC()") 
+              input#cantidadPd.form-control(type='number', placeholder='0' onkeyup="calcularPUC('')") 
             .col-md-4
               label(for='puc') Precio Unitario Compra:
               label#puc.form-control 0.00
@@ -35,16 +37,15 @@
           .form-group.row
             .col-md-4
               label(for='pvu') Precio Venta Unitario
-              input#pvu.form-control(type='number', placeholder='En cuando va a vendar este producto?',  onkeyup="calcularPorcentaje()")
+              input#pvu.form-control(type='number', placeholder='En cuando va a vendar este producto?',  onkeyup="calcularPorcentaje('')"  style="font-size: 17px; background: #d8eac2;")
             .col-md-4
-              label(for='porcentajeGanancia') Porcentaje de Ganancia:
-              input#porcentajeGanancia.form-control(type='number', placeholder='%' onkeyup="calcularPrecioVentaUnit()") 
+              label(for='porcentajeGanancia' ) Porcentaje de Ganancia:
+              input#porcentajeGanancia.form-control(type='number', placeholder='%' onkeyup="calcularPrecioVentaUnit('')" style="font-size: 15px;") 
 
           .form-group.row
-            .col-md-6
+            .col-md-4
               label(for='fechaCompraPd') Fecha de Compra:
               input#fechaCompraPd.form-control(type='text')
-            .col-md-2
             .col-md-4
               label(for='fechaCompraPd') Num Factura: 
               input#referenciaPd.form-control(type='text')
@@ -74,38 +75,51 @@
           .form-group
             label(for='nombrePd_') Nombre del Producto:
             input#nombrePd_.form-control(type='text', placeholder=' Nombre del Producto')
+            input#idPd_.form-control(type='hidden')
+            input#idCp_.form-control(type='hidden')
           .form-group
             label(for='detallePd_') Detalle del Producto:
             input#detallePd_.form-control(type='text', placeholder='Marca, color, tamaño') 
           
-          .form-group.row
+          .form-group.row(style="background: #e0e0e0;")
             .col-md-4
               label(for='precioConpraPd_') Precio total de compra:
-              input#precioConpraPd_.form-control(type='number', placeholder='0.00' onkeyup="calcularPUC()")
+              input#precioConpraPd_.form-control(type='number', placeholder='0.00' onkeyup="calcularPUC('_')")
             .col-md-4
               label(for='cantidadPd_') Cantidad Comprada:
-              input#cantidadPd_.form-control(type='number', placeholder='0' onkeyup="calcularPUC()") 
+              input#cantidadPd_.form-control(type='number', placeholder='0' onkeyup="calcularPUC('_')") 
             .col-md-4
               label(for='puc_') Precio Unitario Compra:
               label#puc_.form-control 0.00
 
           .form-group.row
-            .col-md-4
-              label(for='pvu_') Precio Venta Unitario
-              input#pvu_.form-control(type='number', placeholder='En cuando va a vendar este producto?',  onkeyup="calcularPorcentaje()")
-            .col-md-4
-              label(for='porcentajeGanancia_') Porcentaje de Ganancia:
-              input#porcentajeGanancia_.form-control(type='number', placeholder='%' onkeyup="calcularPrecioVentaUnit()") 
+            .col-md-8
+              .row
+                .col-md-6
+                  label(for='pvu_' ) Precio Venta Unitario
+                  input#pvu_.form-control(type='number', placeholder='En cuando va a vendar este producto?',  onkeyup="calcularPorcentaje('_')" style="font-size: 17px; background: #d8eac2;")
+                .col-md-6
+                  label(for='porcentajeGanancia_' ) Porcentaje de Ganancia:
+                  input#porcentajeGanancia_.form-control(type='number', placeholder='%' onkeyup="calcularPrecioVentaUnit('_')" style="font-size: 15px;") 
+              .row
+                .col-md-6
+                  label(for='fechaCompraPd_') Fecha de Compra:
+                  input#fechaCompraPd_.form-control(type='text')
+                .col-md-6
+                  label(for='referenciaPd_') Num Factura: 
+                  input#referenciaPd_.form-control(type='text')
 
-          .form-group.row
-            .col-md-6
-              label(for='fechaCompraPd_') Fecha de Compra:
-              input#fechaCompraPd_.form-control(type='text')
-            .col-md-2
             .col-md-4
-              label(for='referenciaPd_') Num Factura: 
-              input#referenciaPd_.form-control(type='text')
+                div#divCD_
+                div#noCodBar_(style=" background: #ecebeb; border: solid 2px #989697; padding: 4px; border-style: dashed; text-align: center; margin-top: 35px;")
+                  span No tiene código de barra
+                  br
+                a(href='#' onclick="setCodigoBarra()") Generar Código Barra
+             
+                  
+            
       .modal-footer
+        button.btn.bg-purple.pull-left(type='button' onclick="imprimirBarCode('_')") Imprimir Código de Barra
         button.btn.btn-default(type='button', data-dismiss='modal') Cerrar
         |                 
         button#btnEditarCompra.btn.btn-primary(type='button') Guardar Cambios
@@ -132,7 +146,7 @@
         br
         div#divCD
       .modal-footer                
-        button#btnImprimirCodBar.btn.btn-primary(type='button') IMPRIMIR
+        button.btn.btn-primary(type='button' onclick="imprimirBarCode('')") IMPRIMIR
     // /.modal-content
   // /.modal-dialog
 // /.modal

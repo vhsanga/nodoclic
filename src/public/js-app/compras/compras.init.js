@@ -1,10 +1,13 @@
 var dtCompras=null;
 var idCompraSelecionada=0;
+var compraSelecionada=null;
 $(function() {  
   console.log("iniciando");
   loadTablacompras();
   initElementos();
   cargarProveedores();
+
+    
 });
 
 
@@ -26,7 +29,9 @@ function loadTablacompras(){
         { "data": "proveedor" }
       ],
       "language":idiomaEspaniol(),
-      destroy:true
+      destroy:true,
+      rowId:'id',
+
   });
 
     dtCompras.on( 'order.dt search.dt', function () {
@@ -39,10 +44,15 @@ function loadTablacompras(){
             $(this).removeClass('selected');
         }
         else {
+          if(dtCompras.row( this ).data() != null){
             dtCompras.$('tr.selected').removeClass('selected');
             $(this).addClass('selected');
+            console.log(dtCompras.row( this ).data());
             idCompraSelecionada=dtCompras.row( this ).data().id;
+            compraSelecionada=dtCompras.row( this ).data();
             mostrarCompra(idCompraSelecionada);
+          }
+            
         }
     } );
 
@@ -54,6 +64,8 @@ function loadTablacompras(){
 function initElementos(){
   var today=moment().format('YYYY-MM-DD');
   $("#openModal").click(function(e){
+      document.getElementById("fomrCrearCompra").reset();
+      
       $('#modalCrearCompra').modal({backdrop: 'static', keyboard: false});  
   })
   $("#open-crear-prov").click(function(e){
@@ -73,6 +85,7 @@ function initElementos(){
   $( "#fechaCompraPd" ).val(today);
 
   $("#btnGuardarCompra").click(function(){
+
       guardarCompraProducto();
   });
   $("#btnEditarCompra").click(function(){
@@ -82,6 +95,7 @@ function initElementos(){
       guardarProveedor_compra();
   });
   
+
   
 
 }

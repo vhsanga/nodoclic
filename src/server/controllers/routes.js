@@ -8,6 +8,7 @@ var home;
 var compras;
 var proveedor;
 var cliente;
+var producto;
 
     
 
@@ -22,12 +23,14 @@ module.exports = function (app) {
     compras = require('./comprasController');
     proveedor = require('./proveedorController');
     cliente = require('./clienteController');
+    producto = require('./productoController');
 
     //implantacion d las rutas
     app.use('/', index);
     app.use('/compras',AuthMiddleware.isLogged, compras);
     app.use('/proveedor',AuthMiddleware.isLogged, proveedor);
     app.use('/cliente',AuthMiddleware.isLogged, cliente);
+    app.use('/productos',AuthMiddleware.isLogged, producto);
 
 
     //app.use('/home',AuthMiddleware.isLogged, home);

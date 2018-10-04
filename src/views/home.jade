@@ -1,9 +1,141 @@
 extends ./layout
 block contenido 
-  section.content-header
-    h1
-      | Principal
-      
-   
-  // Main content
-  section.content.container-fluid
+        // Content Header (Page header)
+        section.content-header
+          h1
+            | Bienvenido.
+            small Página principal
+
+        // Main content
+        section.content
+          // Default box
+          .box
+            .box-header.with-border
+              h3.box-title Caja
+            .box-body
+              form#crearProductoForm(role='form')
+                .row
+                  .col-md-3
+                    .form-group
+                      label(for='pro-nombre') Producto:
+                      input#pro-nombre.form-control(type='text', placeholder='Ingrese el nombre del producto')
+                  .col-md-2
+                    .form-group
+                      label(for='pro-codigo-barra') cod barra:
+                      input#pro-codigo-barra.form-control(type='text', placeholder='---')
+                  .col-md-2
+                    .form-group
+                      label(for='pro-cantidad') Cantidad:
+                      input#pro-cantidad.form-control(type='number', placeholder='0')           
+                  .col-md-2
+                    .form-group
+                      label(for='pro-pvp') PVP:
+                      input#pro-pvp.form-control(type='number', placeholder='0.00')
+                  .col-md-2
+                    .form-group
+                      br
+                      button#addToFactura.btn.bg-olive.btn-flat(type="button")
+                        i.fa.fa-plus
+                        | &nbsp;&nbsp;Agregar    
+
+              .row
+                .col-md-2
+                .col-md-7
+                  table#factura.table.table-bordered.table-hover
+                    thead(style="background: #76d2a9;")
+                      tr
+                        th #
+                        th Producto
+                        th P. unitario
+                        th p. total
+                    tbody
+                  div.pull-right
+                    b Total: &nbsp;
+                      span#sumaTotal(style="font-size: 19px;")
+                .col-md-3 
+
+              .row#clienteForm(role='form' style="display:none")
+                .col-md-3
+                  .input-group
+                  input#cli-ci.form-control(type='text', placeholder='Cédula del cliente')
+                .col-md-4                  
+                  label Nombres:&nbsp;
+                  span#cli-nombre Consumidor Final
+                  br
+                  label Direccion:&nbsp;
+                  span#cli-direccion
+                  br         
+                  label Teléfono:&nbsp;
+                  span#cli-telefono
+                .col-md-2
+                  br
+                  button#addToFactura.btn.bg-olive.btn-flat(type="button")
+                    i.fa.fa-hand-pointer-o
+                    | &nbsp;&nbsp; REALIZAR VENTA                   
+
+
+              .ajax-content
+            // /.box-body
+            .box-footer
+              | Footer
+
+          .box
+            .box-header.with-border
+              h3.box-title Resumen de ventas
+            .box-body
+              | Pace loading works automatically on page. You can still implement it with ajax requests by adding this js:
+              br
+              code $(document).ajaxStart(function() { Pace.restart(); });
+              br
+              .row
+                .col-xs-12.text-center
+                  button.btn.btn-default.btn-lrg.ajax(type='button', title='Ajax Request')
+                    i.fa.fa-spin.fa-refresh
+                    |   Get External Content
+              .ajax-content
+            // /.box-body
+            .box-footer
+              | Footer
+
+          .box
+            .box-header.with-border
+              h3.box-title Resumen de Inventarios
+            .box-body
+              | Pace loading works automatically on page. You can still implement it with ajax requests by adding this js:
+              br
+              code $(document).ajaxStart(function() { Pace.restart(); });
+              br
+              .row
+                .col-xs-12.text-center
+                  button.btn.btn-default.btn-lrg.ajax(type='button', title='Ajax Request')
+                    i.fa.fa-spin.fa-refresh
+                    |   Get External Content
+              .ajax-content
+            // /.box-body
+            .box-footer
+              | Footer
+
+          .box
+            .box-header.with-border
+              h3.box-title Resumen de Clientes
+            .box-body
+              | Pace loading works automatically on page. You can still implement it with ajax requests by adding this js:
+              br
+              code $(document).ajaxStart(function() { Pace.restart(); });
+              br
+              .row
+                .col-xs-12.text-center
+                  button.btn.btn-default.btn-lrg.ajax(type='button', title='Ajax Request')
+                    i.fa.fa-spin.fa-refresh
+                    |   Get External Content
+              .ajax-content
+            // /.box-body
+            .box-footer
+              | Footer
+
+block javascript
+  link(rel="stylesheet" href="/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css")
+  script(src="/bower_components/datatables.net/js/jquery.dataTables.min.js")
+  script(src="/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js")
+  script(src="/js/views/home/inicio.home.js")
+  script(src="/js/views/home/funciones.home.js")
