@@ -54,7 +54,8 @@ router.post('/eliminar/:id', function(req, res, next) {
 router.get('/listci/:ci', function(req, res, next) {
 	var item=clienteService.getClienteByCi(req.params.ci);
 	item.then(function(rows){
-		res.json(rows[0]);
+		var resp=rows.length>0 ? rows[0]: [];
+		res.json(resp);
 	}).catch(function(err){ console.log("1 ", err); res.json({success: false, error: err}, 400); });
 });
 

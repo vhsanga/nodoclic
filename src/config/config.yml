@@ -1,6 +1,6 @@
 ---
 production: &default
-    serverPort: 3000
+    serverPort: 3001
 
     views:
         engine: .jade

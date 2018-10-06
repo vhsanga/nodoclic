@@ -10,6 +10,13 @@ var models = require('../models/index');
 class productoService {
  
 
+    getProductos(id_compania) { 
+        return models.sequelize.query(
+            "SELECT p.id, p.nombre, p.detalle, p.precio_compra, p.precio_venta, p.stock, p.codigo_barra "+
+            " FROM nodoclic.producto p INNER JOIN compras  c ON p.id=c.id_producto"+
+            " WHERE p.eliminado=false AND p.id_compania="+id_compania,            
+            {type: models.sequelize.QueryTypes.SELECT});    
+    };
     crearProducto(data, id_compania) { 
         return models.sequelize.query(
             "INSERT INTO `nodoclic`.`producto` (`nombre`, `detalle`, `precio_compra`, `precio_venta`, `stock`, `procentaje_ganancia`, `eliminado`, `id_proveedor`, `id_compania`) "+

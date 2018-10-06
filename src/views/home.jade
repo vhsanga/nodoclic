@@ -15,44 +15,31 @@ block contenido
             .box-body
               form#crearProductoForm(role='form')
                 .row
-                  .col-md-3
-                    .form-group
-                      label(for='pro-nombre') Producto:
-                      input#pro-nombre.form-control(type='text', placeholder='Ingrese el nombre del producto')
+                  .col-md-1
                   .col-md-2
                     .form-group
                       label(for='pro-codigo-barra') cod barra:
                       input#pro-codigo-barra.form-control(type='text', placeholder='---')
-                  .col-md-2
+                  .col-md-4
                     .form-group
-                      label(for='pro-cantidad') Cantidad:
-                      input#pro-cantidad.form-control(type='number', placeholder='0')           
-                  .col-md-2
-                    .form-group
-                      label(for='pro-pvp') PVP:
-                      input#pro-pvp.form-control(type='number', placeholder='0.00')
-                  .col-md-2
-                    .form-group
-                      br
-                      button#addToFactura.btn.bg-olive.btn-flat(type="button")
-                        i.fa.fa-plus
-                        | &nbsp;&nbsp;Agregar    
-
+                      label(for='pro-nombre') Producto:
+                      input#pro-nombre.form-control(type='text', placeholder='Ingrese el nombre del producto')            
+              hr
               .row
                 .col-md-2
-                .col-md-7
-                  table#factura.table.table-bordered.table-hover
-                    thead(style="background: #76d2a9;")
-                      tr
-                        th #
+                .col-md-8
+                  table#factura.table.table-bordered.table-hover                    
+                      tr(style="background: #76d2a9;")
+                        th(style="width: 50px;") #
                         th Producto
-                        th P. unitario
-                        th p. total
-                    tbody
-                  div.pull-right
+                        th(style="width: 100px;") Cant
+                        th(style="width: 100px;") P. unitario
+                        th(style="width: 100px;") p. total
+                    
+                  div.pull-right(style="margin-right: 50px; margin-top: -20px;")
                     b Total: &nbsp;
                       span#sumaTotal(style="font-size: 19px;")
-                .col-md-3 
+                .col-md-8
 
               .row#clienteForm(role='form' style="display:none")
                 .col-md-3
@@ -134,8 +121,10 @@ block contenido
               | Footer
 
 block javascript
-  link(rel="stylesheet" href="/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css")
+  link(rel="stylesheet" href="/bower_components/datatables.net-bs4/css/dataTables.bootstrap4.min.css")
+  link(rel="stylesheet" href="/css-app/autocommplete.css")
   script(src="/bower_components/datatables.net/js/jquery.dataTables.min.js")
-  script(src="/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js")
-  script(src="/js/views/home/inicio.home.js")
-  script(src="/js/views/home/funciones.home.js")
+  script(src="/bower_components/datatables.net-bs4/js/dataTables.bootstrap4.min.js")
+  script(src="/js-app/home/home.init.js")
+  script(src="/js-app/home/home.fn.js")
+  script(src="/js-app/cliente/cliente.fn.js")

@@ -29,7 +29,7 @@ module.exports = function (app) {
     app.use('/', index);
     app.use('/compras',AuthMiddleware.isLogged, compras);
     app.use('/proveedor',AuthMiddleware.isLogged, proveedor);
-    app.use('/cliente',AuthMiddleware.isLogged, cliente);
+    app.use('/clientes',AuthMiddleware.isLogged, cliente);
     app.use('/productos',AuthMiddleware.isLogged, producto);
 
 

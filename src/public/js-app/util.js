@@ -135,5 +135,6 @@ var _CONST={
     NO_PUEDE_IMPRIMIR_BAR_CODE:"No se puede imprimir el código de barra porque todavía no se ha generado",
 
 
+    NO_EXISTE_CLIENTE:"El cliente con cédula _ci_ no existe, debe ingresar sus datos"
 
 }
