@@ -150,3 +150,32 @@
     // /.modal-content
   // /.modal-dialog
 // /.modal
+
+
+#modalMostrarCompra.modal.fade
+  .modal-dialog.modal-lg
+    .modal-content
+      .modal-header
+        button.close(type='button', data-dismiss='modal', aria-label='Close')
+          span(aria-hidden='true') &times;
+        |                 
+        h4.modal-title#tituloMostrarCompra
+      |               
+      .modal-body
+        table#tablaComprasMes.table.table-bordered.table-hover
+              thead.tabla_default
+                tr
+                  th #
+                  th Producto
+                  th Detalles
+                  th Cantidad comprada
+                  th Precio
+                  th Fecha Compra
+                  th Factura
+                  th Proveedor        
+                tbody
+      .modal-footer                
+        button.btn.btn-default(type='button', data-dismiss='modal') Cerrar
+    // /.modal-content
+  // /.modal-dialog
+// /.modal

@@ -41,6 +41,7 @@ function guardarProveedor_compra(){
           mostrarMensaje(_CONST.EXITO_CREAR_PROVEEDOR, "success");
           cargarProveedores(function(){
             $("#ProveedorPd").val(data.idProveedor[0]);
+            $("#ProveedorPd_").val(data.idProveedor[0]);
           });
           $('#modalCrearProveedor').modal('hide') ; 
     }
@@ -141,6 +142,53 @@ function mostrarCompra(id){
     }).always(function() { setTimeout(function(){ cerrarMensaje()},18000)  });
 }
 
+function mostrarComprasResumeMeses(){
+  $.get( "/compras/getResumeMeses").done(function( data ) {
+        var sum=0;
+        console.log(data);
+        var colores=["bg-aqua","bg-olive", "bg-orange", "bg-maroon", "bg-purple", "bg-aqua","bg-olive", "bg-orange", "bg-maroon", "bg-purple", "bg-aqua","bg-olive"];
+        for ( var i in data){
+
+             $("#areaVentasMeses").append('<div class="col-md-3 col-sm-6 col-xs-12" onclick="mostrarCompraMes('+data[i].anio+','+data[i].mes+')"> '+
+                                          '  <div class="info-box '+colores[data[i].mes]+'"> '+
+                                          '     <span class="info-box-icon"><i class="fa fa-bookmark-o"></i></span> '+
+                                          '     <div class="info-box-content"> '+
+                                          '       <span class="info-box-text">' +MESES[data[i].mes -1 ]+ '</span> '+
+                                          '       <span class="info-box-number">'+parseFloat(data[i].precio).toFixed(2)+'</span> '+
+                                          '       <div class="progress"> '+
+                                          '         <div class="progress-bar"id="prgss-'+i+'" style="width: 70%"></div> '+
+                                          '       </div> '+
+                                          '       <span class="progress-description">  Representa el  <span id="prc-'+i+'"> 0 </span> %  </span> '+
+                                          '       <span class="progress-description">  '+data[i].num_compras+' Compras realizadas  </span> '+
+                                          '     </div> '+
+                                          '  </div> '+
+                                          '</div>');
+             sum=sum+data[i].precio;
+             
+        }
+        $(".totalCompras").text("$ "+parseFloat(sum).toFixed(2));
+        for ( var i in data){
+             var porcen= (data[i].precio *100) / sum; 
+             $("#prc-"+i).text(parseFloat(porcen).toFixed(2));
+             $("#prgss-"+i).css("width",porcen);
+        }
+         
+        loadChart();
+    }).fail(function(e) {
+      try{
+            mostrarMensaje(e.responseJSON.error.message, "danger");
+       }catch(e){  mostrarMensaje(_CONST.ERROR_CREAR_AJAX, "danger"); }
+    }).always(function() { setTimeout(function(){ cerrarMensaje()},18000)  });
+}
+
+function mostrarCompraMes(anio, mes){
+   console.log(anio+'-'+zeroFill(mes,2));
+   var f=anio+'-'+zeroFill(mes,2);
+   loadTablaComprasMes(f);
+   $('#tituloMostrarCompra').text("Compras de "+MESES[mes-1]+" del "+anio); 
+   $('#modalMostrarCompra').modal({backdrop: 'static', keyboard: false}) ;
+
+}
 
 function setCodigoBarra(){
   if(compraSelecionada!=null){
@@ -185,6 +233,7 @@ function calcularPUC(char){
   }else{
     $("#puc"+char).text("");
   }
+  calcularPorcentaje(char);
 }
 
 
@@ -252,6 +301,11 @@ function validarFormCompra(char){
     res=false;
     msj=_CONST.VALID_FECHA_COMPRA;
   }
+  if($("#porcentajeGanancia"+char).val()===""){
+    elemento="porcentajeGanancia"+char;
+    res=false;
+    msj=_CONST.VALID_GANANCIA_COMPRA;
+  }
    if($("#precioConpraPd"+char).val()===""){
     elemento="precioConpraPd"+char;
     res=false;
@@ -283,4 +337,15 @@ function validarFormCompra(char){
   
   console.log(res);
   return res;
+}
+
+
+function zeroFill( number, width )
+{
+  width -= number.toString().length;
+  if ( width > 0 )
+  {
+    return new Array( width + (/\./.test( number ) ? 2 : 1) ).join( '0' ) + number;
+  }
+  return number + ""; // always return a string
 }

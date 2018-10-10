@@ -123,6 +123,7 @@ var _CONST={
     VALID_CANTIDAD:"Ingrese la cantidad comprada",
     VALID_PRECIO_COMPRA:"Ingrese el precio total de compra",
     VALID_FECHA_COMPRA:"Ingrese la fecha de compra",
+    VALID_GANANCIA_COMPRA:"Ingrese el porcentaje de ganancia",
     SELECIONE_PROVEEDOR:"Selecione el proveedor",
     EXITO_CREAR_PROVEEDOR:"Se ha creado el proveedor",
     EXITO_CREAR_COMPRA:"Se ha creado la compra",
