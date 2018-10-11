@@ -16,10 +16,7 @@ class compraService {
             ' FROM compras c '+
             ' inner join producto pr  on c.id_producto=pr.id '+
             ' left join proveedor pv on pr.id_proveedor=pv.id '+
-<<<<<<< HEAD
-            ' WHERE c.id_compania'=id_compania,            
-=======
-            'WHERE c.eliminado=0 and c.id_compania=1 ',            
+            ' WHERE c.eliminado=0 and c.id_compania='+id_compania,                        
             {type: models.sequelize.QueryTypes.SELECT});    
     };
 
@@ -30,7 +27,6 @@ class compraService {
             ' inner join producto pr  on c.id_producto=pr.id '+
             ' left join proveedor pv on pr.id_proveedor=pv.id '+
             'WHERE c.eliminado=0 and c.id_compania=1 and c.fecha_compra like "%'+anio_mes+'%" ',            
->>>>>>> 960faabdaacd90f8b8511c0a5ff113ece0402a97
             {type: models.sequelize.QueryTypes.SELECT});    
     };
 

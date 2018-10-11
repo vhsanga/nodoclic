@@ -23,16 +23,11 @@ function loadTablacompras(){
         { "data": null },
         { "data": "nombre" },
         { "data": "detalle" },
-<<<<<<< HEAD
-        { "data": "cantidad" },    
-        { "data": "precio" },
-=======
         { "data": "cantidad" },
         { "data": "precio" , render: function(data, type, row){
                                 return  parseInt(data).toFixed(2);
                             }
         },
->>>>>>> 960faabdaacd90f8b8511c0a5ff113ece0402a97
         { "data": "fecha_compra" },
         { "data": "referencia" },
         { "data": "proveedor" }

@@ -60,6 +60,7 @@ function guardarCompraProducto(){
       $("#divCD").barcode(data.codigo_barra, "codabar"); 
       $('#modalGenerarCodigoBarra').modal({backdrop: 'static', keyboard: false})  
       mostrarMensaje(_CONST.EXITO_CREAR_AJAX,"success");
+      mostrarComprasResumeMeses();
     }
   });
 }
@@ -95,6 +96,7 @@ function editarCompra(){
         document.getElementById("fomEditarCompra").reset();
         mostrarMensaje(_CONST.EXITO_CREAR_AJAX,"success");
         $('#modalEditarCompra').modal('hide');
+        mostrarComprasResumeMeses();
     }).fail(function(e) {
       try{
            mostrarMensaje(e.responseJSON.error.message, "danger");
@@ -146,6 +148,7 @@ function mostrarComprasResumeMeses(){
   $.get( "/compras/getResumeMeses").done(function( data ) {
         var sum=0;
         console.log(data);
+        $("#areaVentasMeses").empty();
         var colores=["bg-aqua","bg-olive", "bg-orange", "bg-maroon", "bg-purple", "bg-aqua","bg-olive", "bg-orange", "bg-maroon", "bg-purple", "bg-aqua","bg-olive"];
         for ( var i in data){
 
@@ -173,7 +176,7 @@ function mostrarComprasResumeMeses(){
              $("#prgss-"+i).css("width",porcen);
         }
          
-        loadChart();
+        loadChart(data);
     }).fail(function(e) {
       try{
             mostrarMensaje(e.responseJSON.error.message, "danger");
