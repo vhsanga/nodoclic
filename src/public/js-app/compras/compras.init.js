@@ -22,7 +22,7 @@ function loadTablacompras(){
         { "data": null },
         { "data": "nombre" },
         { "data": "detalle" },
-        { "data": "cantidad" },
+        { "data": "cantidad" },    
         { "data": "precio" },
         { "data": "fecha_compra" },
         { "data": "referencia" },

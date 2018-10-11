@@ -1,0 +1,38 @@
+#modalCrearCliente.modal.fade
+  .modal-dialog
+    .modal-content
+      .modal-header
+        button.close(type='button', data-dismiss='modal', aria-label='Close')
+          span(aria-hidden='true') &times;
+        |                 
+        h4.modal-title Crear Cliente  
+      |               
+      .modal-body
+        form#fomrCrearCliente
+          .form-group
+            label(for='ciCl') Cedula:
+            input#ciCl.form-control(type='text', placeholder='# de cedula')
+          .form-group
+            label(for='nombreCl') Nombres:
+            input#nombreCl.form-control(type='text', placeholder=' Nombres del cliente')
+          .form-group
+            label(for='apellidoCli') Apellidos:
+            input#apellidoCli.form-control(type='text', placeholder=' Apellidos del cliente')           
+          .form-group
+            label(for='direccionCL') Direccion:
+            input#direccionCL.form-control(type='text', placeholder='Direccion')
+          .form-group
+            label(for='telefonoCl') Telefono:
+            input#telefonoCl.form-control(type='text', placeholder='# de Telefono') 
+          .form-group
+            label(for='emailCl') email:
+            input#emailCl.form-control(type='text', placeholder='# de Telefono') 
+          
+          
+      .modal-footer
+        button.btn.btn-default(type='button', data-dismiss='modal') Cancelar
+        |                 
+        button#btnGuardarCliente.btn.btn-primary(type='button') Guardar Cliente
+    // /.modal-content
+  // /.modal-dialog
+// /.modal 

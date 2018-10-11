@@ -117,24 +117,29 @@ function idiomaEspaniol(){
 
 
 var _CONST={
+    PROCESS:"Espere, Procesando...",
     NO_HAY_PROVEEDORES:"Todavia no tiene proveedores, ingrese un proveedor",
     VALID_NOMBRE_PROVEEDOR:"Ingrese el nombre del proveedor",
     VALID_NOMBRE_PRODUCTO:"Ingrese el nombre del produuto",
     VALID_CANTIDAD:"Ingrese la cantidad comprada",
     VALID_PRECIO_COMPRA:"Ingrese el precio total de compra",
     VALID_FECHA_COMPRA:"Ingrese la fecha de compra",
+    VALID_NOMBRE_CLIENTE:"Ingrese el nombre del cliente",
+    VALID_APELLIDO_CLIENTE:"Ingrese el apellido del cliente",
+    VALID_CI_CLIENTE:"Ingrese cedula del cliente del cliente",
     SELECIONE_PROVEEDOR:"Selecione el proveedor",
     EXITO_CREAR_PROVEEDOR:"Se ha creado el proveedor",
     EXITO_CREAR_COMPRA:"Se ha creado la compra",
-    EXITO_CREAR_COMPRA:"Se ha creado la compra",
+    EXITO_CREAR_CLIENTE:"Se ha creado la compra",
     ERROR_CREAR_AJAX:"Ha surgido un inconveniente, actualize la página e intente de nuevo ",
-    EXITO_CREAR_AJAX:"los datos se han guardado exitosamente ",
+    EXITO_CREAR_AJAX:"Los datos se han guardado exitosamente ",
 
     ERROR_CARGAR_AJAX:"Ha surgido un inconveniente al cargar",
     CARGANDO:"Cargando Información",
     NO_PUEDE_IMPRIMIR_BAR_CODE:"No se puede imprimir el código de barra porque todavía no se ha generado",
 
 
-    NO_EXISTE_CLIENTE:"El cliente con cédula _ci_ no existe, debe ingresar sus datos"
+    NO_EXISTE_CLIENTE:"El cliente con cédula _ci_ no existe, debe ingresar sus datos",
+    DEBE_IMPRESAR_PRODUCTO:"Escoja al menos un producto para poder realizar la venta"
 
 }

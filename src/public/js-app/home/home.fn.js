@@ -54,7 +54,7 @@ function agrearAtabla(p){
 			}
 		});
 		productoSelecionados.push({
-			id_producto:p.id, cantidad:1,  valor_venta:parseFloat(p.precio_venta).toFixed(2) 
+			id_producto:p.id, nombre:p.nombre,  detalle:p.detalle,  cantidad:1,  valor_venta:parseFloat(p.precio_venta).toFixed(2) 
 		});
 		sumatoriaFactura();
     $("#clienteForm").show();
@@ -69,6 +69,9 @@ function modoficarCantidadEnLista(id, cantidad, valor){
 	}
 	sumatoriaFactura();
 }
+
+
+
 
 function sumatoriaFactura(){
 	console.log(productoSelecionados);
@@ -101,6 +104,51 @@ function quitarProducto(id){
 	sumatoriaFactura();
 
 }
+
+
+function guardarVenta(){
+  let validado=validarFormVenta();
+  if(!validado){    
+    return false;
+  }
+  var dataSend=obtenerCamposVentas();
+  console.log(dataSend);
+  $.post( "/ventas/crear",dataSend).done(function( dataRes ) {
+        loadTablacompras()
+        document.getElementById("fomEditarCompra").reset();
+        mostrarMensaje(_CONST.EXITO_CREAR_AJAX,"success");
+        $('#modalEditarCompra').modal('hide');
+    }).fail(function(e) {
+      try{
+           mostrarMensaje(e.responseJSON.error.message, "danger");
+       }catch(e){  mostrarMensaje(_CONST.ERROR_CREAR_AJAX, "danger"); }
+    }).always(function() { setTimeout(function(){ cerrarMensaje()},18000)  });
+}
+
+
+function validarFormVenta(){
+  var res=true;
+  var msj="";
+  
+  if(productoSelecionados.length===0){
+    res=false;
+    msj=_CONST.DEBE_IMPRESAR_PRODUCTO;
+  }
+
+  if(!res){
+    mostrarMensaje(msj, "warning");
+    
+  }
+
+  return res;
+}
+
+function obtenerCamposVentas(){
+  return {id_cliente:$("#cli-id").val(),
+          ventas: productoSelecionados
+         }
+}
+
 
 function autocomplete(inp, arr) {
   /*the autocomplete function takes two arguments,

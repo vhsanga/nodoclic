@@ -21,11 +21,10 @@ router.get('/list', function(req, res, next) {
 
 router.post('/crear', function(req, res, next) {
 	var item=clienteService.crearCliente(req.body,req.user.id_compania);
-	item.then(function(prov){
-		return res.json( {
-	        result : true,
-	        idProveedor:prov
-		});
+	item.then(function(id_cli){
+		var resp = req.body;
+		resp["id"]=id_cli[0]
+		return res.json( resp );
 	}).catch(function(err){ console.log("1 ", err); res.json({success: false, error: err}, 400); });
 });
 
@@ -54,7 +53,7 @@ router.post('/eliminar/:id', function(req, res, next) {
 router.get('/listci/:ci', function(req, res, next) {
 	var item=clienteService.getClienteByCi(req.params.ci);
 	item.then(function(rows){
-		var resp=rows.length>0 ? rows[0]: [];
+		var resp=rows.length>0 ? rows[0]: null;
 		res.json(resp);
 	}).catch(function(err){ console.log("1 ", err); res.json({success: false, error: err}, 400); });
 });

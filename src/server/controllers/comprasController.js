@@ -22,7 +22,7 @@ router.get('/list/:id', function(req, res, next) {
 });
 
 router.get('/list', function(req, res, next) {
-	var item=compraService.getListaCompras();
+	var item=compraService.getListaCompras(req.user.id_compania);
 	item.then(function(rows){
 		res.json(rows);
 	}).catch(function(err){ console.log("1 ", err); res.json({success: false, error: err}, 400); });

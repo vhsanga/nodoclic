@@ -31,3 +31,8 @@ CREATE TABLE `nodoclic`.`ventas` (
     REFERENCES `nodoclic`.`compania` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION);
+
+
+
+ALTER TABLE `nodoclic`.`cliente` 
+ADD COLUMN `email` VARCHAR(125) NULL AFTER `telefono`;

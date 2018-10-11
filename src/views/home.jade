@@ -41,10 +41,11 @@ block contenido
                       span#sumaTotal(style="font-size: 19px;")
                 .col-md-8
 
-              .row#clienteForm(role='form' style="display:none")
+              .row#clienteForm(role='form' style="display:none; background: #8bc6e8; padding: 21px; border-radius: 59px;")
                 .col-md-3
                   .input-group
                   input#cli-ci.form-control(type='text', placeholder='Cédula del cliente')
+                  input#cli-id(type='hidden' value="0")
                 .col-md-4                  
                   label Nombres:&nbsp;
                   span#cli-nombre Consumidor Final
@@ -119,6 +120,18 @@ block contenido
             // /.box-body
             .box-footer
               | Footer
+          include ./partials/_addCliente.jade
+          #modalPreventa.modal.fade
+            .modal-dialog
+              .modal-content
+                .modal-header
+                  button.close(type='button', data-dismiss='modal', aria-label='Close')
+                    span(aria-hidden='true') &times;
+                  |                 
+                  h4.modal-title Confirmar Venta
+                |               
+                .modal-body
+                  ul#listaPreventa.list-group
 
 block javascript
   link(rel="stylesheet" href="/bower_components/datatables.net-bs4/css/dataTables.bootstrap4.min.css")

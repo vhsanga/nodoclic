@@ -12,8 +12,8 @@ class clienteService {
 
     crearCliente(data, id_compania) { 
         return models.sequelize.query(
-            "INSERT INTO cliente (nombres, apellidos, ci, direccion, telefono, eliminado, id_compania) "+
-            "VALUES ('"+data.nombres+"', '"+data.nombres+"', '"+data.nombres+"', '"+data.nombres+"', '"+data.nombres+"', '0', "+id_compania+");",            
+            "INSERT INTO cliente (nombres, apellidos, ci, direccion, telefono, email, eliminado, id_compania) "+
+            "VALUES ('"+data.nombres+"', '"+data.apellidos+"', '"+data.ci+"', '"+data.direccion+"', '"+data.telefono+"', '"+data.email+"','0', "+id_compania+");",            
             {type: models.sequelize.QueryTypes.INSERT});    
     };
 
