@@ -18,6 +18,9 @@ function initElements(){
 	$("#addToFactura").click(function(){
 		pre_guardarVenta();
 	});
+	$("#conf_valor_recibido").click(function(){
+		pre_guardarVenta();
+	});
 
 }
 
@@ -57,10 +60,10 @@ function guardarClienteVenta(){
 }
 
 function pre_guardarVenta(){
-	$("#listaPreventa").empty();
-	for( var i in productoSelecionados){
-		$("#listaPreventa").append('<li class="list-group-item">'+productoSelecionados[i].valor_venta+' | '+productoSelecionados[i].nombre+', '+productoSelecionados[i].detalle+' </li>')
-	}
+	
+	$('#conf_cliente').text($('#cli-nombre').text());
+	$('#conf_valor').text($('#sumaTotal').text());
+	$('#conf_valor_recibido').focus();
 	$('#modalPreventa').modal({backdrop: 'static', keyboard: false});
 };
 

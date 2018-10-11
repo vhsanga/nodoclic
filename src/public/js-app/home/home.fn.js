@@ -262,3 +262,11 @@ function selectItemById(list, id){
 	console.log(selected);
 	return selected;
 }
+
+function calcularVuelto(){
+  console.log("cal vuelto");
+  var recibido=  parseFloat($("#conf_valor_recibido").val());
+  var valorAcobrar=  parseFloat($("#conf_valor").text());
+  console.log(parseFloat(recibido-valorAcobrar).toFixed(2))
+  $("#cnf_vuelto").text( parseFloat(recibido-valorAcobrar).toFixed(2) )
+}

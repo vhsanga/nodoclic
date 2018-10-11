@@ -131,7 +131,20 @@ block contenido
                   h4.modal-title Confirmar Venta
                 |               
                 .modal-body
-                  ul#listaPreventa.list-group
+                  form#fomrCrearCliente
+                    .form-group
+                      label Cliente:
+                      span#conf_cliente
+                    .form-group
+                      label Valor a Cobrar:
+                      span#conf_valor.form-control
+                    .form-group
+                      label Valor Recibido:
+                      input#conf_valor_recibido.form-control(type='number', placeholder='0.00' onkeyup="calcularVuelto()")           
+                    .form-group
+                      label Vuelto:
+                      label#cnf_vuelto.form-control
+
 
 block javascript
   link(rel="stylesheet" href="/bower_components/datatables.net-bs4/css/dataTables.bootstrap4.min.css")
