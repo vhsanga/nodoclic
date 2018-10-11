@@ -1,12 +1,13 @@
 var dtCompras=null;
 var idCompraSelecionada=0;
 var compraSelecionada=null;
+var MESES=["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"];
 $(function() {  
   console.log("iniciando");
   loadTablacompras();
   initElementos();
   cargarProveedores();
-
+  mostrarComprasResumeMeses();
     
 });
 
@@ -22,8 +23,16 @@ function loadTablacompras(){
         { "data": null },
         { "data": "nombre" },
         { "data": "detalle" },
+<<<<<<< HEAD
         { "data": "cantidad" },    
         { "data": "precio" },
+=======
+        { "data": "cantidad" },
+        { "data": "precio" , render: function(data, type, row){
+                                return  parseInt(data).toFixed(2);
+                            }
+        },
+>>>>>>> 960faabdaacd90f8b8511c0a5ff113ece0402a97
         { "data": "fecha_compra" },
         { "data": "referencia" },
         { "data": "proveedor" }
@@ -31,6 +40,12 @@ function loadTablacompras(){
       "language":idiomaEspaniol(),
       destroy:true,
       rowId:'id',
+      columnDefs: [
+        {
+            targets: 4,
+            className: 'dt-body-right'
+        }
+      ],
 
   });
 
@@ -55,7 +70,6 @@ function loadTablacompras(){
             
         }
     } );
-
            
 }
 
@@ -76,7 +90,13 @@ function initElementos(){
     if(prove==="-1"){
       abrirModalCrearProveedor();
     }
-  })
+  });
+  $("#ProveedorPd_").change(function(e){
+    var prove = $(this).children(":selected").attr("value");
+    if(prove==="-1"){
+      abrirModalCrearProveedor();
+    }
+  });
   
   $( "#fechaCompraPd" ).datepicker({
       showButtonPanel: false,
@@ -105,4 +125,45 @@ function abrirModalCrearProveedor(){
 }
 function calcularPUC(){
     $('#modalCrearProveedor').modal({backdrop: 'static', keyboard: false}) 
+}
+
+function loadTablaComprasMes(mes){
+  var dtComprasMes=$('#tablaComprasMes').DataTable( {
+
+    "ajax": {
+        url: "/compras/listar/fechaanio/"+mes,
+        dataSrc:''
+      } ,
+    "columns": [
+        { "data": null },
+        { "data": "nombre" },
+        { "data": "detalle" },
+        { "data": "cantidad" },
+        { "data": "precio" , render: function(data, type, row){
+                                return  parseInt(data).toFixed(2);
+                            }
+        },
+        { "data": "fecha_compra" },
+        { "data": "referencia" },
+        { "data": "proveedor" }
+      ],
+      "language":idiomaEspaniol(),
+      destroy:true,
+      rowId:'id',
+      columnDefs: [
+        {
+            targets: 4,
+            className: 'dt-body-right'
+        }
+      ],
+
+  });
+
+    dtComprasMes.on( 'order.dt search.dt', function () {
+        dtComprasMes.column(0, {search:'applied', order:'applied'}).nodes().each( function (cell, i) {
+            cell.innerHTML = i+1;
+        } );
+    } );
+   
+           
 }

@@ -28,6 +28,13 @@ router.get('/list', function(req, res, next) {
 	}).catch(function(err){ console.log("1 ", err); res.json({success: false, error: err}, 400); });
 });
 
+router.get('/listar/fechaanio/:fecha', function(req, res, next) {
+	var item=compraService.getListaComprasByAnioMes(req.params.fecha);
+	item.then(function(rows){
+		res.json(rows);
+	}).catch(function(err){ console.log("1 ", err); res.json({success: false, error: err}, 400); });
+});
+
 router.post('/crear', function(req, res, next) {
 	if(req.body.id_proveedor==='null'){
 			req.body.id_proveedor=null;
@@ -72,6 +79,13 @@ router.post('/editar', function(req, res, next) {
 				
 		}).catch(function(err){ console.log("1 ", err); res.json({success: false, error: err}, 400); });
 			
+	}).catch(function(err){ console.log("1 ", err); res.json({success: false, error: err}, 400); });
+});
+
+router.get('/getResumeMeses', function(req, res, next) {
+	var item=compraService.getResumeComprasMeses( req.user.id_compania);
+	item.then(function(compras){
+		res.json(compras);
 	}).catch(function(err){ console.log("1 ", err); res.json({success: false, error: err}, 400); });
 });
 

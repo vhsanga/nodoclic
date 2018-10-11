@@ -16,7 +16,21 @@ class compraService {
             ' FROM compras c '+
             ' inner join producto pr  on c.id_producto=pr.id '+
             ' left join proveedor pv on pr.id_proveedor=pv.id '+
+<<<<<<< HEAD
             ' WHERE c.id_compania'=id_compania,            
+=======
+            'WHERE c.eliminado=0 and c.id_compania=1 ',            
+            {type: models.sequelize.QueryTypes.SELECT});    
+    };
+
+    getListaComprasByAnioMes(anio_mes) { 
+        return models.sequelize.query(
+            'SELECT c.id, c.id_producto, pr.id_proveedor, pr.nombre, pr.detalle, pr.codigo_barra, pr.precio_compra, pr.precio_venta, pr.procentaje_ganancia, c.cantidad, c.precio, c.fecha_compra, c.referencia, pv.nombre as proveedor '+
+            ' FROM compras c '+
+            ' inner join producto pr  on c.id_producto=pr.id '+
+            ' left join proveedor pv on pr.id_proveedor=pv.id '+
+            'WHERE c.eliminado=0 and c.id_compania=1 and c.fecha_compra like "%'+anio_mes+'%" ',            
+>>>>>>> 960faabdaacd90f8b8511c0a5ff113ece0402a97
             {type: models.sequelize.QueryTypes.SELECT});    
     };
 
@@ -42,6 +56,17 @@ class compraService {
             "UPDATE `nodoclic`.`compras` SET `id_producto` = "+data.id_producto+", `cantidad` = "+data.stock+", `precio` = '"+data.precio_compra_total+"', `fecha_compra` = '"+data.fecha_compra+"', `referencia` = '"+data.referencia+"' WHERE (`id` = '"+id+"');",            
             {type: models.sequelize.QueryTypes.INSERT});    
     };
+
+    getResumeComprasMeses(id_compania) { 
+        return models.sequelize.query(
+            "SELECT YEAR(fecha_compra) as anio, MONTH(fecha_compra) as mes, count(id) as num_compras, sum(precio) as precio"+
+            " FROM nodoclic.compras "+
+            " WHERE id_compania="+id_compania+" and eliminado=0 "+
+            " GROUP BY YEAR(fecha_compra), MONTH(fecha_compra)",            
+            {type: models.sequelize.QueryTypes.SELECT});    
+    };
+
+
 
    
 
