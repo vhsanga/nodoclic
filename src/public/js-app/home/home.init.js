@@ -18,8 +18,9 @@ function initElements(){
 	$("#addToFactura").click(function(){
 		pre_guardarVenta();
 	});
-	$("#conf_valor_recibido").click(function(){
-		pre_guardarVenta();
+
+	$("#btnGuardarVenta").click(function(){
+		guardarVenta();
 	});
 
 }

@@ -121,8 +121,8 @@ block contenido
             .box-footer
               | Footer
           include ./partials/_addCliente.jade
-          #modalPreventa.modal.fade
-            .modal-dialog
+          #modalPreventa.modal.fade(role="dialog" tabindex="-1" aria-hidden="true")
+            .modal-dialog.modal-dialog-centered
               .modal-content
                 .modal-header
                   button.close(type='button', data-dismiss='modal', aria-label='Close')
@@ -133,17 +133,20 @@ block contenido
                 .modal-body
                   form#fomrCrearCliente
                     .form-group
-                      label Cliente:
-                      span#conf_cliente
+                      label Cliente: 
+                      span#conf_cliente(style="margin-left: 10px;  font-size: 24px;")
                     .form-group
                       label Valor a Cobrar:
-                      span#conf_valor.form-control
+                      span#conf_valor(style="margin-left: 10px;  font-size: 29px;")
                     .form-group
                       label Valor Recibido:
-                      input#conf_valor_recibido.form-control(type='number', placeholder='0.00' onkeyup="calcularVuelto()")           
+                      input#conf_valor_recibido(type='number', placeholder='0.00' onkeyup="calcularVuelto()" style="margin-left: 10px;  font-size: 24px;")           
                     .form-group
                       label Vuelto:
-                      label#cnf_vuelto.form-control
+                      span#cnf_vuelto(style="margin-left: 10px;  font-size: 24px;")
+                .modal-footer
+                  button.btn.btn-default(type='button', data-dismiss='modal') Cancelar
+                  button#btnGuardarVenta.btn.btn-primary(type='button') GUARDAR VENTA
 
 
 block javascript

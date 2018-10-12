@@ -128,6 +128,7 @@ var _CONST={
     VALID_APELLIDO_CLIENTE:"Ingrese el apellido del cliente",
     VALID_CI_CLIENTE:"Ingrese cedula del cliente del cliente",
     VALID_GANANCIA_COMPRA:"Ingrese el porcentaje de ganancia",
+    VALID_VALOR_RECIBIDO:"Ingrese el valor recibido correcto",
     SELECIONE_PROVEEDOR:"Selecione el proveedor",
     EXITO_CREAR_PROVEEDOR:"Se ha creado el proveedor",
     EXITO_CREAR_COMPRA:"Se ha creado la compra",
@@ -141,6 +142,6 @@ var _CONST={
 
 
     NO_EXISTE_CLIENTE:"El cliente con cédula _ci_ no existe, debe ingresar sus datos",
-    DEBE_IMPRESAR_PRODUCTO:"Escoja al menos un producto para poder realizar la venta"
+    DEBE_INGRESAR_PRODUCTO:"Escoja al menos un producto para poder realizar la venta"
 
 }

@@ -52,7 +52,6 @@ function guardarProveedor_compra(){
 function guardarCompraProducto(){
   console.log("llmando a guardar");
   guardarCompra(function(dataSend,data){ // esta funcion se encuentra en /proveedor/proeedor.fn.js
-    console.log(data);
     if(data){
       loadTablacompras()      
       $('#modalCrearCompra').modal('hide'); 
