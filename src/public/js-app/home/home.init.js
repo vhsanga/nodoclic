@@ -2,6 +2,7 @@ var productoSelecionados=[];
 var items=0;
 $(function(){
 	cargarProductos();
+	cargarResumeVentas();
 	initElements();
 });
 
@@ -21,6 +22,13 @@ function initElements(){
 
 	$("#btnGuardarVenta").click(function(){
 		guardarVenta();
+	});
+
+	$("#caja-resume-ventas-hoy").click(function(){
+		console.log("clic");
+		loadTablaVentaFecha(moment().format('YYYY-MM-DD'));
+		$('#tituloMostrarVentaFecha').text("Ventas de: hoy, "+moment().format('YYYY-MM-DD')); 
+		$('#modalMostrarVentaFecha').modal({backdrop: 'static', keyboard: false}); 
 	});
 
 }

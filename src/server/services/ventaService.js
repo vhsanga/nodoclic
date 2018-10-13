@@ -28,11 +28,26 @@ class ventaService {
 
     crearVenta(data,  id_compania) {         
         return models.sequelize.query(
-            "INSERT INTO `nodoclic`.`ventas` (`id_cliente`, `valor_total`, `valor_recibido`, `valor_vuelto`) "+
-            " VALUES ("+data.id_cliente+", "+data.valor_venta+", "+data.valor_recibido+","+data.valor_vuelto+" );",
+            "INSERT INTO `nodoclic`.`ventas` (`id_cliente`, `valor_total`, `valor_recibido`, `valor_vuelto`, `id_compania`) "+
+            " VALUES ("+data.id_cliente+", "+data.valor_venta+", "+data.valor_recibido+","+data.valor_vuelto+"  ,"+id_compania+");",
             {type: models.sequelize.QueryTypes.INSERT});    
     };
 
+
+    getVentasByFecha(fecha, id_compania) { 
+        return models.sequelize.query(
+            "SELECT v.id as id_venta, v.id_cliente, CONCAT(c.nombres,' ',c.apellidos) as nombres, c.ci, v.fecha, v.valor_total "+
+            " FROM ventas v  "+
+            "left join cliente c on v.id_cliente=c.id "+
+            "where v.fecha like '%"+fecha+"%' and v.id_compania="+id_compania,            
+            {type: models.sequelize.QueryTypes.SELECT});    
+    };
+    getResumeVentasByFecha(fecha, id_compania) { 
+        return models.sequelize.query(
+            "SELECT count(id), sum(valor_total) FROM nodoclic.ventas "+
+            "where fecha like '%"+fecha+"%' and id_compania=" +id_compania,            
+            {type: models.sequelize.QueryTypes.SELECT});    
+    };
 
 	getVentas(id_compania) { 
         return models.sequelize.query(

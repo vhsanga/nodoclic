@@ -142,13 +142,15 @@ function guardarVenta(){
         mostrarMensaje(_CONST.EXITO_CREAR_AJAX,"success");
         $('#modalPreventa').modal('hide');
         for(var i=0; i<productoSelecionados.length; i++){
-          console.log('#fila-'+productoSelecionados[i].id_producto);
-          console.log($('#fila-'+productoSelecionados[i].id_producto));
           $('#fila-'+productoSelecionados[i].id_producto).remove();
         }
+       $("#cli-id").val(0);
+        $("#conf_valor").text("");
+        $("#conf_valor_recibido").val("");
+        $("#cnf_vuelto").text("");
         $('#sumaTotal').text("");
-        items=0;
         $("#clienteForm").hide();
+        items=0;
         productoSelecionados=[];
       },
       onerror:function(e){
@@ -194,6 +196,21 @@ function obtenerCamposVentas(){
           valor_vuelto:parseFloat($("#cnf_vuelto").text()).toFixed(2),
           ventas: productoSelecionados
          }
+}
+
+function cargarResumeVentas(){
+  $("#resume-hoy").text("HOY - "+moment().format('MMM Do YYYY'));
+  getVentasByFecha(moment().format('YYYY-MM-DD'), function(ventas){
+    console.log(ventas);
+    var sumVentas=0;
+    for(var i in ventas){
+      sumVentas=sumVentas+ventas[i].valor_total;
+    }
+     $("#resume-sum-venta").text(parseFloat(sumVentas).toFixed(2));
+     $("#resume-cant-venta").text((parseInt(i)+1)+" ventas realizadas");
+  })
+  
+
 }
 
 

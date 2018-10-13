@@ -116,3 +116,15 @@ AFTER INSERT ON `nodoclic`.`ventas_detalle`  FOR EACH ROW
 Update `producto` 
 set `producto`.`stock` = `producto`.`stock` - NEW.cantidad
 where `producto`.`stock` = NEW.id_producto;
+
+
+ALTER TABLE `nodoclic`.`ventas` 
+ADD COLUMN `id_compania` INT NULL AFTER `fecha`,
+ADD INDEX `fk_venta_compania_idx` (`id_compania` ASC) VISIBLE;
+;
+ALTER TABLE `nodoclic`.`ventas` 
+ADD CONSTRAINT `fk_venta_compania`
+  FOREIGN KEY (`id_compania`)
+  REFERENCES `nodoclic`.`compania` (`id`)
+  ON DELETE NO ACTION
+  ON UPDATE NO ACTION;

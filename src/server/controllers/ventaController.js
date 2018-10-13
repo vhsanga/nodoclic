@@ -5,8 +5,16 @@ var express = require('express');
 var router = express.Router();
 
 
-router.get('/listar', function(req, res, next) {
-	var item=ventaService.getventas(req.user.id_compania);
+router.get('/listar/:fecha', function(req, res, next) {
+	var item=ventaService.getVentasByFecha(req.params.fecha,req.user.id_compania);
+	item.then(function(rows){
+		res.json(rows);
+	}).catch(function(err){ console.log("1 ", err); res.json({success: false, error: err}, 400); });
+});
+
+
+router.get('/listar_resume/:fecha', function(req, res, next) {
+	var item=ventaService.getVentasByFecha(req.params.fecha,req.user.id_compania);
 	item.then(function(rows){
 		res.json(rows);
 	}).catch(function(err){ console.log("1 ", err); res.json({success: false, error: err}, 400); });
