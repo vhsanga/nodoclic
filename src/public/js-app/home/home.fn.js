@@ -152,6 +152,8 @@ function guardarVenta(){
         $("#clienteForm").hide();
         items=0;
         productoSelecionados=[];
+        cargarResumeVentas();
+        mostrarProductosAterminar();
       },
       onerror:function(e){
         try{
@@ -198,20 +200,10 @@ function obtenerCamposVentas(){
          }
 }
 
-function cargarResumeVentas(){
-  $("#resume-hoy").text("HOY - "+moment().format('MMM Do YYYY'));
-  getVentasByFecha(moment().format('YYYY-MM-DD'), function(ventas){
-    console.log(ventas);
-    var sumVentas=0;
-    for(var i in ventas){
-      sumVentas=sumVentas+ventas[i].valor_total;
-    }
-     $("#resume-sum-venta").text(parseFloat(sumVentas).toFixed(2));
-     $("#resume-cant-venta").text((parseInt(i)+1)+" ventas realizadas");
-  })
-  
 
-}
+
+
+
 
 
 function autocomplete(inp, arr) {

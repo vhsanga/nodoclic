@@ -5,6 +5,14 @@ var express = require('express');
 var router = express.Router();
 
 
+
+router.get('/', function(req, res, next) {
+	res.render('ventas/ventas', {
+        isAuthenticated : req.isAuthenticated(),
+        user : req.user
+    }); 
+});
+
 router.get('/listar/:fecha', function(req, res, next) {
 	var item=ventaService.getVentasByFecha(req.params.fecha,req.user.id_compania);
 	item.then(function(rows){
@@ -21,7 +29,6 @@ router.get('/listar_resume/:fecha', function(req, res, next) {
 });
 
 
-
 router.post('/crear', function(req, res, next) {
 	console.log(req.body)
 	if(req.body.id_cliente===0){
@@ -36,6 +43,12 @@ router.post('/crear', function(req, res, next) {
 	}).catch(function(err){ console.log("1 ", err); res.json({success: false, error: err}, 400); });
 });
 
+router.get('/listar_resume', function(req, res, next) {
+	var item=ventaService.getResumeTotalVentas(req.user.id_compania);
+	item.then(function(rows){
+		res.json(rows);
+	}).catch(function(err){ console.log("1 ", err); res.json({success: false, error: err}, 400); });
+});
 
 
 module.exports = router;

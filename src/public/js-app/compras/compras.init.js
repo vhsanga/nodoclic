@@ -1,7 +1,6 @@
 var dtCompras=null;
 var idCompraSelecionada=0;
 var compraSelecionada=null;
-var MESES=["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"];
 $(function() {  
   console.log("iniciando");
   loadTablacompras();

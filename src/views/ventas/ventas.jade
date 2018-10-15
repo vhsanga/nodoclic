@@ -1,0 +1,44 @@
+extends ../layout
+block contenido 
+  section.content-header
+    h1
+      | Mis Ventas
+    |       
+
+  // Main content
+  section.content.container-fluid
+
+    .row
+      div.col-xs-12
+        div.box
+          div.box-header
+            i.fa.fa-edit
+            h3.box-title  Estadistica de Ventas Netas Clasificadas por Mes
+          div.box-body
+            .row
+              .col-md-12
+                #revenue-chart.chart
+
+        div.box
+          div.box-header
+            i.fa.fa-edit
+            h3.box-title  Ver Ventas Netas Clasificadas por Mes
+          div.box-body
+            .row
+              .col-md-4
+                div#areaVentasMeses
+
+  include ../partials/_ventas.jade
+
+block javascript
+  link(rel="stylesheet" href="/bower_components/datatables.net-bs4/css/dataTables.bootstrap4.min.css")
+  script(src="/bower_components/datatables.net/js/jquery.dataTables.min.js")
+  script(src="/bower_components/datatables.net-bs4/js/dataTables.bootstrap4.min.js")
+  link(rel="stylesheet" href="/dist/css/datatables.min.css")    
+  script(src="../../bower_components/raphael/raphael.min.js")
+  script(src="../../bower_components/morris.js/morris.min.js")  
+  link(rel="stylesheet" href="/bower_components/morris.js/morris.css")  
+
+  script(src="/js-app/ventas/ventas.fn.js")
+  script(src="/js-app/ventas/ventas.init.js")
+  script(src="/js-app/ventas/ventas.gf.js")

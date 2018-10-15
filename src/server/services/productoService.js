@@ -43,6 +43,14 @@ class productoService {
             " WHERE (`id` = '"+id_producto+"');",            
             {type: models.sequelize.QueryTypes.UPDATE});    
     };
+
+    getProductosPorTerminar(id_compania) { 
+        return models.sequelize.query(
+            "select stock, id, nombre, detalle  " +
+            " from producto where id_compania="+id_compania+"  and stock <4 and eliminado=0 " +
+            " order by stock asc ;",            
+            {type: models.sequelize.QueryTypes.SELECT});    
+    };
    
 
 

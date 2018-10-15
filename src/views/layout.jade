@@ -114,25 +114,24 @@ html
               li.dropdown.notifications-menu
                 // Menu toggle button
                 a.dropdown-toggle(href='#', data-toggle='dropdown')
-                  i.fa.fa-bell-o
+                  i.fa.fa-cube
                   |               
-                  span.label.label-warning 10
+                  span.label.label-warning#numProdAterminar(style="font-size: 14px;") 0
                 |             
-                ul.dropdown-menu
-                  li.header You have 10 notifications
+                ul.dropdown-menu(style="width: 360px;")
+                  li.header(style="color:#b1aeae;") Productos Próximos a terminar
                   |               
                   li
                     // Inner Menu: contains the notifications
-                    ul.menu
-                      li
-                        // start notification
+                    ul.menu#prodAterminal(style="max-height: 420px;")
+                      li                        
                         a(href='#')
                           i.fa.fa-users.text-aqua
-                          |  5 new members joined today
+                          |  (no existe productos)
                       // end notification
                   |               
                   li.footer
-                    a(href='#') View all
+                    a(href='#') Ver productos
               // Tasks Menu
               li.dropdown.tasks-menu
                 // Menu Toggle Button
@@ -244,6 +243,11 @@ html
                 i.fa.fa-address-book-o
                 |  
                 span Mis Proveedores
+            li
+              a(href='/ventas')
+                i.fa.fa-check
+                |  
+                span Mis Ventas
             |         
             li.treeview
               a(href='#')
@@ -311,31 +315,22 @@ html
         .tab-content
           // Home tab content
           #control-sidebar-home-tab.tab-pane.active
-            h3.control-sidebar-heading Recent Activity
+            h3.control-sidebar-heading  
+              span Resumen de Ventas
+              br
+              span.control-sidebar-heading#resume-hoy 
             |         
             ul.control-sidebar-menu
               li
-                a(href='javascript:;')
-                  i.menu-icon.fa.fa-birthday-cake.bg-red
-                  |               
-                  .menu-info
-                    h4.control-sidebar-subheading Langdon&apos;s Birthday
-                    |                 
-                    p Will be 23 on April 24th
-            // /.control-sidebar-menu
-            h3.control-sidebar-heading Tasks Progress
-            |         
-            ul.control-sidebar-menu
-              li
-                a(href='javascript:;')
-                  h4.control-sidebar-subheading
-                    | Custom Template Design
-                    span.pull-right-container
-                      span.label.label-danger.pull-right 70%
-                  |               
-                  .progress.progress-xxs
-                    .progress-bar.progress-bar-danger(style='width: 70%')
-            // /.control-sidebar-menu
+                .info-box#caja-resume-ventas-hoy
+                          span.info-box-icon.bg-aqua
+                            i.fa.fa-hand-o-right
+                          |             
+                          .info-box-content
+                            span#resume-sum-venta.info-box-number
+                            span#resume-cant-venta
+                hr
+
           // /.tab-pane
           // Stats tab content
           #control-sidebar-stats-tab.tab-pane Stats Tab Content
@@ -373,6 +368,7 @@ html
     script(src='bower_components/moment/min/moment.min.js')
     script(src='bower_components/moment/min/moment-with-locales.min.js')
     script(src="/js-app/util.js")
+    script(src="/js-app/layout.fn.js")
     //
       Optionally, you can add Slimscroll and FastClick plugins.
       Both of these plugins are recommended to enhance the

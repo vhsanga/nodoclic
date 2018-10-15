@@ -49,10 +49,11 @@ class ventaService {
             {type: models.sequelize.QueryTypes.SELECT});    
     };
 
-	getVentas(id_compania) { 
+	getResumeTotalVentas(id_compania) { 
         return models.sequelize.query(
-            "SELECT id,nombres,apellidos,ci,direccion, telefono FROM cliente " +
-			"WHERE eliminado=false AND id_compania="+id_compania,            
+            "SELECT YEAR(fecha) as anio, month(fecha) as mes,  count(id) as num_ventas, sum(valor_total) as valor FROM nodoclic.ventas "+
+            "where id_compania="+id_compania + 
+            " GROUP BY YEAR(fecha),month(fecha)",            
             {type: models.sequelize.QueryTypes.SELECT});    
     };
 

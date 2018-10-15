@@ -64,65 +64,9 @@ block contenido
 
               .ajax-content
             // /.box-body
-            .box-footer
-              | Footer
 
-          .box
-            .box-header.with-border
-              h3.box-title Resumen de ventas
-            .box-body
-              .row
-                .col-md-3.col-sm-6.col-xs-12
-                  .info-box#caja-resume-ventas-hoy
-                      span.info-box-icon.bg-aqua
-                        i.fa.fa-hand-o-right
-                      |             
-                      .info-box-content
-                        span#resume-hoy
-                        span#resume-sum-venta.info-box-number
-                        span#resume-cant-venta
-                      // /.info-box-content
-                    // /.info-box
 
-            // /.box-body
-            .box-footer
-              | Footer
 
-          .box
-            .box-header.with-border
-              h3.box-title Resumen de Inventarios
-            .box-body
-              | Pace loading works automatically on page. You can still implement it with ajax requests by adding this js:
-              br
-              code $(document).ajaxStart(function() { Pace.restart(); });
-              br
-              .row
-                .col-xs-12.text-center
-                  button.btn.btn-default.btn-lrg.ajax(type='button', title='Ajax Request')
-                    i.fa.fa-spin.fa-refresh
-                    |   Get External Content
-              .ajax-content
-            // /.box-body
-            .box-footer
-              | Footer
-
-          .box
-            .box-header.with-border
-              h3.box-title Resumen de Clientes
-            .box-body
-              | Pace loading works automatically on page. You can still implement it with ajax requests by adding this js:
-              br
-              code $(document).ajaxStart(function() { Pace.restart(); });
-              br
-              .row
-                .col-xs-12.text-center
-                  button.btn.btn-default.btn-lrg.ajax(type='button', title='Ajax Request')
-                    i.fa.fa-spin.fa-refresh
-                    |   Get External Content
-              .ajax-content
-            // /.box-body
-            .box-footer
-              | Footer
           include ./partials/_addCliente.jade
           include ./partials/_ventas.jade
           #modalPreventa.modal.fade(role="dialog" tabindex="-1" aria-hidden="true")
@@ -158,7 +102,9 @@ block javascript
   link(rel="stylesheet" href="/css-app/autocommplete.css")
   script(src="/bower_components/datatables.net/js/jquery.dataTables.min.js")
   script(src="/bower_components/datatables.net-bs4/js/dataTables.bootstrap4.min.js")
+  link(rel="stylesheet" href="/dist/css/datatables.min.css")    
   script(src="/js-app/home/home.init.js")
   script(src="/js-app/home/home.fn.js")
   script(src="/js-app/cliente/cliente.fn.js")
   script(src="/js-app/ventas/ventas.fn.js")
+  script(src="/js-app/productos/productos.fn.js")

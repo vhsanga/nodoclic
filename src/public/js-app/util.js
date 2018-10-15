@@ -1,3 +1,4 @@
+moment.locale('es')  ;
 
 var tempoAlert;
 
@@ -95,6 +96,9 @@ function idiomaEspaniol(){
 }
 
 
+var MESES=["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"];
+
+
   $.datepicker.regional['es'] = {
     closeText: 'Cerrar',
     prevText: '<Ant',
@@ -144,4 +148,15 @@ var _CONST={
     NO_EXISTE_CLIENTE:"El cliente con cédula _ci_ no existe, debe ingresar sus datos",
     DEBE_INGRESAR_PRODUCTO:"Escoja al menos un producto para poder realizar la venta"
 
+}
+
+
+function zeroFill( number, width )
+{
+  width -= number.toString().length;
+  if ( width > 0 )
+  {
+    return new Array( width + (/\./.test( number ) ? 2 : 1) ).join( '0' ) + number;
+  }
+  return number + ""; // always return a string
 }
