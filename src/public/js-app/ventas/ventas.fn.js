@@ -55,7 +55,25 @@ function loadTablaVentaFecha(fecha){
         dtVentasFecha.column(0, {search:'applied', order:'applied'}).nodes().each( function (cell, i) {
             cell.innerHTML = i+1;
         } );
-    } ).draw();
+    } );
+
+   dtVentasFecha.on( 'click', 'tr', function () {
+        if ( $(this).hasClass('selected') ) {
+            $(this).removeClass('selected');
+        }
+        else {
+          if(dtVentasFecha.row( this ).data() != null){
+            dtVentasFecha.$('tr.selected').removeClass('selected');
+            $(this).addClass('selected');
+            console.log(dtVentasFecha.row( this ).data());
+            idVentaSelecionada=dtVentasFecha.row( this ).data().id_venta;
+            
+            mostrarVenta(idVentaSelecionada);
+          }
+            
+        }
+    } );
+
    $('#tituloMostrarVentaFecha').text("Ventas de: "+moment(fecha).format('MMMM [del] YYYY')); 
    $('#modalMostrarVentaFecha').modal({backdrop: 'static', keyboard: false}); 
 }
@@ -97,4 +115,72 @@ function mostrarVentasResumeMeses(){
             mostrarMensaje(e.responseJSON.error.message, "danger");
        }catch(e){  mostrarMensaje(_CONST.ERROR_CREAR_AJAX, "danger"); }
     }).always(function() { setTimeout(function(){ cerrarMensaje()},18000)  });
+}
+
+function mostrarVenta(id){
+  mostrarMensaje("Cargando espere...", "process");
+  var dtVentas=$('#tablaVenta').DataTable( {
+    "ajax": {
+        url: "/ventas/getInfoVentaDetalle/"+id,
+        dataSrc:'',
+        complete: function() {
+                   $('#modalMostrarVenta').modal({backdrop: 'static', keyboard: false});
+                   cargarEncabezadoVenta(id);
+                 },
+        error: function (xhr, error, thrown) {
+                  mostrarMensaje("Ha surgido un error al cargar los datos.\n"+thrown,"danger" );
+            }
+      } ,
+    "columns": [
+        
+        { "data": "producto" },
+        { "data": "cantidad"},
+        { "data": "valor_unitario" , render: function(data, type, row){
+                                return  parseFloat(data).toFixed(2);
+                            }
+        },
+        { "data": "valor_total" , render: function(data, type, row){
+                                return  parseFloat(data).toFixed(2);
+                            }
+        }
+      ],
+      "language":idiomaEspaniol(),
+      "searching": false,
+      destroy:true,
+      rowId:'id_producto',
+      columnDefs: [
+        { targets: [2,3],  className: 'dt-body-right' },
+      ],
+      select: false,
+      paging: false,
+      info: false,
+      ordering: false,
+  });   
+
+}
+
+function cargarEncabezadoVenta(id_venta){
+  $.get( "/ventas/getInfoVenta/"+id_venta).done(function( data ) {
+      $("#nombre_comp").text(data.compania);
+      $("#direccion_comp").text(data.direccion_compania);
+      $("#telefono_comp").text(data.telefono_compania);
+
+      $("#num_venta").text(zeroFill(data.id,4));
+      $("#fecha_venta").text(moment(data.fecha).format('ll') ) ;
+      $("#nom_cliente_venta").text(data.nombre_cliente==null ? "Consumidor Final": data.nombre_cliente );
+      $("#ci_cliente_venta").text(data.ci_cliente);
+      $("#dir_cliente_venta").text(data.direccion_cliente);
+      $("#telf_cliente_venta").text(data.telefono_cliente);
+
+      $("#sub_total_venta").text( parseFloat(data.valor_total).toFixed(2) );
+      var _iva=parseFloat( (data.valor_total * IVA /100) ).toFixed(2);
+      $("#iva_venta").text( _iva  );
+      $("#total_final_venta").text( parseFloat( parseFloat(data.valor_total) + parseFloat(_iva)).toFixed(2)  );
+      console.log(data);
+      cerrarMensaje();
+    }).fail(function(e) {
+      try{
+            mostrarMensaje(e.responseJSON.error.message, "danger");
+       }catch(e){  mostrarMensaje(_CONST.ERROR_CREAR_AJAX, "danger"); }
+    }).always(function() { setTimeout(function(){ cerrarMensaje()},18000)  }); 
 }

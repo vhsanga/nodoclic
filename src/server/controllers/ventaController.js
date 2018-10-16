@@ -38,7 +38,7 @@ router.post('/crear', function(req, res, next) {
 	item.then(function(venta){
 		var item=ventaService.crearVentaDetalle(req.body, venta[0], req.user.id_compania);
 		item.then(function(){
-			res.json(true);
+			res.json(venta[0]);
 		}).catch(function(err){ console.log("1 ", err); res.json({success: false, error: err}, 400); });
 	}).catch(function(err){ console.log("1 ", err); res.json({success: false, error: err}, 400); });
 });
@@ -49,6 +49,21 @@ router.get('/listar_resume', function(req, res, next) {
 		res.json(rows);
 	}).catch(function(err){ console.log("1 ", err); res.json({success: false, error: err}, 400); });
 });
+
+router.get('/getInfoVenta/:id_venta', function(req, res, next) {
+	var item=ventaService.getVentaById(req.params.id_venta);
+	item.then(function(rows){
+		res.json(rows[0]);
+	}).catch(function(err){ console.log("1 ", err); res.json({success: false, error: err}, 400); });
+});
+
+router.get('/getInfoVentaDetalle/:id_venta', function(req, res, next) {
+	var item=ventaService.getDetalleVentaByIdVenta(req.params.id_venta);
+	item.then(function(rows){
+		res.json(rows);
+	}).catch(function(err){ console.log("1 ", err); res.json({success: false, error: err}, 400); });
+});
+
 
 
 module.exports = router;

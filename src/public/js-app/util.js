@@ -1,4 +1,5 @@
 moment.locale('es')  ;
+const IVA=12;
 
 var tempoAlert;
 

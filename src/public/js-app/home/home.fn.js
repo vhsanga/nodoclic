@@ -56,7 +56,7 @@ function agrearAtabla(p){
         }
       });
       productoSelecionados.push({
-        id_producto:p.id, nombre:p.nombre,  detalle:p.detalle,  cantidad:1,  valor_venta:parseFloat(p.precio_venta).toFixed(2) 
+        id_producto:p.id, nombre:p.nombre,  detalle:p.detalle,  cantidad:1, valor_unitario:parseFloat(p.precio_venta).toFixed(2), valor_venta:parseFloat(p.precio_venta).toFixed(2) 
       });
       sumatoriaFactura();
       $("#clienteForm").show();
@@ -138,7 +138,7 @@ function guardarVenta(){
       data:JSON.stringify(dataSend),
       contentType:"application/json; charset=utf-8",
       dataType:"json",
-      success: function(){
+      success: function(id_venta){
         mostrarMensaje(_CONST.EXITO_CREAR_AJAX,"success");
         $('#modalPreventa').modal('hide');
         for(var i=0; i<productoSelecionados.length; i++){
@@ -154,6 +154,7 @@ function guardarVenta(){
         productoSelecionados=[];
         cargarResumeVentas();
         mostrarProductosAterminar();
+        mostrarVenta(id_venta);
       },
       onerror:function(e){
         try{
