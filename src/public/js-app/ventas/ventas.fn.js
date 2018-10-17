@@ -10,7 +10,7 @@ function getVentasByFecha(fecha, callback){
 
 
 
-function loadTablaVentaFecha(fecha){
+function loadTablaVentaFecha(fecha, formato){
 	console.log("tabla");
 	console.log(fecha);
   var dtVentasFecha=$('#tablaVentaFecha').DataTable( {
@@ -51,7 +51,6 @@ function loadTablaVentaFecha(fecha){
   });
 
    dtVentasFecha.on( 'order.dt search.dt', function () {
-    	console.log("dentro de la tabla")
         dtVentasFecha.column(0, {search:'applied', order:'applied'}).nodes().each( function (cell, i) {
             cell.innerHTML = i+1;
         } );
@@ -74,7 +73,7 @@ function loadTablaVentaFecha(fecha){
         }
     } );
 
-   $('#tituloMostrarVentaFecha').text("Ventas de: "+moment(fecha).format('MMMM [del] YYYY')); 
+   $('#tituloMostrarVentaFecha').text("Ventas de: "+moment(fecha).format(formato)); 
    $('#modalMostrarVentaFecha').modal({backdrop: 'static', keyboard: false}); 
 }
 
@@ -83,11 +82,12 @@ function mostrarVentasResumeMeses(){
   $.get( "/ventas/listar_resume").done(function( data ) {
         var sum=0;
         console.log(data);
+        var formatoFecha="MMMM [del] YYYY"; 
         $("#areaVentasMeses").empty();
         var colores=["bg-aqua","bg-olive", "bg-orange", "bg-maroon", "bg-purple", "bg-aqua","bg-olive", "bg-orange", "bg-maroon", "bg-purple", "bg-aqua","bg-olive"];
         for ( var i in data){
             var mes_= zeroFill( data[i].mes, 2 );
-             $("#areaVentasMeses").append('<div class="progress-group"  onclick=loadTablaVentaFecha("'+data[i].anio+'-'+mes_+'")> '+
+             $("#areaVentasMeses").append('<div class="progress-group"  onclick=loadTablaVentaFecha("'+data[i].anio+'-'+mes_+'", "'+formatoFecha+'") > '+
                                           '  <span class="progress-text">' +MESES[data[i].mes -1 ]+ '</span>'+
                                           '  <span id="prc-'+i+'"></span>'+
                                           '  <span class="progress-number">'+parseFloat(data[i].valor).toFixed(2)+'</span>'+

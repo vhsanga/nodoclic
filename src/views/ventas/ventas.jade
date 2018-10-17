@@ -25,8 +25,10 @@ block contenido
             h3.box-title  Ver Ventas Netas Clasificadas por Mes
           div.box-body
             .row
-              .col-md-4
+              .col-md-6
                 div#areaVentasMeses
+              .col-md-6
+                div#calendarioVentas
 
   include ../partials/_ventas.jade
 
@@ -35,10 +37,15 @@ block javascript
   script(src="/bower_components/datatables.net/js/jquery.dataTables.min.js")
   script(src="/bower_components/datatables.net-bs4/js/dataTables.bootstrap4.min.js")
   link(rel="stylesheet" href="/dist/css/datatables.min.css")    
-  script(src="../../bower_components/raphael/raphael.min.js")
-  script(src="../../bower_components/morris.js/morris.min.js")  
+  script(src="/bower_components/raphael/raphael.min.js")
+  script(src="/bower_components/morris.js/morris.min.js")  
   link(rel="stylesheet" href="/bower_components/morris.js/morris.css")  
+  script(src="/bower_components/fullcalendar/dist/fullcalendar.min.js")
+  script(src="/bower_components/fullcalendar/dist/locale/es.js")
+  link(rel="stylesheet" href="/bower_components/fullcalendar/dist/fullcalendar.min.css")
+  link(rel="stylesheet" href="/bower_components/fullcalendar/dist/fullcalendar.print.min.css" media="print")
 
   script(src="/js-app/ventas/ventas.fn.js")
   script(src="/js-app/ventas/ventas.init.js")
   script(src="/js-app/ventas/ventas.gf.js")
+  script(src="/js-app/ventas/ventas.calendar.js")

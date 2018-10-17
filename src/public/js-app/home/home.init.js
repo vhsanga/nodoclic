@@ -24,8 +24,7 @@ function initElements(){
 	});
 
 	$("#caja-resume-ventas-hoy").click(function(){
-		console.log("clic");
-		loadTablaVentaFecha(moment().format('YYYY-MM-DD'));	
+		loadTablaVentaFecha(moment().format('YYYY-MM-DD'),'LL');	
 		$('#modalMostrarVentaFecha').modal({backdrop: 'static', keyboard: false}); 	
 	});
 

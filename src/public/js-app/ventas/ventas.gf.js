@@ -21,7 +21,7 @@ function loadChartVentas(data){
     parseTime: false,
 
   }).on('click', function(i, row){
-          loadTablaVentaFecha(data[i].anio+'-'+zeroFill( data[i].mes, 2 ));
+          loadTablaVentaFecha(data[i].anio+'-'+zeroFill( data[i].mes, 2 ),'MMMM [del] YYYY');
          // mostrarCompraMes(data[i].anio, data[i].mes);          
     });
 }
