@@ -1,4 +1,6 @@
+
+
 $(function() {
-	console.log("iit ventas");
 	mostrarVentasResumeMeses();
+	mostrarVentasResumeEstaSemana();
 });

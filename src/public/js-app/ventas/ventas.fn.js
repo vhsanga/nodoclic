@@ -184,3 +184,18 @@ function cargarEncabezadoVenta(id_venta){
        }catch(e){  mostrarMensaje(_CONST.ERROR_CREAR_AJAX, "danger"); }
     }).always(function() { setTimeout(function(){ cerrarMensaje()},18000)  }); 
 }
+
+function mostrarVentasResumeEstaSemana(){
+  var startOfPeriod = moment(),
+  begin = moment(startOfPeriod).isoWeekday(1);
+  var fecha_i=begin.startOf('isoWeek').format('YYYY-MM-DD');
+  var fecha_f=moment().format('YYYY-MM-DD');
+  $.get( "/ventas/getResumeVentasDentroDeRagoFecha/"+fecha_i+"/"+fecha_f).done(function( data ) {
+        console.log(data)
+        loadChartVentasRangoFecha(data);
+    }).fail(function(e) {
+      try{
+            mostrarMensaje(e.responseJSON.error.message, "danger");
+       }catch(e){  mostrarMensaje(_CONST.ERROR_CREAR_AJAX, "danger"); }
+    }).always(function() { setTimeout(function(){ cerrarMensaje()},18000)  });
+}

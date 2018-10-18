@@ -59,7 +59,7 @@ class ventaService {
 
 
 
-    getVentaById(id) {  //representa a una factura 
+    getVentaById(id) {  //representa el encabezado de una factura
         return models.sequelize.query(
         "SELECT v.id, v.id_cliente, v.valor_total, v.valor_recibido, v.valor_vuelto, v.fecha, "+
         "concat(c.nombres,' ',c.apellidos) as nombre_cliente, c.ci as ci_cliente, c.direccion as direccion_cliente, c.telefono as telefono_cliente, c.email as email_cliente, "+
@@ -71,12 +71,20 @@ class ventaService {
         {type: models.sequelize.QueryTypes.SELECT});
     };
 
-    getDetalleVentaByIdVenta(idVenta) {  //representa a una factura        
+    getDetalleVentaByIdVenta(idVenta) {  //representa items de una facura        
         return models.sequelize.query(
         "select d.id_producto, concat(p.nombre,' ',p.detalle) as producto, d.cantidad, d.valor_unitario, d.valor_total  "+
         "from ventas_detalle  d "+
         "inner join producto p on d.id_producto=p.id "+
         "where id_venta="+idVenta,            
+        {type: models.sequelize.QueryTypes.SELECT});
+    };
+
+    getResumeVentasDentroDeRagoFecha(id_compania, fecha_incial, fecha_final) {  //consulta de ventas por dias dentro de un rango de dos fechas       
+        return models.sequelize.query(
+        "select count(id) as num_ventas, fecha, sum(valor_total) as valor_total from ventas "+
+        "where  id_compania="+id_compania+" and  fecha between '"+fecha_incial+"' and '"+fecha_final+"'   "+ 
+        "GROUP BY YEAR(fecha),month(fecha),day(fecha)",            
         {type: models.sequelize.QueryTypes.SELECT});
     };
 

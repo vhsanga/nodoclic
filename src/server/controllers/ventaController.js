@@ -64,6 +64,13 @@ router.get('/getInfoVentaDetalle/:id_venta', function(req, res, next) {
 	}).catch(function(err){ console.log("1 ", err); res.json({success: false, error: err}, 400); });
 });
 
+router.get('/getResumeVentasDentroDeRagoFecha/:fecha_i/:fecha_f', function(req, res, next) {
+	var item=ventaService.getResumeVentasDentroDeRagoFecha(req.user.id_compania, req.params.fecha_i,req.params.fecha_f);
+	item.then(function(rows){
+		res.json(rows);
+	}).catch(function(err){ console.log("1 ", err); res.json({success: false, error: err}, 400); });
+});
+
 
 
 module.exports = router;

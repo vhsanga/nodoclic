@@ -25,3 +25,28 @@ function loadChartVentas(data){
          // mostrarCompraMes(data[i].anio, data[i].mes);          
     });
 }
+
+
+function loadChartVentasRangoFecha(data){
+  $("#revenue-chart-semana").empty();
+  var d=[];
+  for (var i in data){
+    d.push({y: moment(data[i].fecha).format('ll'), valor: parseFloat(data[i].valor_total).toFixed(2) });
+  }
+
+  var area = new Morris.Area({
+    element: 'revenue-chart-semana',
+    resize: true,
+    data: d,
+    xkey: 'y',
+    ykeys: ['valor'],
+    labels: ['Valor'],
+    lineColors: ['#3c8dbc'],
+    hideHover: 'auto',
+    parseTime: false,
+
+  }).on('click', function(i, row){
+          loadTablaVentaFecha( moment(data[i].fecha).format('YYYY-MM-DD'),'LL');
+         // mostrarCompraMes(data[i].anio, data[i].mes);          
+    });
+}
