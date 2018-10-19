@@ -50,8 +50,7 @@ function guardarProveedor_compra(){
 
 
 function guardarCompraProducto(){
-  console.log("llmando a guardar");
-  guardarCompra(function(dataSend,data){ // esta funcion se encuentra en /proveedor/proeedor.fn.js
+  guardarCompra(function(dataSend,data){ 
     if(data){
       loadTablacompras()      
       $('#modalCrearCompra').modal('hide'); 
@@ -72,6 +71,8 @@ function guardarCompra(callback){
     return false;
   }
   var dataSend=obtenerCamposCompra("");
+  console.log(dataSend);
+  return false;
   $.post( "/compras/crear",dataSend).done(function( dataRes ) {
     callback(dataSend,dataRes);
     }).fail(function(e) {
@@ -223,6 +224,7 @@ function obtenerCamposCompra(char){
     ganancia:$("#porcentajeGanancia"+char).val(),
     fecha_compra:$("#fechaCompraPd"+char).val(),
     referencia:$("#referenciaPd"+char).val(),
+    incluye_iva:$("#incluyeIvaPd"+char).val(),
   }
 }
 

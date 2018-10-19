@@ -11,8 +11,6 @@ function getVentasByFecha(fecha, callback){
 
 
 function loadTablaVentaFecha(fecha, formato){
-	console.log("tabla");
-	console.log(fecha);
   var dtVentasFecha=$('#tablaVentaFecha').DataTable( {
 
     "ajax": {
@@ -64,7 +62,6 @@ function loadTablaVentaFecha(fecha, formato){
           if(dtVentasFecha.row( this ).data() != null){
             dtVentasFecha.$('tr.selected').removeClass('selected');
             $(this).addClass('selected');
-            console.log(dtVentasFecha.row( this ).data());
             idVentaSelecionada=dtVentasFecha.row( this ).data().id_venta;
             
             mostrarVenta(idVentaSelecionada);
@@ -81,13 +78,12 @@ function loadTablaVentaFecha(fecha, formato){
 function mostrarVentasResumeMeses(){
   $.get( "/ventas/listar_resume").done(function( data ) {
         var sum=0;
-        console.log(data);
         var formatoFecha="MMMM [del] YYYY"; 
         $("#areaVentasMeses").empty();
         var colores=["bg-aqua","bg-olive", "bg-orange", "bg-maroon", "bg-purple", "bg-aqua","bg-olive", "bg-orange", "bg-maroon", "bg-purple", "bg-aqua","bg-olive"];
         for ( var i in data){
             var mes_= zeroFill( data[i].mes, 2 );
-             $("#areaVentasMeses").append('<div class="progress-group"  onclick=loadTablaVentaFecha("'+data[i].anio+'-'+mes_+'", "'+formatoFecha+'") > '+
+             $("#areaVentasMeses").append('<div class="progress-group"  onclick="loadTablaVentaFecha(\''+data[i].anio+'-'+mes_+'\',\''+formatoFecha+'\')" > '+
                                           '  <span class="progress-text">' +MESES[data[i].mes -1 ]+ '</span>'+
                                           '  <span id="prc-'+i+'"></span>'+
                                           '  <span class="progress-number">'+parseFloat(data[i].valor).toFixed(2)+'</span>'+
@@ -101,7 +97,10 @@ function mostrarVentasResumeMeses(){
              sum=sum+data[i].valor;
              
         }
-        console.log(sum);
+        
+        if(data.length!=0){
+          $("#tituloReporteMes").text("Desde "+MESES[data[0].mes -1 ]+"/"+data[i].anio+"   Hasta "+MESES[data[data.length-1].mes -1 ]+"/"+data[data.length-1].anio);        
+        }      
         //$(".totalCompras").text("$ "+parseFloat(sum).toFixed(2));
         for ( var i in data){
              var porcen= (data[i].valor *100) / sum; 
@@ -176,7 +175,6 @@ function cargarEncabezadoVenta(id_venta){
       var _iva=parseFloat( (data.valor_total * IVA /100) ).toFixed(2);
       $("#iva_venta").text( _iva  );
       $("#total_final_venta").text( parseFloat( parseFloat(data.valor_total) + parseFloat(_iva)).toFixed(2)  );
-      console.log(data);
       cerrarMensaje();
     }).fail(function(e) {
       try{
@@ -188,10 +186,10 @@ function cargarEncabezadoVenta(id_venta){
 function mostrarVentasResumeEstaSemana(){
   var startOfPeriod = moment(),
   begin = moment(startOfPeriod).isoWeekday(1);
-  var fecha_i=begin.startOf('isoWeek').format('YYYY-MM-DD');
-  var fecha_f=moment().format('YYYY-MM-DD');
+  var fecha_i=begin.startOf('isoWeek').format('YYYY-MM-DD') + " 00:00:00";
+  var fecha_f=moment().format('YYYY-MM-DD')+ " 23:59:59";
+  $("#tituloReporteSemana").text("Desde "+begin.startOf('isoWeek').format('dddd[/]DD MMM')+ "   Hasta "+moment().format('dddd[/]DD MMM'));
   $.get( "/ventas/getResumeVentasDentroDeRagoFecha/"+fecha_i+"/"+fecha_f).done(function( data ) {
-        console.log(data)
         loadChartVentasRangoFecha(data);
     }).fail(function(e) {
       try{

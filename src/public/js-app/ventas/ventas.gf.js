@@ -7,8 +7,6 @@ function loadChartVentas(data){
   for (var i in data){
     d.push({y: MESES[data[i].mes -1 ] +"/"+data[i].anio, valor: parseFloat(data[i].valor).toFixed(2) });
   }
- console.log(data);
-
   var area = new Morris.Area({
     element: 'revenue-chart',
     resize: true,
@@ -31,7 +29,7 @@ function loadChartVentasRangoFecha(data){
   $("#revenue-chart-semana").empty();
   var d=[];
   for (var i in data){
-    d.push({y: moment(data[i].fecha).format('ll'), valor: parseFloat(data[i].valor_total).toFixed(2) });
+    d.push({y: moment(data[i].fecha).format('dddd[/]DD MMM'), valor: parseFloat(data[i].valor_total).toFixed(2) });
   }
 
   var area = new Morris.Area({
@@ -41,7 +39,7 @@ function loadChartVentasRangoFecha(data){
     xkey: 'y',
     ykeys: ['valor'],
     labels: ['Valor'],
-    lineColors: ['#3c8dbc'],
+    lineColors: ['#ecbf38'],
     hideHover: 'auto',
     parseTime: false,
 

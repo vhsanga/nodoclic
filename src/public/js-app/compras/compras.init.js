@@ -109,9 +109,6 @@ function initElementos(){
       guardarProveedor_compra();
   });
   
-
-  
-
 }
 
 function abrirModalCrearProveedor(){
