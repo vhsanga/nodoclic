@@ -16,35 +16,36 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `usuario`
+-- Table structure for table `cliente`
 --
 
-DROP TABLE IF EXISTS `usuario`;
+DROP TABLE IF EXISTS `cliente`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
  SET character_set_client = utf8mb4 ;
-CREATE TABLE `usuario` (
+CREATE TABLE `cliente` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `usuario` varchar(45) DEFAULT NULL,
-  `pass` varchar(250) DEFAULT NULL,
   `nombres` varchar(125) DEFAULT NULL,
-  `email` varchar(65) DEFAULT NULL,
-  `telefono` varchar(45) DEFAULT NULL,
+  `apellidos` varchar(125) DEFAULT NULL,
+  `ci` varchar(12) DEFAULT NULL,
+  `direccion` varchar(125) DEFAULT NULL,
+  `telefono` varchar(20) DEFAULT NULL,
+  `email` varchar(125) DEFAULT NULL,
   `eliminado` tinyint(4) DEFAULT '0',
   `id_compania` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
-  KEY `fk_usuario_compania_idx` (`id_compania`),
-  CONSTRAINT `fk_usuario_compania` FOREIGN KEY (`id_compania`) REFERENCES `compania` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+  KEY `fk_cliente_compania_idx` (`id_compania`),
+  CONSTRAINT `fk_cliente_compania` FOREIGN KEY (`id_compania`) REFERENCES `compania` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `usuario`
+-- Dumping data for table `cliente`
 --
 
-LOCK TABLES `usuario` WRITE;
-/*!40000 ALTER TABLE `usuario` DISABLE KEYS */;
-INSERT INTO `usuario` VALUES (6,'admin','$2a$10$9z9WccaGZ1Rn1hYeBRfMjuPrhwJeBckMjfL6trg/8fcJipo4HgcWG','jose miraflores','email@email.com','97963696',0,1);
-/*!40000 ALTER TABLE `usuario` ENABLE KEYS */;
+LOCK TABLES `cliente` WRITE;
+/*!40000 ALTER TABLE `cliente` DISABLE KEYS */;
+INSERT INTO `cliente` VALUES (1,'ss','sss','sss','ss','ss',NULL,0,1),(2,'victor','sanga caranqui','0603765058','barrio la floresta','09796369','vic@gmail.com',0,1),(3,'Marina','Gonzales','0603765051','Av de la prensa y caicuchima','032965663','amry_122001@gmail.com',0,1),(4,'Kevin ','Mantilla','0603765052','AV 10 de agosto y mijares','0949596569','k@gmail.com',0,1);
+/*!40000 ALTER TABLE `cliente` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -56,4 +57,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-10-16 18:41:22
+-- Dump completed on 2018-10-20 13:55:07

@@ -16,25 +16,36 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `proveedor`
+-- Table structure for table `usuario`
 --
 
-DROP TABLE IF EXISTS `proveedor`;
+DROP TABLE IF EXISTS `usuario`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
  SET character_set_client = utf8mb4 ;
-CREATE TABLE `proveedor` (
+CREATE TABLE `usuario` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `nombre` varchar(125) DEFAULT NULL,
-  `direccion` varchar(125) DEFAULT NULL,
+  `usuario` varchar(45) DEFAULT NULL,
+  `pass` varchar(250) DEFAULT NULL,
+  `nombres` varchar(125) DEFAULT NULL,
+  `email` varchar(65) DEFAULT NULL,
   `telefono` varchar(45) DEFAULT NULL,
-  `representante` varchar(125) DEFAULT NULL,
   `eliminado` tinyint(4) DEFAULT '0',
   `id_compania` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
-  KEY `fk_prov_compania_idx` (`id_compania`),
-  CONSTRAINT `fk_prov_compania` FOREIGN KEY (`id_compania`) REFERENCES `compania` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8 COMMENT='		';
+  KEY `fk_usuario_compania_idx` (`id_compania`),
+  CONSTRAINT `fk_usuario_compania` FOREIGN KEY (`id_compania`) REFERENCES `compania` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `usuario`
+--
+
+LOCK TABLES `usuario` WRITE;
+/*!40000 ALTER TABLE `usuario` DISABLE KEYS */;
+INSERT INTO `usuario` VALUES (6,'admin','$2a$10$9z9WccaGZ1Rn1hYeBRfMjuPrhwJeBckMjfL6trg/8fcJipo4HgcWG','jose miraflores','email@email.com','97963696',0,1);
+/*!40000 ALTER TABLE `usuario` ENABLE KEYS */;
+UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -45,4 +56,4 @@ CREATE TABLE `proveedor` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-10-19 18:26:29
+-- Dump completed on 2018-10-20 13:55:06

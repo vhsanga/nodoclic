@@ -16,27 +16,31 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `ventas`
+-- Table structure for table `compania`
 --
 
-DROP TABLE IF EXISTS `ventas`;
+DROP TABLE IF EXISTS `compania`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
  SET character_set_client = utf8mb4 ;
-CREATE TABLE `ventas` (
+CREATE TABLE `compania` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `id_cliente` int(11) DEFAULT NULL,
-  `valor_total` float DEFAULT '0',
-  `valor_recibido` float DEFAULT '0',
-  `valor_vuelto` float DEFAULT '0',
-  `fecha` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
-  `id_compania` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `fk_venta_cliente_idx` (`id_cliente`),
-  KEY `fk_venta_compania_idx` (`id_compania`),
-  CONSTRAINT `fk_venta_cliente` FOREIGN KEY (`id_cliente`) REFERENCES `cliente` (`id`),
-  CONSTRAINT `fk_venta_compania_` FOREIGN KEY (`id_compania`) REFERENCES `compania` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=48 DEFAULT CHARSET=utf8;
+  `nombre` varchar(90) DEFAULT NULL,
+  `direccion` varchar(125) DEFAULT NULL,
+  `teléfono` varchar(26) DEFAULT NULL,
+  `representante` varchar(125) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `compania`
+--
+
+LOCK TABLES `compania` WRITE;
+/*!40000 ALTER TABLE `compania` DISABLE KEYS */;
+INSERT INTO `compania` VALUES (1,'Atlantic Multi Shop','Carabobo y Chile','0949636253','NASss');
+/*!40000 ALTER TABLE `compania` ENABLE KEYS */;
+UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -47,4 +51,4 @@ CREATE TABLE `ventas` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-10-19 18:26:31
+-- Dump completed on 2018-10-20 13:55:07
