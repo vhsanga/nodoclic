@@ -160,6 +160,7 @@ function mostrarVenta(id){
 
 function cargarEncabezadoVenta(id_venta){
   $.get( "/ventas/getInfoVenta/"+id_venta).done(function( data ) {
+    console.log(data);
       $("#nombre_comp").text(data.compania);
       $("#direccion_comp").text(data.direccion_compania);
       $("#telefono_comp").text(data.telefono_compania);
@@ -171,10 +172,10 @@ function cargarEncabezadoVenta(id_venta){
       $("#dir_cliente_venta").text(data.direccion_cliente);
       $("#telf_cliente_venta").text(data.telefono_cliente);
 
-      $("#sub_total_venta").text( parseFloat(data.valor_total).toFixed(2) );
-      var _iva=parseFloat( (data.valor_total * IVA /100) ).toFixed(2);
-      $("#iva_venta").text( _iva  );
-      $("#total_final_venta").text( parseFloat( parseFloat(data.valor_total) + parseFloat(_iva)).toFixed(2)  );
+      $("#sub_total_venta").text( parseFloat(data.total_sin_iva).toFixed(2) );
+      $("#iva_venta").text( parseFloat(data.total_iva).toFixed(2)  );
+      $("#total_final_venta").text( parseFloat(data.valor_total).toFixed(2)  );
+
       cerrarMensaje();
     }).fail(function(e) {
       try{

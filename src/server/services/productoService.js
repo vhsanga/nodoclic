@@ -12,15 +12,15 @@ class productoService {
 
     getProductos(id_compania) { 
         return models.sequelize.query(
-            "SELECT p.id, p.nombre, p.detalle, p.precio_compra, p.precio_venta, p.stock, p.codigo_barra "+
+            "SELECT p.id, p.nombre, p.detalle, p.precio_compra, p.precio_venta,  p.incluye_iva, p.precio_sin_iva, p.valor_iva, p.stock, p.codigo_barra "+
             " FROM nodoclic.producto p INNER JOIN compras  c ON p.id=c.id_producto"+
             " WHERE p.eliminado=false AND p.id_compania="+id_compania,            
             {type: models.sequelize.QueryTypes.SELECT});    
     };
     crearProducto(data, id_compania) { 
         return models.sequelize.query(
-            "INSERT INTO `nodoclic`.`producto` (`nombre`, `detalle`, `precio_compra`, `precio_venta`, `stock`, `procentaje_ganancia`, `eliminado`, `id_proveedor`, `id_compania`) "+
-            " VALUE ('"+data.nombre+"', '"+data.detalle+"', '"+data.precio_compra+"', '"+data.precio_venta+"', '"+data.stock+"', '"+data.ganancia+"', '0', "+data.id_proveedor+", "+id_compania+");",            
+            "INSERT INTO `nodoclic`.`producto` (`nombre`, `detalle`, `precio_compra`, `precio_venta`, `incluye_iva`, `precio_sin_iva`,  `valor_iva`, `stock`, `procentaje_ganancia`, `eliminado`, `id_proveedor`, `id_compania`) "+
+            " VALUE ('"+data.nombre+"', '"+data.detalle+"', '"+data.precio_compra+"', '"+data.precio_venta+"',"+data.incluye_iva+", '"+data.precio_sin_iva+"', '"+data.valor_iva+"',  '"+data.stock+"', '"+data.ganancia+"', '0', "+data.id_proveedor+", "+id_compania+");",            
             {type: models.sequelize.QueryTypes.INSERT});    
     };
 

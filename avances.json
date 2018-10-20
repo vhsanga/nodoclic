@@ -1,0 +1,18 @@
+avances:{
+	"fecha":"2018-10-20", "acciones":[
+		"Login y Logout", 
+		"ingreso de compras (productos)", 
+		"mostrar lista de compras (productos)",
+		"editar una compra (producto)",
+		"grafico de compras clasificadas por mes",
+		"Generar el codigo de barra de un producto",
+		"Imprimir el codigo de barra de un producto(*******)",
+		"Realizar el proceso de venta, mostrar producto, buscar cliente, ingresa cliente,generar nota de venta"
+		"grafico de Estadistica de Ventas Netas De esta Semana",
+		"grafico de Estadistica de Ventas Netas Clasificadas por Mes",
+		"grafico de  Ventas Netas Clasificadas por Mes",
+		"Lista de ventas en una fecha determinada"
+		"mostra productos próximos a caducar"
+
+	]
+}

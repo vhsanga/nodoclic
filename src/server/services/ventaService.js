@@ -16,20 +16,20 @@ class ventaService {
         console.log(ventas);
         console.log(data);
         for (var x in ventas){
-            strValues=strValues+ "("+ventas[x].id_producto+", "+id_venta+", "+ventas[x].cantidad+", "+ventas[x].valor_unitario+", "+ventas[x].valor_venta+", '0', "+id_compania+"),"
+            strValues=strValues+ "("+ventas[x].id_producto+", "+id_venta+", "+ventas[x].cantidad+", "+ventas[x].valor_unitario+", "+ventas[x].valor_venta+", "+data.iva+",  "+data.precio_sin_iva+",   '0', "+id_compania+"),"
         }
         strValues=strValues.slice(0,-1);
         console.log(strValues);
         return models.sequelize.query(
-            "INSERT INTO `ventas_detalle` (`id_producto`,  `id_venta`, `cantidad`, `valor_unitario`, `valor_total`, `eliminado`, `id_compania`) VALUES "+
+            "INSERT INTO `ventas_detalle` (`id_producto`,  `id_venta`, `cantidad`, `valor_unitario`, `valor_total`, `iva`, `valor_sin_iva`, `eliminado`, `id_compania`) VALUES "+
             strValues,
             {type: models.sequelize.QueryTypes.INSERT});    
     };
 
     crearVenta(data,  id_compania) {         
         return models.sequelize.query(
-            "INSERT INTO `nodoclic`.`ventas` (`id_cliente`, `valor_total`, `valor_recibido`, `valor_vuelto`, `id_compania`) "+
-            " VALUES ("+data.id_cliente+", "+data.valor_venta+", "+data.valor_recibido+","+data.valor_vuelto+"  ,"+id_compania+");",
+            "INSERT INTO `nodoclic`.`ventas` (`id_cliente`, `valor_total`, `valor_recibido`, `valor_vuelto`,  `total_iva`, `total_sin_iva`,`id_compania`) "+
+            " VALUES ("+data.id_cliente+", "+data.valor_venta+", "+data.valor_recibido+","+data.valor_vuelto+", "+data.iva+",  "+data.precio_sin_iva+", "+id_compania+");",
             {type: models.sequelize.QueryTypes.INSERT});    
     };
 
@@ -61,7 +61,7 @@ class ventaService {
 
     getVentaById(id) {  //representa el encabezado de una factura
         return models.sequelize.query(
-        "SELECT v.id, v.id_cliente, v.valor_total, v.valor_recibido, v.valor_vuelto, v.fecha, "+
+        "SELECT v.id, v.id_cliente, v.valor_total, v.valor_recibido, v.valor_vuelto, v.total_iva, v.total_sin_iva, v.fecha, "+
         "concat(c.nombres,' ',c.apellidos) as nombre_cliente, c.ci as ci_cliente, c.direccion as direccion_cliente, c.telefono as telefono_cliente, c.email as email_cliente, "+
         "co.nombre as compania, co.direccion as direccion_compania, co.teléfono as telefono_compania "+
         "FROM ventas v "+

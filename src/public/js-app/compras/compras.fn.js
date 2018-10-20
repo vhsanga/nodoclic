@@ -72,7 +72,6 @@ function guardarCompra(callback){
   }
   var dataSend=obtenerCamposCompra("");
   console.log(dataSend);
-  return false;
   $.post( "/compras/crear",dataSend).done(function( dataRes ) {
     callback(dataSend,dataRes);
     }).fail(function(e) {
@@ -211,6 +210,14 @@ function setCodigoBarra(){
 }
 
 function obtenerCamposCompra(char){
+  var precio_sin_iva=0.00;
+  var valor_iva=0.00;
+  if(document.getElementById("incluyeIvaPd"+char).checked){
+      valor_iva= parseFloat((parseFloat($("#puc"+char).text()) * IVA ) /100).toFixed(2);
+      precio_sin_iva=parseFloat( parseFloat($("#pvu"+char).val()) - valor_iva ).toFixed(2);
+  }else{
+      precio_sin_iva=parseFloat($("#pvu"+char).val());
+  }
   return {
     id_proveedor:$("#ProveedorPd"+char).val(),
     id_producto:$("#idPd"+char).val(),
@@ -224,7 +231,9 @@ function obtenerCamposCompra(char){
     ganancia:$("#porcentajeGanancia"+char).val(),
     fecha_compra:$("#fechaCompraPd"+char).val(),
     referencia:$("#referenciaPd"+char).val(),
-    incluye_iva:$("#incluyeIvaPd"+char).val(),
+    incluye_iva:document.getElementById("incluyeIvaPd"+char).checked,
+    valor_iva:valor_iva,
+    precio_sin_iva:precio_sin_iva
   }
 }
 

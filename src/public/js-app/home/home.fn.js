@@ -56,7 +56,7 @@ function agrearAtabla(p){
         }
       });
       productoSelecionados.push({
-        id_producto:p.id, nombre:p.nombre,  detalle:p.detalle,  cantidad:1, valor_unitario:parseFloat(p.precio_venta).toFixed(2), valor_venta:parseFloat(p.precio_venta).toFixed(2) 
+        id_producto:p.id, nombre:p.nombre,  detalle:p.detalle,  cantidad:1, valor_unitario:parseFloat(p.precio_venta).toFixed(2), valor_venta:parseFloat(p.precio_venta).toFixed(2), iva:parseFloat(p.valor_iva).toFixed(2), precio_sin_iva:parseFloat(p.precio_sin_iva).toFixed(2)
       });
       sumatoriaFactura();
       $("#clienteForm").show();
@@ -84,7 +84,7 @@ function modoficarCantidadEnLista(id, cantidad, valor){
 	for (var i in productoSelecionados){
 		if(productoSelecionados[i].id_producto===id){
 			productoSelecionados[i].cantidad=cantidad;
-			productoSelecionados[i].valor_venta=valor;
+      productoSelecionados[i].valor_venta=valor;
 		}
 	}
 	sumatoriaFactura();
@@ -193,10 +193,21 @@ function validarFormVenta(){
 }
 
 function obtenerCamposVentas(){
+  var iva=0;
+  var precio_sin_iva=0;
+  for (var i in productoSelecionados){
+      productoSelecionados[i].iva=parseFloat( parseFloat(productoSelecionados[i].iva) * parseFloat(productoSelecionados[i].cantidad) ).toFixed(2);
+      productoSelecionados[i].precio_sin_iva=parseFloat( parseFloat(productoSelecionados[i].precio_sin_iva) * parseFloat(productoSelecionados[i].cantidad)).toFixed(2);
+      iva=parseFloat(parseFloat(iva)+ parseFloat( parseFloat(productoSelecionados[i].iva) * parseFloat(productoSelecionados[i].cantidad) )  ).toFixed(2);
+      precio_sin_iva=parseFloat( parseFloat(precio_sin_iva) + parseFloat( parseFloat(productoSelecionados[i].precio_sin_iva) * parseFloat(productoSelecionados[i].cantidad))   ).toFixed(2);
+
+  }
   return {id_cliente:parseInt($("#cli-id").val()),
           valor_venta:parseFloat($("#conf_valor").text()).toFixed(2),
           valor_recibido:parseFloat($("#conf_valor_recibido").val()).toFixed(2),
           valor_vuelto:parseFloat($("#cnf_vuelto").text()).toFixed(2),
+          iva:iva,
+          precio_sin_iva:precio_sin_iva,
           ventas: productoSelecionados
          }
 }
@@ -314,16 +325,11 @@ function selectItemById(list, id){
 			selected=list[i];
 		}
 	}
-	console.log(list);
-	console.log(id);
-	console.log(selected);
 	return selected;
 }
 
 function calcularVuelto(){
-  console.log("cal vuelto");
   var recibido=  parseFloat($("#conf_valor_recibido").val());
   var valorAcobrar=  parseFloat($("#conf_valor").text());
-  console.log(parseFloat(recibido-valorAcobrar).toFixed(2))
   $("#cnf_vuelto").text( parseFloat(recibido-valorAcobrar).toFixed(2) )
 }
