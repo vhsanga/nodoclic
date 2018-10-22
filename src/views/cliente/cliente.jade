@@ -13,3 +13,34 @@ block contenido
       li.active Here
   // Main content
   section.content.container-fluid   
+    div.row
+      div.col-xs-12
+        div.box
+          div.box-header
+            button#openModalCliente.btn.btn-success + Ingresar nuevo Cliente
+          div.box-body
+            .row
+              .col-md-2
+              .col-md-8
+                table#tablaClientes.table.table-bordered.table-hover
+                  thead.tabla_default
+                    tr
+                      th #
+                      th Nombres
+                      th Apellidos
+                      th Ci
+                      th Dirección
+                      th Email
+                      th Teléfono      
+                      th Valor Vendido      
+                    tbody
+              .col-md-2
+            include ../partials/_addCliente.jade
+
+block javascript
+  script(src="/bower_components/datatables.net/js/jquery.dataTables.min.js")
+  script(src="/bower_components/datatables.net-bs4/js/dataTables.bootstrap4.min.js")  
+  link(rel="stylesheet" href="/bower_components/datatables.net-bs4/css/dataTables.bootstrap4.min.css")        
+  link(rel="stylesheet" href="/dist/css/datatables.min.css")       
+  script(src="/js-app/cliente/cliente.init.js")              
+  script(src="/js-app/cliente/cliente.fn.js")              

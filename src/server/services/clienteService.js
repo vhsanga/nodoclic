@@ -17,10 +17,20 @@ class clienteService {
             {type: models.sequelize.QueryTypes.INSERT});    
     };
 
-	getClientes(id_compania) { 
+    getClientes(id_compania) { 
         return models.sequelize.query(
             "SELECT id,nombres,apellidos,ci,direccion, telefono FROM cliente " +
-			"WHERE eliminado=false AND id_compania="+id_compania,            
+            "WHERE eliminado=false AND id_compania="+id_compania,            
+            {type: models.sequelize.QueryTypes.SELECT});    
+    };
+
+    getClientesVentasResumen(id_compania) { 
+        return models.sequelize.query(
+            "SELECT c.id, c.nombres, c.apellidos, c.ci, c.direccion, c.email, c.telefono, v.valor_total "+
+            "FROM cliente c left join (select id_cliente, sum(valor_total) as valor_total from ventas  "+
+            "where id_compania="+id_compania+ " "+
+            "group by id_cliente) as  v on v.id_cliente=c.id  "+
+            "WHERE c.eliminado=false AND c.id_compania="+id_compania,            
             {type: models.sequelize.QueryTypes.SELECT});    
     };
 

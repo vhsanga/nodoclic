@@ -19,6 +19,13 @@ router.get('/list', function(req, res, next) {
 	}).catch(function(err){ console.log("1 ", err); res.json({success: false, error: err}, 400); });
 });
 
+router.get('/listResumeVentas', function(req, res, next) {
+	var item=clienteService.getClientesVentasResumen(req.user.id_compania);
+	item.then(function(rows){
+		res.json(rows);
+	}).catch(function(err){ console.log("1 ", err); res.json({success: false, error: err}, 400); });
+});
+
 router.post('/crear', function(req, res, next) {
 	var item=clienteService.crearCliente(req.body,req.user.id_compania);
 	item.then(function(id_cli){
