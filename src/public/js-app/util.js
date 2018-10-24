@@ -137,7 +137,7 @@ var _CONST={
     SELECIONE_PROVEEDOR:"Selecione el proveedor",
     EXITO_CREAR_PROVEEDOR:"Se ha creado el proveedor",
     EXITO_CREAR_COMPRA:"Se ha creado la compra",
-    EXITO_CREAR_CLIENTE:"Se ha creado la compra",
+    EXITO_CREAR_CLIENTE:"Se ha creado el cliente",
     ERROR_CREAR_AJAX:"Ha surgido un inconveniente, actualize la página e intente de nuevo ",
     EXITO_CREAR_AJAX:"Los datos se han guardado exitosamente ",
 
@@ -147,7 +147,9 @@ var _CONST={
 
 
     NO_EXISTE_CLIENTE:"El cliente con cédula _ci_ no existe, debe ingresar sus datos",
-    DEBE_INGRESAR_PRODUCTO:"Escoja al menos un producto para poder realizar la venta"
+    DEBE_INGRESAR_PRODUCTO:"Escoja al menos un producto para poder realizar la venta",
+
+    CLIENTE_DEFAULT:"Consumidor Final",
 
 }
 
@@ -160,4 +162,29 @@ function zeroFill( number, width )
     return new Array( width + (/\./.test( number ) ? 2 : 1) ).join( '0' ) + number;
   }
   return number + ""; // always return a string
+}
+
+
+function agregarFilaATabla(data, dtObject ){
+    setTimeout(function(){
+        try{
+            dtObject.row.add(data).node().id=data.id;
+            dtObject.draw();
+        }catch(e){
+            console.log(e);
+        }
+    },1000);
+        
+}
+
+function editarFilaEnTabla(data, dtObject ){
+    setTimeout(function(){
+        try{
+            dtObject.row('.selected').data(data);
+            dtObject.draw();
+        }catch(e){
+            console.log(e);
+        }
+    },1000);
+        
 }

@@ -27,15 +27,14 @@ block contenido
                     tr
                       th #
                       th Nombres
-                      th Apellidos
                       th Ci
                       th Dirección
-                      th Email
                       th Teléfono      
                       th Valor Vendido      
                     tbody
               .col-md-2
             include ../partials/_addCliente.jade
+            include ../partials/_ventas.jade
 
 block javascript
   script(src="/bower_components/datatables.net/js/jquery.dataTables.min.js")
@@ -44,3 +43,4 @@ block javascript
   link(rel="stylesheet" href="/dist/css/datatables.min.css")       
   script(src="/js-app/cliente/cliente.init.js")              
   script(src="/js-app/cliente/cliente.fn.js")              
+  script(src="/js-app/ventas/ventas.fn.js")              

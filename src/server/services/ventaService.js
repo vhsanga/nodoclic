@@ -88,6 +88,13 @@ class ventaService {
         {type: models.sequelize.QueryTypes.SELECT});
     };
 
+    getResumeVentasAcliente(id_cliente) {  //resumen de ventas realizadas a un cliente        
+        return models.sequelize.query(
+        "select id, valor_total, fecha, valor_recibido, valor_vuelto from ventas "+
+        "where id_cliente="+id_cliente,            
+        {type: models.sequelize.QueryTypes.SELECT});
+    };
+
 
    
 

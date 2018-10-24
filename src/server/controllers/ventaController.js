@@ -71,6 +71,13 @@ router.get('/getResumeVentasDentroDeRagoFecha/:fecha_i/:fecha_f', function(req, 
 	}).catch(function(err){ console.log("1 ", err); res.json({success: false, error: err}, 400); });
 });
 
+router.get('/getResumeVentasAcliente/:id_cliente', function(req, res, next) {
+	var item=ventaService.getResumeVentasAcliente(req.params.id_cliente);
+	item.then(function(rows){
+		res.json(rows);
+	}).catch(function(err){ console.log("1 ", err); res.json({success: false, error: err}, 400); });
+});
+
 
 
 module.exports = router;

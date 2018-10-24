@@ -1,5 +1,5 @@
 #modalCrearCliente.modal.fade
-  .modal-dialog
+  .modal-dialog.modal-sm
     .modal-content
       .modal-header
         button.close(type='button', data-dismiss='modal', aria-label='Close')
@@ -26,13 +26,66 @@
             input#telefonoCl.form-control(type='text', placeholder='# de Telefono') 
           .form-group
             label(for='emailCl') email:
-            input#emailCl.form-control(type='text', placeholder='# de Telefono') 
+            input#emailCl.form-control(type='text', placeholder='Correo electrónico') 
           
           
       .modal-footer
         button.btn.btn-default(type='button', data-dismiss='modal') Cancelar
         |                 
         button#btnGuardarCliente.btn.btn-primary(type='button') Guardar Cliente
+    // /.modal-content
+  // /.modal-dialog
+// /.modal 
+
+
+#modalEditarCliente.modal.fade
+  .modal-dialog.modal-lg
+    .modal-content
+      .modal-header
+        button.close(type='button', data-dismiss='modal', aria-label='Close')
+          span(aria-hidden='true') &times;
+        |                 
+        h4.modal-title Cliente  
+      |               
+      .modal-body
+        .row
+          .col-md-4
+            form#fomrEditarCliente
+              .form-group
+                label(for='ciCl_') Cedula:
+                input#ciCl_.form-control(type='text', placeholder='# de cedula')
+              .form-group
+                label(for='nombreCl_') Nombres:
+                input#nombreCl_.form-control(type='text', placeholder=' Nombres del cliente')
+              .form-group
+                label(for='apellidoCli_') Apellidos:
+                input#apellidoCli_.form-control(type='text', placeholder=' Apellidos del cliente')           
+              .form-group
+                label(for='direccionCL_') Direccion:
+                input#direccionCL_.form-control(type='text', placeholder='Direccion')
+              .form-group
+                label(for='telefonoCl_') Telefono:
+                input#telefonoCl_.form-control(type='text', placeholder='# de Telefono') 
+              .form-group
+                label(for='emailCl_') email:
+                input#emailCl_.form-control(type='text', placeholder='Correo electrónico') 
+
+          .col-md-8
+            table#tablaVentasClientes.table.table-bordered.table-hover
+                  thead.tabla_default
+                    tr
+                      th #
+                      th Fecha
+                      th Valor Venta    
+                      th Valor Recibido    
+                      th Vuelto    
+                    tbody
+          
+          
+      .modal-footer
+        button.btn.btn-default(type='button', data-dismiss='modal') Cancelar
+        |                 
+        button#btnEditarCliente.btn.btn-primary(type='button') Guardar
     // /.modal-content
   // /.modal-dialog
 // /.modal 

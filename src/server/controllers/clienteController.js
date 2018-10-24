@@ -65,4 +65,12 @@ router.get('/listci/:ci', function(req, res, next) {
 	}).catch(function(err){ console.log("1 ", err); res.json({success: false, error: err}, 400); });
 });
 
+router.get('/listid/:id', function(req, res, next) {
+	var item=clienteService.getClienteById(req.params.id);
+	item.then(function(rows){
+		var resp=rows.length>0 ? rows[0]: null;
+		res.json(resp);
+	}).catch(function(err){ console.log("1 ", err); res.json({success: false, error: err}, 400); });
+});
+
 module.exports = router;
