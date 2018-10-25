@@ -188,7 +188,7 @@ html
                       |                   
                       .col-xs-4.text-center
                         a(href='#') Friends
-                    // /.row
+                    //.row
                   // Menu Footer
                   li.user-footer
                     .pull-left
@@ -252,7 +252,7 @@ html
               a(href='/clientes')
                 i.fa.fa-users
                 |  
-                span Mis Clientes
+                span Cartera de Clientes
             |         
             li.treeview
               a(href='#')
@@ -273,7 +273,7 @@ html
         // /.sidebar
       // Content Wrapper. Contains page content
       .content-wrapper
-        block contenido  
+        block contenido          
           section.content-header
             h1
               | Bienvenido
@@ -295,6 +295,26 @@ html
         // /.content
       // /.content-wrapper
       // Main Footer
+
+      #modalLogin.modal.fade
+          .modal-dialog.modal-lg
+            .modal-content              
+              .modal-body
+                .login-logo
+                  b nodo
+                  | clic
+                p.login-box-msg(style="color: #ec7853; font-size: 15px;") Por seguridad su sessión ha caducado. Ingrese nuevamente sus credenciales
+                .row
+                  .col-md-4
+                  .col-md-4
+                    form#frm-login(action='loginProvisional', method='post')
+                      include ./partials/_formLogin.jade
+                  .col-md-4
+                    
+            // /.modal-content
+          // /.modal-dialog
+        // /.modal
+
       footer.main-footer
         // To the right
         .pull-right.hidden-xs

@@ -1,22 +1,27 @@
 var productoSelecionados=[];
 var items=0;
+var _cliente=null;
 $(function(){
 	cargarProductos();
 	initElements();
+	util_verificarSesionServer();
 });
 
 function initElements(){
 	
-	$("#cli-ci").keyup(function(){
-		if( $("#cli-ci").val().length===10 ){
+	$("#cli-ci").keyup(function(event){
+		if( event.keyCode === 13 ){
 			buscarCedula($("#cli-ci").val());
 		}
+	});
+	$("#btn-buscar-cli").click(function(){
+		buscarCedula($("#cli-ci").val());
 	});
 	$("#btnGuardarCliente").click(function(){
 		guardarClienteVenta();
 	});	
 	$("#addToFactura").click(function(){
-		pre_guardarVenta();
+		pre_guardarVentaConsumidorFinal();
 	});
 
 	$("#btnGuardarVenta").click(function(){
@@ -27,49 +32,82 @@ function initElements(){
 		loadTablaVentaFecha(moment().format('YYYY-MM-DD'),'LL');	
 		$('#modalMostrarVentaFecha').modal({backdrop: 'static', keyboard: false}); 	
 	});
+	$("#btn-open-corregir-cli").click(function(){
+		mostrarClienteEditar(_cliente);		 
+	});
+	$("#btnEditarCliente__").click(function(){
+		editarClienteDesdeVenta(_cliente.id, function (cliente){
+			$('#modalEditarCliente__').modal('hide'); 
+			pre_guardarVenta(cliente);	
+
+		});
+		
+	});
 
 }
-
 
 
 
 function buscarCedula(ci){
-	getClienteByCi(ci, function(cliente){
-		if(cliente){
-			$("#cli-id").val(cliente.id);
-			$("#cli-nombre").hide().text(cliente.nombres + " "+ cliente.apellidos).show("slow");
-			$("#cli-direccion").hide().text(cliente.direccion).show("slow");
-			$("#cli-telefono").hide().text(cliente.telefono).show("slow");
-		}else{
-			mostrarMensaje(_CONST.NO_EXISTE_CLIENTE.toString().replace("_ci_",ci),  "warning");
-			$("#cli-id").val("0");
-			$('#modalCrearCliente').modal({backdrop: 'static', keyboard: false});  
-			$("#ciCl").val(ci);
-			$("#nombreCl").focus();
-		}
-		console.log(cliente);
-	});
+	if(ci.length===10){
+		getClienteByCi(ci, function(cliente){
+			if(cliente){
+				pre_guardarVenta(cliente);
+				console.log(cliente);
+				_cliente=cliente;
+			}else{
+				mostrarMensaje(_CONST.NO_EXISTE_CLIENTE.toString().replace("_ci_",ci),  "warning");
+				$("#cli-id").val("0");
+				$('#modalCrearCliente').modal({backdrop: 'static', keyboard: false});  
+				$("#ciCl").val(ci);
+				$("#nombreCl").focus();
+			}
+		});
+	}else{
+		mostrarMensaje(_CONST.MSJ_CEDULA_DIGITOS,"warning");
+	}
 }
 
 function guardarClienteVenta(){
 	guardarCliente(function(cliente){
-		console.log(cliente);
 		$('#modalCrearCliente').modal('hide');  
-		setTimeout(function(){
-			$("#cli-id").val(cliente.id);
-			$("#cli-nombre").hide().text(cliente.nombres + " "+ cliente.apellidos).show();
-			$("#cli-direccion").hide().text(cliente.direccion).show();
-			$("#cli-telefono").hide().text(cliente.telefono).show();
-		},1000);
-		
+		pre_guardarVenta(cliente);
+		_cliente=cliente;		
 	});
 }
 
-function pre_guardarVenta(){
-	
-	$('#conf_cliente').text($('#cli-nombre').text());
+function pre_guardarVenta(cliente){
+	console.log(cliente);
+	$("#cli-id").val(cliente.id);
+	$("#cli-ced").text(cliente.ci);
+	$("#cli-email").text(cliente.email);
+	$("#cli-nombre").text(cliente.nombres + " "+ cliente.apellidos);
+	$("#cli-direccion").text(cliente.direccion);
+	$("#cli-telefono").text(cliente.telefono);
 	$('#conf_valor').text($('#sumaTotal').text());
 	$('#conf_valor_recibido').focus();
 	$('#modalPreventa').modal({backdrop: 'static', keyboard: false});
 };
 
+
+function pre_guardarVentaConsumidorFinal(){
+	$("#cli-id").val("0");
+	$("#cli-ced").text("S/N");
+	$("#cli-email").text("S/N");
+	$("#cli-nombre").text(_CONST.CLIENTE_DEFAULT);
+	$("#cli-direccion").text("S/N");
+	$("#cli-telefono").text("S/N");
+	$('#conf_valor').text($('#sumaTotal').text());
+	$('#conf_valor_recibido').focus();
+	$('#modalPreventa').modal({backdrop: 'static', keyboard: false});
+};
+
+function mostrarClienteEditar(cliente){
+	$("#ciCl__").val(cliente.ci);
+	$("#nombreCl__").val(cliente.nombres);
+	$("#apellidoCli__").val(cliente.apellidos);
+	$("#direccionCL__").val(cliente.direccion);
+	$("#telefonoCl__").val(cliente.telefono);
+	$("#emailCl__").val(cliente.email);
+	$('#modalEditarCliente__').modal({backdrop: 'static', keyboard: false});
+}

@@ -41,25 +41,21 @@ block contenido
                       span#sumaTotal(style="font-size: 19px;")
                 .col-md-8
 
-              .row#clienteForm(role='form' style="display:none; background: #8bc6e8; padding: 21px; border-radius: 59px;")
-                .col-md-3
-                  .input-group
-                  input#cli-ci.form-control(type='text', placeholder='Cédula del cliente')
-                  input#cli-id(type='hidden' value="0")
-                .col-md-4                  
-                  label Nombres:&nbsp;
-                  span#cli-nombre Consumidor Final
-                  br
-                  label Direccion:&nbsp;
-                  span#cli-direccion
-                  br         
-                  label Teléfono:&nbsp;
-                  span#cli-telefono
+              .row#clienteForm(role='form' style="display:none;  padding: 21px;")
                 .col-md-2
-                  br
+                .col-md-4
+                  .input-group                    
+                    input#cli-ci.form-control(type='text', placeholder='Cédula del cliente' style="font-size:17px;")
+                    input#cli-id(type='hidden' value="0")
+                    span.input-group-btn
+                      button#btn-buscar-cli.btn.bg-olive.btn-flat(type="button")
+                        i.fa.fa-search
+                        | &nbsp;&nbsp; Buscar Cliente
+                .col-md-1
+                .col-md-2
                   button#addToFactura.btn.bg-olive.btn-flat(type="button")
                     i.fa.fa-hand-pointer-o
-                    | &nbsp;&nbsp; REALIZAR VENTA                   
+                    | &nbsp;&nbsp; Venta A Consumidor Final                   
 
 
               .ajax-content
@@ -67,8 +63,7 @@ block contenido
 
 
 
-          include ./partials/_addCliente.jade
-          include ./partials/_ventas.jade
+          
           #modalPreventa.modal.fade(role="dialog" tabindex="-1" aria-hidden="true")
             .modal-dialog.modal-dialog-centered
               .modal-content
@@ -79,23 +74,40 @@ block contenido
                   h4.modal-title Confirmar Venta
                 |               
                 .modal-body
-                  form#fomrCrearCliente
-                    .form-group
-                      label Cliente: 
-                      span#conf_cliente(style="margin-left: 10px;  font-size: 24px;")
-                    .form-group
-                      label Valor a Cobrar:
-                      span#conf_valor(style="margin-left: 10px;  font-size: 29px;")
-                    .form-group
-                      label Valor Recibido:
-                      input#conf_valor_recibido(type='number', placeholder='0.00' onkeyup="calcularVuelto()" style="margin-left: 10px;  font-size: 24px;")           
-                    .form-group
-                      label Vuelto:
-                      span#cnf_vuelto(style="margin-left: 10px;  font-size: 24px;")
+                  div#fomrCrearCliente(style="background: #ececec; padding: 8px;")
+                    br
+                    label Cédula: 
+                    span#cli-ced(style="margin-left: 10px;  font-size: 21px;")
+                    br
+                    label Cliente: 
+                    span#cli-nombre(style="margin-left: 10px;  font-size: 24px;")
+                    button#btn-open-corregir-cli.bnt.btn-info.pull-right.btn-sm(type="button") Corregir Datos 
+                    br
+                    label Direccion: 
+                    span#cli-direccion(style="margin-left: 10px;  font-size: 21px;")
+                    br
+                    label Teléfono: 
+                    span#cli-telefono(style="margin-left: 10px;  font-size: 21px;")
+                    br
+                    label email: 
+                    span#cli-email(style="margin-left: 10px;  font-size: 21px;")
+
+                  div
+                    br
+                    label Valor a Cobrar:
+                    span#conf_valor(style="margin-left: 10px;  font-size: 21px;")
+                    br
+                    label Valor Recibido:
+                    input#conf_valor_recibido(type='number', placeholder='0.00' onkeyup="calcularVuelto()" style="margin-left: 10px;  font-size: 24px; width: 104px;")           
+                    br
+                    label Vuelto:
+                    span#cnf_vuelto(style="margin-left: 10px;  font-size: 24px;")
                 .modal-footer
                   button.btn.btn-default(type='button', data-dismiss='modal') Cancelar
                   button#btnGuardarVenta.btn.btn-primary(type='button') GUARDAR VENTA
 
+          include ./partials/_addCliente.jade
+          include ./partials/_ventas.jade
 
 block javascript
   link(rel="stylesheet" href="/bower_components/datatables.net-bs4/css/dataTables.bootstrap4.min.css")

@@ -3,6 +3,7 @@ const IVA=12;
 
 var tempoAlert;
 
+
 function mostrarMensaje(texto, tipo,callback=function(){}){ //tipo=  warning,info,success, danger ,process
     console.log("mostrabdo");
     console.log(texto);
@@ -122,6 +123,7 @@ var MESES=["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agos
 
 
 var _CONST={
+    PATRON_CONTENT_INDEX:"<!DOCTYPE html><html></html><head>",
     PROCESS:"Espere, Procesando...",
     NO_HAY_PROVEEDORES:"Todavia no tiene proveedores, ingrese un proveedor",
     VALID_NOMBRE_PROVEEDOR:"Ingrese el nombre del proveedor",
@@ -150,6 +152,10 @@ var _CONST={
     DEBE_INGRESAR_PRODUCTO:"Escoja al menos un producto para poder realizar la venta",
 
     CLIENTE_DEFAULT:"Consumidor Final",
+    MSJ_CEDULA_DIGITOS:"La cédula debe tener 10 dígitos",
+    NO_CAMBIAR_CLIENTE_DEFAULT:"No se puede cambiar la informacion del Consumidor Final",
+    CREDENCIALES_INCORRECTAS:"Sus credenciales son incorrectas ingrese nuevamente",
+    ACCESSO_CORRECTO:"Acesso exitoso, continue trabajando.",
 
 }
 
@@ -185,6 +191,6 @@ function editarFilaEnTabla(data, dtObject ){
         }catch(e){
             console.log(e);
         }
-    },1000);
-        
+    },1000);       
 }
+

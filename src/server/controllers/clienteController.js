@@ -27,6 +27,7 @@ router.get('/listResumeVentas', function(req, res, next) {
 });
 
 router.post('/crear', function(req, res, next) {
+	console.log("llamando a cliente");
 	var item=clienteService.crearCliente(req.body,req.user.id_compania);
 	item.then(function(id_cli){
 		var resp = req.body;

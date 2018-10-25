@@ -28,33 +28,16 @@ head
 body.hold-transition.login-page
   .login-box
     .login-logo
-      a(href='../../index2.html')
-        b nodo
-        | clic
+      b nodo
+      | clic
     // /.login-logo
     .login-box-body
       if message.length > 0
               p.login-box-msg(style="color: #ec7853; font-size: 15px;")= message
       else
               p.login-box-msg Ingrese sus credenciales para acceder al sistema
-      |     
-      form(action='login', method='post')
-        .form-group.has-feedback
-          input.form-control(type='text', name="username" placeholder='cedula')
-          |         
-          span.glyphicon.glyphicon-user.form-control-feedback
-        |       
-        .form-group.has-feedback
-          input.form-control(type='password', name="password" placeholder='contraseña')
-          |         
-          span.glyphicon.glyphicon-lock.form-control-feedback
-        |       
-        .row
-          .col-xs-1
-          .col-xs-10
-            button.btn.btn-primary.btn-block.btn-flat(type='submit') Ingresar
-          .col-xs-1
-          // /.col
+      form(action='login', method='post')     
+        include ./partials/_formLogin.jade
       |     
       br
       a(href='#') ¿Olvidó su contraseña?

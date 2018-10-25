@@ -1,4 +1,5 @@
 function getVentasByFecha(fecha, callback){
+  util_verificarSesionServer();
 	$.get( "/ventas/listar_resume/"+fecha).done(function( data ) {
        callback(data);
     }).fail(function(e) {
@@ -11,6 +12,7 @@ function getVentasByFecha(fecha, callback){
 
 
 function loadTablaVentaFecha(fecha, formato){
+  util_verificarSesionServer();
   var dtVentasFecha=$('#tablaVentaFecha').DataTable( {
 
     "ajax": {
@@ -76,6 +78,7 @@ function loadTablaVentaFecha(fecha, formato){
 
 
 function mostrarVentasResumeMeses(){
+  util_verificarSesionServer();
   $.get( "/ventas/listar_resume").done(function( data ) {
         var sum=0;
         var formatoFecha="MMMM [del] YYYY"; 
@@ -116,7 +119,7 @@ function mostrarVentasResumeMeses(){
     }).always(function() { setTimeout(function(){ cerrarMensaje()},18000)  });
 }
 
-function mostrarVenta(id){
+function mostrarVenta(id){  
   mostrarMensaje("Cargando espere...", "process");
   var dtVentas=$('#tablaVenta').DataTable( {
     "ajax": {

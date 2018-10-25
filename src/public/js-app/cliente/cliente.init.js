@@ -7,17 +7,27 @@ $(function() {
 
 function initElements(){
   $("#openModalCliente").click(function(){
+    util_verificarSesionServer();
     $('#modalCrearCliente').modal({backdrop: 'static', keyboard: false}); 
   })
   $("#btnGuardarCliente").click(function(){
-		guardarCliente(function(cliente){
+    guardarCliente(function(cliente){
        console.log(cliente);
        agregarFilaATabla(cliente, dtClientes);
        $('#modalCrearCliente').modal('hide'); 
     });
-	})
+  })
 
-  
+  $("#btnEditarCliente").click(function(){
+    if(dtClientes.row('.selected').data().id != null){
+		  editarCliente(dtClientes.row('.selected').data().id, function(cliente){
+          editarFilaEnTabla(cliente, dtClientes );
+       
+      });
+    }else{
+      mostrarMensaje(_CONST.NO_CAMBIAR_CLIENTE_DEFAULT,"warning")
+    }
+	})
 }
 
 function loadTablaClientes(){
@@ -46,7 +56,7 @@ function loadTablaClientes(){
       ],
       "language":idiomaEspaniol(),
       destroy:true,
-      rowId:'id_cliente',
+      rowId:'id',
       columnDefs: [
         {
             targets: 5,
@@ -66,8 +76,10 @@ function loadTablaClientes(){
         }
         else {
           if(dtClientes.row( this ).data() != null){
+            util_verificarSesionServer();
             dtClientes.$('tr.selected').removeClass('selected');
             $(this).addClass('selected');
+            $("#total-ventas-cli").text(" "+parseFloat(dtClientes.row( this ).data().valor_total).toFixed(2));
             mostrarCliente(dtClientes.row( this ).data());
           }
             

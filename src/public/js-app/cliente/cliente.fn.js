@@ -1,5 +1,6 @@
 function getClienteByCi(ci, callback){
 	$.get( "/clientes/listci/"+ci).done(function( data ) {
+        util_verificarSesionLocal(data); 
         callback(data);
     }).fail(function(e) {
       try{
@@ -15,8 +16,8 @@ function guardarCliente(callback){
     return false;
   }
   var dataSend=obtenerCamposCliente("");
-	$.post( "/clientes/crear/",dataSend).done(function( data ) {
-		    mostrarMensaje(_CONST.EXITO_CREAR_AJAX, "success");
+  $.post( "/clientes/crear/",dataSend).done(function( data ) {
+        mostrarMensaje(_CONST.EXITO_CREAR_AJAX, "success");
         document.getElementById("fomrCrearCliente").reset();
         callback(data);
     }).fail(function(e) {
@@ -26,6 +27,42 @@ function guardarCliente(callback){
     }).always(function() { setTimeout(function(){ cerrarMensaje()},18000)    });
 }
 
+function editarCliente(id, callback){
+  mostrarMensaje(_CONST.PROCESS, "process");
+  let validado=validarFormCliente("_")
+  if(!validado){    
+    return false;
+  }
+  var dataSend=obtenerCamposCliente("_");
+  dataSend["id"]=id;
+	$.post( "/clientes/actualizar/",dataSend).done(function( data ) {
+		    mostrarMensaje(_CONST.EXITO_CREAR_AJAX, "success");        
+        callback(dataSend);
+    }).fail(function(e) {
+      try{
+           mostrarMensaje(e.responseJSON.error.message, "danger");
+       }catch(e){  mostrarMensaje(_CONST.ERROR_CREAR_AJAX, "danger"); }
+    }).always(function() { setTimeout(function(){ cerrarMensaje()},18000)    });
+}
+
+
+function editarClienteDesdeVenta(id, callback){
+  mostrarMensaje(_CONST.PROCESS, "process");
+  let validado=validarFormCliente("__")
+  if(!validado){    
+    return false;
+  }
+  var dataSend=obtenerCamposCliente("__");
+  dataSend["id"]=id;
+  $.post( "/clientes/actualizar/",dataSend).done(function( data ) {
+        mostrarMensaje(_CONST.EXITO_CREAR_AJAX, "success");        
+        callback(dataSend);
+    }).fail(function(e) {
+      try{
+           mostrarMensaje(e.responseJSON.error.message, "danger");
+       }catch(e){  mostrarMensaje(_CONST.ERROR_CREAR_AJAX, "danger"); }
+    }).always(function() { setTimeout(function(){ cerrarMensaje()},18000)    });
+}
 
 
 function obtenerCamposCliente(char){
@@ -79,7 +116,7 @@ function validarFormCliente(char){
 
 
 function mostrarCliente(cliente){
-  //mostrarMensaje(_CONST.CARGANDO, "process");
+  mostrarMensaje(_CONST.CARGANDO, "process");
   document.getElementById("fomrEditarCliente").reset();
   console.log(cliente);
   $("#ciCl_").val(cliente.ci);
@@ -92,7 +129,7 @@ function mostrarCliente(cliente){
   dtClientesVentas=$('#tablaVentasClientes').DataTable( {
 
     "ajax": {
-        url: "/ventas/getResumeVentasAcliente/"+cliente.id_cliente,
+        url: "/ventas/getResumeVentasAcliente/"+cliente.id,
         dataSrc:''
       } ,
     "columns": [
@@ -142,13 +179,13 @@ function mostrarCliente(cliente){
         else {
           if(dtClientesVentas.row( this ).data() != null){
             dtClientesVentas.$('tr.selected').removeClass('selected');
-            $(this).addClass('selected');
+            $(this).addClass('selected');           
             mostrarVenta(dtClientesVentas.row( this ).data().id);
           }
             
         }
     } ); 
-  $.get( "/ventas/getResumeVentasAcliente/"+cliente.id_cliente).done(function( data ) {
+  $.get( "/ventas/getResumeVentasAcliente/"+cliente.id).done(function( data ) {
         console.log(data);
         cerrarMensaje();
     }).fail(function(e) {

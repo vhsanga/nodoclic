@@ -19,17 +19,19 @@ router.get('/', function(req, res, next) {
 	         message: req.flash('info')
 	    });
 	}	 
+});
 
-	/*bcrypt.genSalt(10, function(err, salt) {
-		 bcrypt.hash("admin", salt, function(err, hash) {
-	        var data={usuario:"admin", pass:hash, nombres:"jose miraflores", email: "email@email.com", telefono:"97963696"};
-			var item= serviceUsuario.createUsuario(data);
-			item.then(function (row){
-				res.render('index', { title: 'Express' });
-			});
+
+/* Verificar si esta logeado. */
+router.get('/verificarSesion', function(req, res, next) {
+	if(req.isAuthenticated()){
+		res.json(true);
+		
+	}else{
+		res.render('index', {
+	         message: req.flash('info')
 	    });
-    });*/
-    
+	}	
 });
 
 module.exports = router;

@@ -1,6 +1,6 @@
 function cargarProductos(){
 	$.get( "/productos/listar").done(function( data ) {
-        
+
         autocomplete(document.getElementById("pro-nombre"), data);
     }).fail(function(e) {
       try{
@@ -11,6 +11,8 @@ function cargarProductos(){
 
 
 function agrearAtabla(p){
+  util_verificarSesionServer();
+
   var pos=buscarEnLista(p.id);
   if(pos===-1){
       items++;
@@ -144,7 +146,8 @@ function guardarVenta(){
         for(var i=0; i<productoSelecionados.length; i++){
           $('#fila-'+productoSelecionados[i].id_producto).remove();
         }
-       $("#cli-id").val(0);
+        $("#cli-id").val(0);
+        $("#cli-ci").val("");
         $("#conf_valor").text("");
         $("#conf_valor_recibido").val("");
         $("#cnf_vuelto").text("");

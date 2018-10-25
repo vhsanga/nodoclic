@@ -30,9 +30,55 @@
           
           
       .modal-footer
-        button.btn.btn-default(type='button', data-dismiss='modal') Cancelar
+        button.btn.btn-default(type='button', data-dismiss='modal') 
+          i.fa.fa-close
+          | &nbsp; Cancelar
+        button#btnGuardarCliente.btn.btn-primary(type='button') 
+          i.fa.fa-check
+          | &nbsp; Guardar
+    // /.modal-content
+  // /.modal-dialog
+// /.modal 
+
+
+#modalEditarCliente__.modal.fade
+  .modal-dialog.modal-sm
+    .modal-content
+      .modal-header
+        button.close(type='button', data-dismiss='modal', aria-label='Close')
+          span(aria-hidden='true') &times;
         |                 
-        button#btnGuardarCliente.btn.btn-primary(type='button') Guardar Cliente
+        h4.modal-title Editar Cliente  
+      |               
+      .modal-body
+        form#fomrCrearCliente__
+          .form-group
+            label(for='ciCl__') Cedula:
+            input#ciCl__.form-control(type='text', placeholder='# de cedula')
+          .form-group
+            label(for='nombreCl__') Nombres:
+            input#nombreCl__.form-control(type='text', placeholder=' Nombres del cliente')
+          .form-group
+            label(for='apellidoCli__') Apellidos:
+            input#apellidoCli__.form-control(type='text', placeholder=' Apellidos del cliente')           
+          .form-group
+            label(for='direccionCL__') Direccion:
+            input#direccionCL__.form-control(type='text', placeholder='Direccion')
+          .form-group
+            label(for='telefonoCl__') Telefono:
+            input#telefonoCl__.form-control(type='text', placeholder='# de Telefono') 
+          .form-group
+            label(for='emailCl__') email:
+            input#emailCl__.form-control(type='text', placeholder='Correo electrónico') 
+          
+          
+      .modal-footer
+        button.btn.btn-default(type='button', data-dismiss='modal')
+          i.fa.fa-close
+          | &nbsp; &nbsp; Cancelar                 
+        button#btnEditarCliente__.btn.btn-primary(type='button') 
+          i.fa.fa-check
+          | &nbsp; &nbsp; Cambios
     // /.modal-content
   // /.modal-dialog
 // /.modal 
@@ -49,7 +95,23 @@
       |               
       .modal-body
         .row
-          .col-md-4
+          .col-md-8(style="background: #e2e2e2;")
+            h4 Ventas Realizadas
+            hr(style="border: solid 1px #9E9E9E;")
+            span(style=" background: #4CAF50; margin-left: 219px;  padding: 5px; color: white;") Total Ventas:
+              span#total-ventas-cli
+            table#tablaVentasClientes.table.table-bordered.table-hover
+                  thead.tabla_default
+                    tr
+                      th #
+                      th Fecha
+                      th Valor Venta    
+                      th Valor Recibido    
+                      th Vuelto    
+                    tbody
+          .col-md-4(style="background: #f3f3f3;")
+            h4 Información del Cliente
+            hr(style="border: solid 1px #9E9E9E;")
             form#fomrEditarCliente
               .form-group
                 label(for='ciCl_') Cedula:
@@ -68,24 +130,13 @@
                 input#telefonoCl_.form-control(type='text', placeholder='# de Telefono') 
               .form-group
                 label(for='emailCl_') email:
-                input#emailCl_.form-control(type='text', placeholder='Correo electrónico') 
+                input#emailCl_.form-control(type='text', placeholder='Correo electrónico')
+            center              
+              button#btnEditarCliente.btn.btn-primary(type='button')  
+                i.fa.fa-check
+                | &nbsp;&nbsp; Guardar Cambios
 
-          .col-md-8
-            table#tablaVentasClientes.table.table-bordered.table-hover
-                  thead.tabla_default
-                    tr
-                      th #
-                      th Fecha
-                      th Valor Venta    
-                      th Valor Recibido    
-                      th Vuelto    
-                    tbody
-          
-          
-      .modal-footer
-        button.btn.btn-default(type='button', data-dismiss='modal') Cancelar
-        |                 
-        button#btnEditarCliente.btn.btn-primary(type='button') Guardar
+        
     // /.modal-content
   // /.modal-dialog
 // /.modal 

@@ -1,6 +1,18 @@
 $(function(){
 	cargarResumeVentas();
 	mostrarProductosAterminar();
+
+
+
+  $( "#frm-login" ).submit(function( event ) {
+    console.log("stop progaa"); 
+    mostrarMensaje(_CONST.PROCESS,"process");
+    setTimeout(function(){
+      loginProvisional();
+    },500)      
+    return false
+  });
+
 });
 
 
@@ -61,9 +73,57 @@ function cargarResumeVentas(){
        }catch(e){  mostrarMensaje(_CONST.ERROR_CARGAR_AJAX+", vuelva a cargar la página", "danger"); }
     }).always(function() { setTimeout(function(){ cerrarMensaje()},18000)    });
 }
+
+function loginProvisional(){
+  $.post( "/loginProvisional/", $("#frm-login").serialize()).done(function( res ) {
+     if(res){
+       mostrarMensaje(_CONST.ACCESSO_CORRECTO,"success");
+       $('#modalLogin').modal('hide');
+     }else{
+        mostrarMensaje(_CONST.CREDENCIALES_INCORRECTAS,"danger");
+     }
+  }).fail(function(e) {
+    try{
+         mostrarMensaje(e.responseJSON.error.message, "danger");
+     }catch(e){  mostrarMensaje(_CONST.ERROR_CARGAR_AJAX+", vuelva a cargar la página", "danger"); }
+  }).always(function() { setTimeout(function(){ cerrarMensaje()},18000)    });
+
+}
     
   
+function util_verificarSesionLocal(data){ 
+    data=JSON.stringify(data)
+    console.log(data.toString());
+    var n = data.search(_CONST.PATRON_CONTENT_INDEX);
+    if(n!=-1){
+        mostrarMensaje(_CONST.PROCESS,"process");
+        setTimeout(function(){
+            $('.modal').modal('hide');
+            $('#modalLogin').modal({backdrop: 'static', keyboard: false});
+            cerrarMensaje();
+        },1000);
+         
+    }
+}
 
+
+function util_verificarSesionServer(){ 
+    $.get( "/verificarSesion").done(function( data ) {
+        data=JSON.stringify(data)
+        console.log(data.toString());
+        var n = data.search(_CONST.PATRON_CONTENT_INDEX);
+        if(n!=-1){
+            mostrarMensaje(_CONST.PROCESS,"process");
+            setTimeout(function(){
+                $('.modal').modal('hide');
+                $('#modalLogin').modal({backdrop: 'static', keyboard: false});
+                cerrarMensaje();
+            },1000);             
+        }
+    }).fail(function(e) {
+      console.log(e);
+    }).always(function() { setTimeout(function(){ cerrarMensaje()},18000)    });        
+}
 
 
 

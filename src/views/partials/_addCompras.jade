@@ -54,9 +54,12 @@
               label(for='fechaCompraPd') Num Factura: 
               input#referenciaPd.form-control(type='text')
       .modal-footer
-        button.btn.btn-default(type='button', data-dismiss='modal') Cancelar
-        |                 
-        button#btnGuardarCompra.btn.btn-primary(type='button') Guardar Producto
+        button.btn.btn-default(type='button', data-dismiss='modal')
+          i.fa.fa-close
+          | &nbsp; &nbsp; Cancelar                 
+        button#btnGuardarCompra.btn.btn-primary(type='button') 
+          i.fa.fa-check
+          | &nbsp; &nbsp; Guardar Producto
     // /.modal-content
   // /.modal-dialog
 // /.modal 
@@ -127,10 +130,15 @@
                   
             
       .modal-footer
-        button.btn.bg-purple.pull-left(type='button' onclick="imprimirBarCode('_')") Imprimir Código de Barra
-        button.btn.btn-default(type='button', data-dismiss='modal') Cerrar
-        |                 
-        button#btnEditarCompra.btn.btn-primary(type='button') Guardar Cambios
+        button.btn.bg-purple.pull-left(type='button' onclick="imprimirBarCode('_')") 
+          i.fa.fa-print
+          | &nbsp; &nbsp; Imprimir Código de Barra
+        button.btn.btn-default(type='button', data-dismiss='modal')
+          i.fa.fa-close
+          | &nbsp; &nbsp; Cerrar                 
+        button#btnEditarCompra.btn.btn-primary(type='button') 
+          i.fa.fa-check
+          | &nbsp; &nbsp; Guardar Cambios
     // /.modal-content
   // /.modal-dialog
 // /.modal
@@ -154,7 +162,9 @@
         br
         div#divCD
       .modal-footer                
-        button.btn.btn-primary(type='button' onclick="imprimirBarCode('')") IMPRIMIR
+        button.btn.btn-primary(type='button' onclick="imprimirBarCode('')") 
+          i.fa.fa-print
+          | &nbsp; &nbsp; IMPRIMIR
     // /.modal-content
   // /.modal-dialog
 // /.modal
@@ -183,7 +193,9 @@
                   th Proveedor        
                 tbody
       .modal-footer                
-        button.btn.btn-default(type='button', data-dismiss='modal') Cerrar
+        button.btn.btn-default(type='button', data-dismiss='modal') 
+          i.fa.fa-close
+          | &nbsp; &nbsp; Cerrar
     // /.modal-content
   // /.modal-dialog
 // /.modal

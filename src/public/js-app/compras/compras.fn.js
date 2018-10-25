@@ -110,7 +110,7 @@ function mostrarCompra(id){
   $("#divCD_").hide();
   mostrarMensaje(_CONST.CARGANDO, "process");
   $.get( "/compras/list/"+id).done(function( data ) {
-        console.log(data);
+        util_verificarSesionLocal(data);
 
         $("#ProveedorPd_").val(data.id_proveedor);
         if(data.id_proveedor===null){
@@ -184,7 +184,7 @@ function mostrarComprasResumeMeses(){
 }
 
 function mostrarCompraMes(anio, mes){
-   console.log(anio+'-'+zeroFill(mes,2));
+   util_verificarSesionServer();
    var f=anio+'-'+zeroFill(mes,2);
    loadTablaComprasMes(f);
    $('#tituloMostrarCompra').text("Compras de "+MESES[mes-1]+" del "+anio); 

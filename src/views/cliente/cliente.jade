@@ -2,7 +2,7 @@ extends ../layout
 block contenido 
   section.content-header
     h1
-      | Mis Clientes
+      | Cartera de Cientes
     |       
     ol.breadcrumb
       li
@@ -17,11 +17,13 @@ block contenido
       div.col-xs-12
         div.box
           div.box-header
-            button#openModalCliente.btn.btn-success + Ingresar nuevo Cliente
+            button#openModalCliente.btn.btn-success
+             i.fa.fa-plus
+             | &nbsp; &nbsp; Ingresar nuevo Cliente
           div.box-body
             .row
-              .col-md-2
-              .col-md-8
+              .col-md-1
+              .col-md-10
                 table#tablaClientes.table.table-bordered.table-hover
                   thead.tabla_default
                     tr
@@ -32,7 +34,7 @@ block contenido
                       th Teléfono      
                       th Valor Vendido      
                     tbody
-              .col-md-2
+              .col-md-1
             include ../partials/_addCliente.jade
             include ../partials/_ventas.jade
 

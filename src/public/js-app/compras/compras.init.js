@@ -53,7 +53,7 @@ function loadTablacompras(){
             $(this).removeClass('selected');
         }
         else {
-          if(dtCompras.row( this ).data() != null){
+          if(dtCompras.row( this ).data() != null){           
             dtCompras.$('tr.selected').removeClass('selected');
             $(this).addClass('selected');
             console.log(dtCompras.row( this ).data());
@@ -72,8 +72,8 @@ function loadTablacompras(){
 function initElementos(){
   var today=moment().format('YYYY-MM-DD');
   $("#openModal").click(function(e){
-      document.getElementById("fomrCrearCompra").reset();
-      
+      util_verificarSesionServer();
+      document.getElementById("fomrCrearCompra").reset();      
       $('#modalCrearCompra').modal({backdrop: 'static', keyboard: false});  
   })
   $("#open-crear-prov").click(function(e){

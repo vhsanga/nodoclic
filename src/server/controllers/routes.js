@@ -47,6 +47,23 @@ module.exports = function (app) {
                     failureRedirect: '/',
                     failureFlash: true }) );
 
+
+    app.use('/loginProvisional', function(req, res, next) {
+          passport.authenticate('local', function(err, user, info) {
+            if (err) { 
+                return res.json(false); 
+            }
+            if (!user) { 
+                return res.json(false); 
+            }
+            req.logIn(user, function(err) {
+              if (err) {return res.json(false);  }
+              return res.json(true)
+            });
+          })(req, res, next);
+    });
+
+
     app.get('/salir', function(req, res, next) {
         req.logout();
         req.session.destroy();
