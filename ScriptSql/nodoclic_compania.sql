@@ -26,7 +26,7 @@ CREATE TABLE `compania` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `nombre` varchar(90) DEFAULT NULL,
   `direccion` varchar(125) DEFAULT NULL,
-  `teléfono` varchar(26) DEFAULT NULL,
+  `telefono` varchar(26) DEFAULT NULL,
   `representante` varchar(125) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
@@ -51,4 +51,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-10-20 13:55:07
+-- Dump completed on 2018-10-26 18:55:35

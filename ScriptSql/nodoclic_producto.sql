@@ -51,7 +51,7 @@ CREATE TABLE `producto` (
 
 LOCK TABLES `producto` WRITE;
 /*!40000 ALTER TABLE `producto` DISABLE KEYS */;
-INSERT INTO `producto` VALUES (55,3,'Carro a control remoto','marca matell color azul grande',1.35,2.5,1,2.34,0.16,85,7,'0055',0,1),(56,4,'mamadera','babytell color rosada de medio litro',1.57,3.1,0,3.1,0,97,7,'0056',0,1),(57,3,'Pelota de plastico','Grande marca Toy Free',1.25,2,1,1.85,0.15,60,12,'0057',0,1),(58,4,'Anaquel  de juguete','Pika color rosado, niña',0.75,1.25,1,1.16,0.09,67,12,'0058',0,1),(59,12,'Cosmetico Vidalive','color mate,  redondo forma de cartera',4.17,6.5,1,6,0.5,56,6,'0059',0,1),(60,13,'Dado grande ','Blanco marca toy-store',0.5,1.25,1,1.19,0.06,150,11,'0060',0,1),(61,12,'Espada de plastico','marca Zends color blanco grande',2.21,3,1,2.73,0.27,36,6,'0061',0,1),(62,12,'Florero grande','marca homeStar color amarillo',3.1,5,1,4.63,0.37,61,3,'0062',0,1);
+INSERT INTO `producto` VALUES (55,3,'Carro a control remoto','marca matell color azul grande',1.35,2.5,1,2.34,0.16,85,4,'0055',0,1),(56,4,'mamadera','babytell color rosada de medio litro',1.57,3.1,0,3.1,0,97,1,'0056',0,1),(57,3,'Pelota de plastico','Grande marca Toy Free',1.25,2,1,1.85,0.15,60,0,'0057',0,1),(58,4,'Anaquel  de juguete','Pika color rosado, niña',0.75,1.25,1,1.16,0.09,67,3,'0058',0,1),(59,12,'Cosmetico Vidalive','color mate,  redondo forma de cartera',4.17,6.5,1,6,0.5,56,5,'0059',0,1),(60,13,'Dado grande ','Blanco marca toy-store',0.5,1.25,1,1.19,0.06,150,8,'0060',0,1),(61,12,'Espada de plastico','marca Zends color blanco grande',2.21,3,1,2.73,0.27,36,2,'0061',0,1),(62,12,'Florero grande','marca homeStar color amarillo',3.1,5,1,4.63,0.37,61,-1,'0062',0,1);
 /*!40000 ALTER TABLE `producto` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -64,4 +64,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-10-20 13:55:06
+-- Dump completed on 2018-10-26 18:55:34

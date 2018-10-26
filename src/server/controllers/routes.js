@@ -10,6 +10,7 @@ var proveedor;
 var cliente;
 var producto;
 var venta;
+var usuario;
 
     
 
@@ -26,6 +27,7 @@ module.exports = function (app) {
     cliente = require('./clienteController');
     producto = require('./productoController');
     venta = require('./ventaController');
+    usuario = require('./usuarioController');
 
     //implantacion d las rutas
     app.use('/', index);
@@ -34,6 +36,7 @@ module.exports = function (app) {
     app.use('/clientes',AuthMiddleware.isLogged, cliente);
     app.use('/productos',AuthMiddleware.isLogged, producto);
     app.use('/ventas',AuthMiddleware.isLogged, venta);
+    app.use('/usuario',AuthMiddleware.isLogged, usuario);
 
 
     //app.use('/home',AuthMiddleware.isLogged, home);

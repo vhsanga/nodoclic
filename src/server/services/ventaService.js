@@ -63,7 +63,7 @@ class ventaService {
         return models.sequelize.query(
         "SELECT v.id, v.id_cliente, v.valor_total, v.valor_recibido, v.valor_vuelto, v.total_iva, v.total_sin_iva, v.fecha, "+
         "concat(c.nombres,' ',c.apellidos) as nombre_cliente, c.ci as ci_cliente, c.direccion as direccion_cliente, c.telefono as telefono_cliente, c.email as email_cliente, "+
-        "co.nombre as compania, co.direccion as direccion_compania, co.teléfono as telefono_compania "+
+        "co.nombre as compania, co.direccion as direccion_compania, co.telefono as telefono_compania "+
         "FROM ventas v "+
         "left join cliente c on v.id_cliente=c.id "+
         "inner join compania co on v.id_compania=co.id "+

@@ -1,0 +1,131 @@
+extends ../layout
+block contenido 
+  section.content-header
+    h1
+      | Mi perfil
+  // Main content
+  section.content.container-fluid   
+    .row
+      .col-md-3
+        .box.box-primary
+          .box-body.box-profile
+              img.profile-user-img.img-responsive.img-circle(src='/dist/img/user-default.png', alt='User profile picture')
+              |               
+              h3.profile-username.text-center= user.nombres
+              |               
+              p.text-muted.text-center Datos Personales
+              |               
+              ul.list-group.list-group-unbordered
+                li.list-group-item
+                  b Nombres:
+                  a.pull-right= usuario.nombres
+                li.list-group-item
+                  b Dirección:
+                  |  
+                  a.pull-right= usuario.direccion   
+                li.list-group-item
+                  b Teléfono
+                  |  
+                  a.pull-right= usuario.telefono
+                |                 
+                li.list-group-item
+                  b Email
+                  |  
+                  a.pull-right= usuario.email
+              p.text-muted.text-center Datos de Compania
+              |               
+              ul.list-group.list-group-unbordered
+                li.list-group-item
+                  b Compania
+                  |  
+                  a.pull-right= usuario.nombre_comp
+                li.list-group-item
+                  b Direccion:
+                  |  
+                  a.pull-right= usuario.direccion_comp
+                li.list-group-item
+                  b Teléfono:
+                  |  
+                  a.pull-right= usuario.telefono_comp
+                li.list-group-item
+                  b Representante:
+                  |  
+                  a.pull-right= usuario.representante_comp
+      .col-md-9
+        .nav-tabs-custom
+          ul.nav.nav-tabs
+            li.active
+              a(href='#activity', data-toggle='tab') Configuración
+            |               
+            li
+              a(href='#timeline', data-toggle='tab') Actividades
+            |                           
+          .tab-content
+            #activity.active.tab-pane
+              .row
+                .col-md-5
+                  p.text-muted Datos Personales
+                  hr(style="border: 1px solid #bfbfbf !important; margin-top: 0px !important;")
+                  form
+                    .form-group.row
+                      .col-md-2
+                        label(for='nombreUs' ) Nombres:
+                      .col-md-10
+                        input#nombreUs.form-control(type='text', value="#{usuario.nombres}" placeholder=' Nombres del cliente')
+                    .form-group.row
+                      .col-md-2
+                        label(for='direccionUs') Direccion:
+                      .col-md-10
+                        input#direccionUs.form-control(type='text', value="#{usuario.direccion}" placeholder='Direccion')
+                    .form-group.row
+                      .col-md-2
+                        label(for='telefonoUs') Teléfono:
+                      .col-md-10
+                        input#telefonoUs.form-control(type='text', value="#{usuario.telefono}" placeholder='# de Telefono') 
+                    .form-group.row
+                      .col-md-2
+                        label(for='emailUs') Email:
+                      .col-md-10
+                        input#emailUs.form-control(type='text', value="#{usuario.email}" placeholder='Correo electrónico') 
+                    .form-group.row
+                      .col-md-2                    
+                      .col-md-8
+                        button.btn.btn-primary(type='button')
+                          i.fa.fa-check
+                          | &nbsp; &nbsp; Guardar Datos Personales
+                      .col-md-2
+                .col-md-1
+                .col-md-6
+                  p.text-muted Datos de Seguridad
+                  hr(style="border: 1px solid #bfbfbf !important; margin-top: 0px !important;")
+                  form
+                    .form-group.row
+                      .col-md-5
+                        label(for='userUs' ) Nombres:
+                      .col-md-6
+                        input#userUs.form-control(type='text', value="#{usuario.usuario}" placeholder=' Nombres del cliente')
+                    .form-group.row
+                      .col-md-5
+                        label(for='passUs') Contraseña Actual:
+                      .col-md-6
+                        input#passUs.form-control(type='password', value="" placeholder='*****')
+                    .form-group.row
+                      .col-md-5
+                        label(for='pass1Us') Contraseña Nueva:
+                      .col-md-6
+                        input#telefonoUs.form-control(type='password', value="" placeholder='*****') 
+                    .form-group.row
+                      .col-md-5
+                        label(for='pass2Us') Repita la Contraseña:
+                      .col-md-6
+                        input#emailUs.form-control(type='password', value="" placeholder='*****') 
+                    .form-group.row
+                      .col-md-2                    
+                      .col-md-8
+                        button.btn.btn-success(type='button')
+                          i.fa.fa-check
+                          | &nbsp; &nbsp; Guardar Usuario y Contraseña
+                      .col-md-2
+            #timeline.tab-pane
+              span.description timeline
+

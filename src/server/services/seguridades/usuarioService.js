@@ -14,19 +14,20 @@ class usuarioService {
             'values ("'+data.usuario+'", "'+data.pass+'", "'+data.nombres+'", "'+data.email+'", "'+data.telefono+'", FALSE); ',            
             {type: models.sequelize.QueryTypes.INSERT});  
     }
-    /*getUsuarioById(id_usuario) {
-        return models.sequelize.query(
-            'SELECT u.id, u.username, u.pass, p.nombres, p.apellidos '+
-            'FROM usuarios u INNER JOIN persona p ON p.id=u.persona_id '+
-            'WHERE u.id='+id_usuario+' AND u.eliminado=FALSE; ',            
-            {type: models.sequelize.QueryTypes.SELECT});    
-    };*/
 
     getUsuarioByUsername(username) { 
         return models.sequelize.query(
             'SELECT  u.id, u.usuario, u.pass, u.nombres, u.id_compania, c.nombre  '+
             ' FROM usuario u INNER JOIN  compania c ON u.id_compania=c.id  '+
             ' WHERE u.usuario="'+username+'" AND u.eliminado=FALSE; ',            
+            {type: models.sequelize.QueryTypes.SELECT});    
+    };
+
+    getUsuarioById(id) { 
+        return models.sequelize.query(
+            "SELECT u.id, u.usuario, u.pass, u.nombres, u.email, u.telefono, u.direccion, u.id_compania, c.nombre as nombre_comp, c. direccion as direccion_comp, c.telefono as telefono_comp, c.representante as representante_comp "+
+            "FROM usuario u left join compania c on u.id_compania=c.id "+
+            "WHERE  u.id="+id,             
             {type: models.sequelize.QueryTypes.SELECT});    
     };
 

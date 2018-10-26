@@ -29,6 +29,7 @@ CREATE TABLE `usuario` (
   `nombres` varchar(125) DEFAULT NULL,
   `email` varchar(65) DEFAULT NULL,
   `telefono` varchar(45) DEFAULT NULL,
+  `direccion` varchar(145) DEFAULT NULL,
   `eliminado` tinyint(4) DEFAULT '0',
   `id_compania` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
@@ -43,7 +44,7 @@ CREATE TABLE `usuario` (
 
 LOCK TABLES `usuario` WRITE;
 /*!40000 ALTER TABLE `usuario` DISABLE KEYS */;
-INSERT INTO `usuario` VALUES (6,'admin','$2a$10$9z9WccaGZ1Rn1hYeBRfMjuPrhwJeBckMjfL6trg/8fcJipo4HgcWG','jose miraflores','email@email.com','97963696',0,1);
+INSERT INTO `usuario` VALUES (6,'admin','$2a$10$9z9WccaGZ1Rn1hYeBRfMjuPrhwJeBckMjfL6trg/8fcJipo4HgcWG','jose miraflores','email@email.com','97963696',NULL,0,1);
 /*!40000 ALTER TABLE `usuario` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -56,4 +57,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-10-20 13:55:06
+-- Dump completed on 2018-10-26 18:55:34

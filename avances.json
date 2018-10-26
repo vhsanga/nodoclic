@@ -13,6 +13,12 @@ avances:{
 		"grafico de  Ventas Netas Clasificadas por Mes",
 		"Lista de ventas en una fecha determinada"
 		"mostra productos próximos a caducar"
-
+	],
+	"fecha":"2018-10-25", "acciones":[
+		"mostrar la factura de una venta", 
+		"Seguridad, mostrar un dialogo de login cuando la sesion haya caducado", 
+		"Editar la informacion del perfil de usuario", 
+		
 	]
+}
 }
