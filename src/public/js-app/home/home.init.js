@@ -1,4 +1,5 @@
 var productoSelecionados=[];
+var PRODUCTOS=[];
 var items=0;
 var _cliente=null;
 $(function(){
@@ -13,6 +14,11 @@ function initElements(){
 		if( event.keyCode === 13 ){
 			buscarCedula($("#cli-ci").val());
 		}
+	});
+	$("#pro-codigo-barra").keyup(function(event){
+		if( event.keyCode === 13 ){
+			getProductoByCodigoBarra($("#pro-codigo-barra").val());
+		}		
 	});
 	$("#btn-buscar-cli").click(function(){
 		buscarCedula($("#cli-ci").val());
@@ -53,7 +59,6 @@ function buscarCedula(ci){
 		getClienteByCi(ci, function(cliente){
 			if(cliente){
 				pre_guardarVenta(cliente);
-				console.log(cliente);
 				_cliente=cliente;
 			}else{
 				mostrarMensaje(_CONST.NO_EXISTE_CLIENTE.toString().replace("_ci_",ci),  "warning");
@@ -77,7 +82,6 @@ function guardarClienteVenta(){
 }
 
 function pre_guardarVenta(cliente){
-	console.log(cliente);
 	$("#cli-id").val(cliente.id);
 	$("#cli-ced").text(cliente.ci);
 	$("#cli-email").text(cliente.email);

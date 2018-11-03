@@ -156,11 +156,13 @@ var _CONST={
     NO_CAMBIAR_CLIENTE_DEFAULT:"No se puede cambiar la informacion del Consumidor Final",
     CREDENCIALES_INCORRECTAS:"Sus credenciales son incorrectas ingrese nuevamente",
     ACCESSO_CORRECTO:"Acesso exitoso, continue trabajando.",
+    SIN_PRODUCTOS:"No tiene productos en su inventario.",
+    PRODUCTO_NO_ENCONTRADO:"No se ha encontrado dicho producto en el inventario",
 
 }
 
 
-function zeroFill( number, width )
+function zeroFill( number, width ) //aumentar ceros a la izquierda
 {
   width -= number.toString().length;
   if ( width > 0 )
@@ -168,6 +170,22 @@ function zeroFill( number, width )
     return new Array( width + (/\./.test( number ) ? 2 : 1) ).join( '0' ) + number;
   }
   return number + ""; // always return a string
+}
+
+function zeroRemove( number ) //quitar los ceros a la izquierda
+{
+  number=number.toString();
+  var i=0;
+  var tieneCero=true;
+  do{
+    if(number.charAt(i)!="0"){
+        tieneCero=false;
+    }else{
+       i++; 
+    }
+    
+  }while(i< number.length && tieneCero )
+  return number.substr(i);
 }
 
 

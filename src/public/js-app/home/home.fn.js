@@ -1,6 +1,7 @@
 function cargarProductos(){
 	$.get( "/productos/listar").done(function( data ) {
-
+    console.log(data);
+        PRODUCTOS=data;
         autocomplete(document.getElementById("pro-nombre"), data);
     }).fail(function(e) {
       try{
@@ -63,7 +64,6 @@ function agrearAtabla(p){
       sumatoriaFactura();
       $("#clienteForm").show();
   }else{
-    console.log(productoSelecionados[pos]);
 
     $("#cant-"+productoSelecionados[pos].id_producto).val((productoSelecionados[pos].cantidad +1));
     var pvp=parseFloat( (productoSelecionados[pos].cantidad +1 ) * parseFloat($("#pvu-"+productoSelecionados[pos].id_producto).text() )).toFixed(2) ;
@@ -92,23 +92,43 @@ function modoficarCantidadEnLista(id, cantidad, valor){
 	sumatoriaFactura();
 }
 
+function getProductoByCodigoBarra(codigoBarra){
+  if(PRODUCTOS.length!=0){
+    var i=0;
+    var encontrado=null;
+    do{
+      console.log(i);
+      if(zeroRemove(PRODUCTOS[i].codigo_barra)===zeroRemove(codigoBarra) ){
+        encontrado=PRODUCTOS[i];
+        $("#pro-codigo-barra").val("");
+      }
+      i++;
+    }while(i<PRODUCTOS.length && encontrado==null);
 
+    if(encontrado!=null){
+      agrearAtabla(encontrado);
+    }else{
+      mostrarMensaje(_CONST.PRODUCTO_NO_ENCONTRADO,"warning");
+      //$('#modalCrearCompra').modal({backdrop: 'static', keyboard: false});
+    }
+
+  }else{
+    mostrarMensaje(_CONST.SIN_PRODUCTOS, "warning");
+  }
+
+}
 
 
 function sumatoriaFactura(){
-	console.log(productoSelecionados);
 	var sum=0;
 	for (var i in productoSelecionados){
 		sum=sum+ parseFloat(productoSelecionados[i].valor_venta);
 	}
-	console.log(sum);
 	$("#sumaTotal").text(parseFloat(sum).toFixed(2));
 }
 
 
 function quitarProducto(id){
-	console.log(id);
-	console.log(productoSelecionados);
 	for (var i in productoSelecionados){
 		if(productoSelecionados[i].id_producto===id){
 			if (i > -1) {
@@ -120,7 +140,6 @@ function quitarProducto(id){
 			}
 		}
 	}
-	console.log(productoSelecionados);
 
 	$("#fila-"+id).remove();
 	sumatoriaFactura();
@@ -177,7 +196,6 @@ function validarFormVenta(){
     res=false;
     msj=_CONST.DEBE_IMPRESAR_PRODUCTO;
   }
-  console.log(parseFloat($("#cnf_vuelto").text()));
   if(parseFloat($("#cnf_vuelto").text())<0){
     res=false;
     msj=_CONST.VALID_VALOR_RECIBIDO;
@@ -217,10 +235,6 @@ function obtenerCamposVentas(){
 
 
 
-
-
-
-
 function autocomplete(inp, arr) {
   /*the autocomplete function takes two arguments,
   the text field element and an array of possible autocompleted values:*/
@@ -242,12 +256,22 @@ function autocomplete(inp, arr) {
       /*for each item in the array...*/
       for (i = 0; i < arr.length; i++) {
         /*check if the item starts with the same letters as the text field value:*/
-        if (arr[i].nombre.substr(0, val.length).toUpperCase() === val.toUpperCase()) {
+        //if (arr[i].nombre.includes(val.length).toUpperCase() === val.toUpperCase()) {
+        var linea=arr[i].nombre.toUpperCase()+" ("+arr[i].detalle.toUpperCase()+")";
+        var linea_=arr[i].nombre+" ("+arr[i].detalle+")";
+         
+        if(linea.includes(val.toUpperCase())){
+          
+
           /*create a DIV element for each matching element:*/
           b = document.createElement("DIV");
           /*make the matching letters bold:*/
-          b.innerHTML = "<strong>" + arr[i].nombre.substr(0, val.length) + "</strong>";
-          b.innerHTML += arr[i].nombre.substr(val.length) +" ("+arr[i].detalle+")";
+          b.innerHTML =  linea_.substr(0, linea.indexOf(val.toUpperCase()) );
+          b.innerHTML +=   "<strong style='font-style: italic; text-decoration: underline;'>" + linea_.substr(linea.indexOf(val.toUpperCase()), val.length) + "</strong>";
+          b.innerHTML += linea_.substr( (linea.indexOf(val.toUpperCase()) + val.length) ) + "<span style='float: right; color: #ffffff; background: #3c8dbc; padding: 2px; border-radius: 10px;     font-size: 12px;'>"+ parseFloat(arr[i].precio_venta).toFixed(2)+"</span>" ;
+
+          //b.innerHTML = "<strong>" + arr[i].nombre.substr(0, val.length) + "</strong>";
+          //b.innerHTML += arr[i].nombre.substr(val.length) +" ("+arr[i].detalle+")";
           /*insert a input field that will hold the current array item's value:*/
           b.innerHTML += "<input type='hidden' value='" + arr[i].id + "'>";
           /*execute a function when someone clicks on the item value (DIV element):*/
@@ -318,6 +342,7 @@ function autocomplete(inp, arr) {
 /*execute a function when someone clicks in the document:*/
 document.addEventListener("click", function (e) {
     closeAllLists(e.target);
+    inp.value = "";
 });
 }
 

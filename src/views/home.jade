@@ -23,7 +23,10 @@ block contenido
                   .col-md-4
                     .form-group
                       label(for='pro-nombre') Producto:
-                      input#pro-nombre.form-control(type='text', placeholder='Ingrese el nombre del producto')            
+                      input#pro-nombre.form-control(type='text', placeholder='Ingrese el nombre del producto') 
+                    button#btn-crear-aux.btn.btn-link(type="button") No Existe dicho producto, clic aqui para crear
+                  .col-md-2
+
               hr
               .row
                 .col-md-2
@@ -74,7 +77,7 @@ block contenido
                   h4.modal-title Confirmar Venta
                 |               
                 .modal-body
-                  div#fomrCrearCliente(style="background: #ececec; padding: 8px;")
+                  div(style="background: #ececec; padding: 8px;")
                     br
                     label Cédula: 
                     span#cli-ced(style="margin-left: 10px;  font-size: 21px;")
@@ -108,6 +111,7 @@ block contenido
 
           include ./partials/_addCliente.jade
           include ./partials/_ventas.jade
+          include ./partials/_addCompras.jade
 
 block javascript
   link(rel="stylesheet" href="/bower_components/datatables.net-bs4/css/dataTables.bootstrap4.min.css")
@@ -120,3 +124,5 @@ block javascript
   script(src="/js-app/cliente/cliente.fn.js")
   script(src="/js-app/ventas/ventas.fn.js")
   script(src="/js-app/productos/productos.fn.js")
+  script(src="/js-app/compras/compras.init.js")
+  script(src="/js-app/compras/compras.fn.js")
