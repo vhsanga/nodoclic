@@ -18,55 +18,57 @@ block contenido
               ul.list-group.list-group-unbordered
                 li.list-group-item
                   b Nombres:
-                  a.pull-right= usuario.nombres
+                  a#nombreUs_.pull-right= usuario.nombres
                 li.list-group-item
                   b Dirección:
                   |  
-                  a.pull-right= usuario.direccion   
+                  a#direccionUs_.pull-right= usuario.direccion   
                 li.list-group-item
                   b Teléfono
                   |  
-                  a.pull-right= usuario.telefono
+                  a#telefonoUs_.pull-right= usuario.telefono
                 |                 
                 li.list-group-item
                   b Email
                   |  
-                  a.pull-right= usuario.email
+                  a#emailUs_.pull-right= usuario.email
               p.text-muted.text-center Datos de Compania
               |               
               ul.list-group.list-group-unbordered
                 li.list-group-item
                   b Compania
                   |  
-                  a.pull-right= usuario.nombre_comp
+                  a#nombreComp_.pull-right= usuario.nombre_comp
                 li.list-group-item
                   b Direccion:
                   |  
-                  a.pull-right= usuario.direccion_comp
+                  a#dirComp_.pull-right= usuario.direccion_comp
                 li.list-group-item
                   b Teléfono:
                   |  
-                  a.pull-right= usuario.telefono_comp
+                  a#telefonoComp_.pull-right= usuario.telefono_comp
                 li.list-group-item
                   b Representante:
                   |  
-                  a.pull-right= usuario.representante_comp
+                  a#representanteComp_.pull-right= usuario.representante_comp
       .col-md-9
         .nav-tabs-custom
           ul.nav.nav-tabs
             li.active
-              a(href='#activity', data-toggle='tab') Configuración
+              a(href='#activity', data-toggle='tab') Editar Datos
             |               
             li
-              a(href='#timeline', data-toggle='tab') Actividades
+              a(href='#timeline', data-toggle='tab') Cambiar Contraseña
             |                           
           .tab-content
             #activity.active.tab-pane
               .row
-                .col-md-5
-                  p.text-muted Datos Personales
+                .col-md-2
+                .col-md-8
+                  p.text-muted Editar Datos Personales
                   hr(style="border: 1px solid #bfbfbf !important; margin-top: 0px !important;")
                   form
+                    input#idUs(type='hidden', value="#{usuario.id}")
                     .form-group.row
                       .col-md-2
                         label(for='nombreUs' ) Nombres:
@@ -87,21 +89,48 @@ block contenido
                         label(for='emailUs') Email:
                       .col-md-10
                         input#emailUs.form-control(type='text', value="#{usuario.email}" placeholder='Correo electrónico') 
+
+                    p.text-muted Datos de Compania
+                    hr(style="border: 1px solid #bfbfbf !important; margin-top: 0px !important;")
+                    input#idCompania(type='hidden', value="#{usuario.id_compania}")
                     .form-group.row
-                      .col-md-2                    
-                      .col-md-8
-                        button.btn.btn-primary(type='button')
+                      .col-md-3
+                        label(for='nombreComp') Nombre Compania:
+                      .col-md-9
+                        input#nombreComp.form-control(type='text', value="#{usuario.nombre_comp}" placeholder='Nombre Compania')
+                    .form-group.row
+                      .col-md-3
+                        label(for='dirComp') Dirección Compania:
+                      .col-md-9
+                        input#dirComp.form-control(type='text', value="#{usuario.direccion_comp}" placeholder='Dirección Compania')
+                    .form-group.row
+                      .col-md-3
+                        label(for='telefonoComp') Teléfono Compania:
+                      .col-md-9
+                        input#telefonoComp.form-control(type='text', value="#{usuario.telefono_comp}" placeholder='Teléfono Compania')
+                    .form-group.row
+                      .col-md-3
+                        label(for='representanteComp') Representante Compania:
+                      .col-md-9
+                        input#representanteComp.form-control(type='text', value="#{usuario.representante_comp}" placeholder='Representante Compania')
+                    .form-group.row
+                      .col-md-3                    
+                      .col-md-6
+                        button#btnGuardarInfoPerifl.btn.btn-primary(type='button')
                           i.fa.fa-check
                           | &nbsp; &nbsp; Guardar Datos Personales
-                      .col-md-2
-                .col-md-1
+                      .col-md-3
+                         
+                .col-md-2
+                
+            #timeline.tab-pane
+              .row
+                .col-md-2
                 .col-md-6
-                  p.text-muted Datos de Seguridad
-                  hr(style="border: 1px solid #bfbfbf !important; margin-top: 0px !important;")
                   form
                     .form-group.row
                       .col-md-5
-                        label(for='userUs' ) Nombres:
+                        label(for='userUs' ) Nombre de usuario:
                       .col-md-6
                         input#userUs.form-control(type='text', value="#{usuario.usuario}" placeholder=' Nombres del cliente')
                     .form-group.row
@@ -113,19 +142,20 @@ block contenido
                       .col-md-5
                         label(for='pass1Us') Contraseña Nueva:
                       .col-md-6
-                        input#telefonoUs.form-control(type='password', value="" placeholder='*****') 
+                        input#pass1Us.form-control(type='password', value="" placeholder='*****') 
                     .form-group.row
                       .col-md-5
                         label(for='pass2Us') Repita la Contraseña:
                       .col-md-6
-                        input#emailUs.form-control(type='password', value="" placeholder='*****') 
+                        input#pass2Us.form-control(type='password', value="" placeholder='*****') 
                     .form-group.row
                       .col-md-2                    
                       .col-md-8
-                        button.btn.btn-success(type='button')
+                        button#btnCambiarContrasenia.btn.btn-success(type='button')
                           i.fa.fa-check
                           | &nbsp; &nbsp; Guardar Usuario y Contraseña
                       .col-md-2
-            #timeline.tab-pane
-              span.description timeline
-
+                  .col-md-3
+block javascript
+  script(src="/js-app/usuario/perfil/perfil.init.js")
+  script(src="/js-app/usuario/perfil/perfil.fn.js")

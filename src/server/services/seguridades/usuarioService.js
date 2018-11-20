@@ -31,6 +31,20 @@ class usuarioService {
             {type: models.sequelize.QueryTypes.SELECT});    
     };
 
+    updateUsuario(data){
+        return models.sequelize.query(
+            "update usuario set nombres='"+data.nombres+"', email='"+data.email+"', telefono='"+data.telefono+"', direccion='"+data.direccion+"' "+
+            "where id="+data.id,             
+            {type: models.sequelize.QueryTypes.UPDATE}); 
+    }
+
+    updateUserPass(data){
+        return models.sequelize.query(
+            "update usuario set usuario='"+data.nombreUsuario+"', pass='"+data.passNuevo+"'  "+
+            "where id="+data.id,             
+            {type: models.sequelize.QueryTypes.UPDATE}); 
+    }
+
     /*getPerfilesUsuarioByIdUsuario(id_usuario) {
         return models.sequelize.query(
             'SELECT  up.id, up.id_perfil, p.nombre_perfil, p.detalle_perfil '+

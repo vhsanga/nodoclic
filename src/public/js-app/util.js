@@ -158,6 +158,9 @@ var _CONST={
     ACCESSO_CORRECTO:"Acesso exitoso, continue trabajando.",
     SIN_PRODUCTOS:"No tiene productos en su inventario.",
     PRODUCTO_NO_ENCONTRADO:"No se ha encontrado dicho producto en el inventario",
+    DATOS_USUARIO_EDITADOS:"Los datos de usuario se han editado",
+    PASS_NUEVA_NO_COINCIDE:"Las contraseñas no son iguales. ",
+    PASS_CAMBIADO:"Los datos de Seguridad se han cambiado. ",
 
 }
 

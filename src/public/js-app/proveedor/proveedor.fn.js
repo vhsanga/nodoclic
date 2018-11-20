@@ -37,7 +37,7 @@ function guardarProveedor(callback){
     }).fail(function(e) {
       try{
            mostrarMensaje(e.responseJSON.error.message, "danger");
-       }catch(e){  mostrarMensaje(ERROR_CREAR_AJAX, "danger"); }
+       }catch(e){  mostrarMensaje(_CONST.ERROR_CREAR_AJAX, "danger"); }
     }).always(function() { setTimeout(function(){ cerrarMensaje()},18000)  });
 }
 
