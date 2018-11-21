@@ -31,6 +31,9 @@ function guardarInfoPerfil(){
 }
 
 function cambiarContrasenia(){
+	if(!validarCamposCambiarPass()){
+		return false;
+	}
 	var dataSend={
 		id: $("#idUs").val(),
 		nombreUsuario: $("#userUs").val(),
@@ -39,13 +42,68 @@ function cambiarContrasenia(){
 	}
 	$.post("/usuario/editarPass",dataSend).done(function(data){
 		console.log(data);
-		mostrarMensaje(_CONST.PASS_CAMBIADO, "success")
-		$("#userUs").val("");
-		$("#passUs").val("");
-		$("#pass1Us").val("");
+		if(data.resp){
+			mostrarMensaje(_CONST.PASS_CAMBIADO, "success")
+			$("#userUs").val("");
+			$("#passUs").val("");
+			$("#pass1Us").val("");
+		}else{
+			if(data.err===1){
+				mostrarMensaje(_CONST.PASS_ANTERIOR_FAIL, "warning");
+				pintarElemento("passUs");
+			}
+			if(data.err===2){
+				mostrarMensaje(_CONST.NO_USER_FOUND, "warning");
+			}
+		}
+			
 	}).fail(function(err){
 		try{
            mostrarMensaje(e.responseJSON.error.message, "danger");
        }catch(e){  mostrarMensaje(_CONST.ERROR_CREAR_AJAX, "danger"); }
 	}).always(function(){ setTimeout(function(){ cerrarMensaje()},18000)   })
+}
+
+function validarCamposCambiarPass(){
+	var res=true;
+	var msj="";
+	var elemento="";
+	desPintarElemento("pass1Us");
+	desPintarElemento("pass2Us");
+	desPintarElemento("passUs");
+	desPintarElemento("userUs");
+  	
+  	if($("#pass1Us").val()!=$("#pass2Us").val()){
+  		res=false;
+  		msj=_CONST.PASS_NUEVA_NO_COINCIDE;
+  		elemento="pass2Us";
+  	}
+  	
+  	if($("#pass2Us").val()===""){
+  		res=false;
+  		msj=_CONST.CAMPO_PASS2_VACIO;
+  		elemento="pass2Us";
+  	}
+  	if($("#pass1Us").val()===""){
+  		res=false;
+  		msj=_CONST.CAMPO_PASS1_VACIO;
+  		elemento="pass1Us";
+  	}
+  	if($("#passUs").val()===""){
+  		res=false;
+  		msj=_CONST.CAMPO_PASS_VACIO;
+  		elemento="passUs";
+  	}
+  	if($("#userUs").val()===""){
+  		res=false;
+  		msj=_CONST.CAMPO_USER_VACIO;
+  		elemento="userUs";
+  	}
+  	
+  	
+  	if(!res){
+  		mostrarMensaje(msj,"warning");
+  		pintarElemento(elemento);
+  	}
+	return res;
 }

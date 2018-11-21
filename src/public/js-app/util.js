@@ -67,6 +67,10 @@ function pintarElemento(elemento){
     },300);
 };
 
+function desPintarElemento(elemento){
+    $("#"+elemento).css("border", "solid 1px #d2d6de");
+    
+};
 
 
 function idiomaEspaniol(){
@@ -161,6 +165,12 @@ var _CONST={
     DATOS_USUARIO_EDITADOS:"Los datos de usuario se han editado",
     PASS_NUEVA_NO_COINCIDE:"Las contraseñas no son iguales. ",
     PASS_CAMBIADO:"Los datos de Seguridad se han cambiado. ",
+    PASS_ANTERIOR_FAIL:"Su contraseña actual es incorrecta. ",
+    NO_USER_FOUND:"No se ha encontrado el usuario. ",
+    CAMPO_USER_VACIO:"Ingrese el nombre de usuario ",
+    CAMPO_PASS_VACIO:"Ingrese la contraseña actual ",
+    CAMPO_PASS1_VACIO:"Ingrese la nueva contraseña ",
+    CAMPO_PASS2_VACIO:"Repita la contraseña nueva",
 
 }
 

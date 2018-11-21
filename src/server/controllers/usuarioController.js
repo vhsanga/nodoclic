@@ -5,6 +5,9 @@ let companiaService = new companiaService_();
 
 var express = require('express');
 var router = express.Router();
+var bcrypt=require('bcryptjs');
+var BCRYPT_SALT_ROUNDS = 12;
+
 
 /* GET usuario page. */
 router.get('/', function(req, res, next) {
@@ -33,10 +36,28 @@ router.post('/editarUsuario', function(req, res, next) {
 });
 
 router.post('/editarPass', function(req, res, next) {
-	var item=usuarioService.updateUserPass(req.body);
-	item.then(function(usr){		
-			return res.json( req.body );
-	}).catch(function(err){ console.log("1 ", err); res.json({success: false, error: err}, 400); });
+	let item=usuarioService.getUsuarioById(req.body.id);
+    item.then(rows =>{
+      if(rows.length!==0){
+        if (bcrypt.compareSync(req.body.passAnterior,rows[0].pass)) {
+            bcrypt.hash(req.body.passNuevo, BCRYPT_SALT_ROUNDS)
+		    .then(function(hashedPass) {
+		    	req.body.passNuevo=hashedPass;
+		        var item=usuarioService.updateUserPass(req.body);
+				item.then(function(usr){		
+						return res.json( {resp:true} );
+				}).catch(function(err){ console.log("1 ", err); res.json({success: false, error: err}, 400); });
+		    });
+
+        }else{
+          	return res.json( {resp:false, err:1 });
+        }
+      }else{
+        	return res.json( {resp:false, err:2 });
+      }        
+    }).catch(err=>{
+      console.log("1 ", err); res.json({success: false, error: err}, 400); 
+    });
 });
 
 
