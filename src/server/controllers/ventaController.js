@@ -34,7 +34,7 @@ router.post('/crear', function(req, res, next) {
 	if(req.body.id_cliente===0){
 			req.body.id_cliente=null;
 	}
-	var item=ventaService.crearVenta(req.body, req.user.id_compania);
+	var item=ventaService.crearVenta(req.body, req.user.id_compania, req.user.id);
 	item.then(function(venta){
 		var item=ventaService.crearVentaDetalle(req.body, venta[0], req.user.id_compania);
 		item.then(function(){

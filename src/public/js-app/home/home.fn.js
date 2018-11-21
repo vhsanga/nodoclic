@@ -244,7 +244,10 @@ function autocomplete(inp, arr) {
       var a, b, i, val = this.value;
       /*close any already open lists of autocompleted values*/
       closeAllLists();
-      if (!val) { return false;}
+      if (!val) { 
+        $("#btn-crear-aux").hide();
+        return false; 
+      }
       
       currentFocus = -1;
       /*create a DIV element that will contain the items (values):*/
@@ -254,6 +257,7 @@ function autocomplete(inp, arr) {
       /*append the DIV element as a child of the autocomplete container:*/
       this.parentNode.appendChild(a);
       /*for each item in the array...*/
+      var existe=false;
       for (i = 0; i < arr.length; i++) {
         /*check if the item starts with the same letters as the text field value:*/
         //if (arr[i].nombre.includes(val.length).toUpperCase() === val.toUpperCase()) {
@@ -261,8 +265,7 @@ function autocomplete(inp, arr) {
         var linea_=arr[i].nombre+" ("+arr[i].detalle+")";
          
         if(linea.includes(val.toUpperCase())){
-          
-
+          existe=true;
           /*create a DIV element for each matching element:*/
           b = document.createElement("DIV");
           /*make the matching letters bold:*/
@@ -286,6 +289,11 @@ function autocomplete(inp, arr) {
           });
           a.appendChild(b);
         }
+      }
+      if(existe){
+          $("#btn-crear-aux").hide();
+      }else{
+          $("#btn-crear-aux").show("slow");
       }
   });
   /*execute a function presses a key on the keyboard:*/

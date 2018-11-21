@@ -26,10 +26,10 @@ class ventaService {
             {type: models.sequelize.QueryTypes.INSERT});    
     };
 
-    crearVenta(data,  id_compania) {         
+    crearVenta(data,  id_compania, id_usuario) {         
         return models.sequelize.query(
-            "INSERT INTO `nodoclic`.`ventas` (`id_cliente`, `valor_total`, `valor_recibido`, `valor_vuelto`,  `total_iva`, `total_sin_iva`,`id_compania`) "+
-            " VALUES ("+data.id_cliente+", "+data.valor_venta+", "+data.valor_recibido+","+data.valor_vuelto+", "+data.iva+",  "+data.precio_sin_iva+", "+id_compania+");",
+            "INSERT INTO `nodoclic`.`ventas` (`id_cliente`, `valor_total`, `valor_recibido`, `valor_vuelto`,  `total_iva`, `total_sin_iva`,`id_compania`,`id_usuario`) "+
+            " VALUES ("+data.id_cliente+", "+data.valor_venta+", "+data.valor_recibido+","+data.valor_vuelto+", "+data.iva+",  "+data.precio_sin_iva+", "+id_compania+", "+id_usuario+");",
             {type: models.sequelize.QueryTypes.INSERT});    
     };
 

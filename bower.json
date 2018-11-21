@@ -1,5 +1,5 @@
 {
-  "name": "admin-lte",  
+  "name": "admin-lte",
   "authors": [
     "Nococlic"
   ],
@@ -59,7 +59,6 @@
     "jquery-ui": "1.11.4",
     "jszip": "^3.1.5",
     "pdfmake": "^0.1.38"
-    
   },
   "resolutions": {
     "jquery": "^3.2.1"

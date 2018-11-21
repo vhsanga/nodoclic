@@ -224,4 +224,40 @@ function editarFilaEnTabla(data, dtObject ){
         }
     },1000);       
 }
+//http://localhost:3001/bower_components/bootstrap/dist/css/bootstrap.min.css
+function imprimirDiv(elem)
+{       
+    var doc = new jsPDF();
+    var specialElementHandlers = {
+        '#editor': function (element, renderer) {
+            return true;
+        }
+    };      
 
+    doc.fromHTML($('#'+elem).html(), 15, 15, {
+        'width': 170,
+            'elementHandlers': specialElementHandlers
+    });
+    doc.save('sample-file.pdf');
+
+    /*var hots=window.location.protocol+'//'+window.location.host;
+    var mywindow = window.open('', 'PRINT', 'height=400,width=600');
+
+    mywindow.document.write('<html><head><title>' + document.title  + '</title>');
+    mywindow.document.write('<link rel="stylesheet" href="'+hots+'/bower_components/bootstrap/dist/css/bootstrap.min.css">');
+    mywindow.document.write('</head><body >');
+    mywindow.document.write('<h1>Comprobante</h1>');
+    mywindow.document.write(document.getElementById(elem).innerHTML);
+    
+    mywindow.document.write('</body></html>');
+    //mywindow.document.getElementById("tablaVenta").classList.add("mystyle");;
+
+    //mywindow.document.close(); // necessary for IE >= 10
+   //mywindow.focus(); // necessary for IE >= 10*/
+
+    /*mywindow.print();
+    //mywindow.close();
+    console.log(mywindow.document);
+
+    return true;*/
+}

@@ -50,6 +50,20 @@ function initElements(){
 		
 	});
 
+	$("#btn-crear-aux").click(function(){	
+		$('#modalCrearCompra').modal({backdrop: 'static', keyboard: false}); 	
+	});
+
+	$('#btnGuardarCompra').off('click');
+	$("#btnGuardarCompra").click(function(){ 
+		guardarCompra(function(dataSend, data){ //esta funcinon esta en: js-app/compras/compras.fn.js
+			addProductoNuevo(dataSend,data);
+			$('#modalCrearCompra').modal('hide');
+			$("#btn-crear-aux").hide();
+		})	
+	});
+	
+
 }
 
 
@@ -114,4 +128,20 @@ function mostrarClienteEditar(cliente){
 	$("#telefonoCl__").val(cliente.telefono);
 	$("#emailCl__").val(cliente.email);
 	$('#modalEditarCliente__').modal({backdrop: 'static', keyboard: false});
+}
+
+function addProductoNuevo(dataSend,data){
+	var p={codigo_barra: data.codigo_barra,
+		detalle:data.detalle,
+		id:data.id_producto,
+		incluye_iva:dataSend.incluye_iva,
+		nombre:data.nombre,
+		precio_compra:data.precio_compra,
+		precio_sin_iva:dataSend.precio_sin_iva,
+		precio_venta:data.precio_venta,
+		stock:dataSend.stock,
+		valor_iva:dataSend.valor_iva,
+	};
+	PRODUCTOS.push(p);
+	agrearAtabla(p);
 }

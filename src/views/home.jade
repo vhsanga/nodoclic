@@ -24,7 +24,7 @@ block contenido
                     .form-group
                       label(for='pro-nombre') Producto:
                       input#pro-nombre.form-control(type='text', placeholder='Ingrese el nombre del producto') 
-                    button#btn-crear-aux.btn.btn-link(type="button") No Existe dicho producto, clic aqui para crear
+                    button#btn-crear-aux.btn.btn-link(type="button" style="display:none") No Existe dicho producto, clic aqui para crear
                   .col-md-2
 
               hr
@@ -119,10 +119,11 @@ block javascript
   script(src="/bower_components/datatables.net/js/jquery.dataTables.min.js")
   script(src="/bower_components/datatables.net-bs4/js/dataTables.bootstrap4.min.js")
   link(rel="stylesheet" href="/dist/css/datatables.min.css")    
-  script(src="/js-app/home/home.init.js")
-  script(src="/js-app/home/home.fn.js")
+  
   script(src="/js-app/cliente/cliente.fn.js")
   script(src="/js-app/ventas/ventas.fn.js")
   script(src="/js-app/productos/productos.fn.js")
   script(src="/js-app/compras/compras.init.js")
   script(src="/js-app/compras/compras.fn.js")
+  script(src="/js-app/home/home.init.js")
+  script(src="/js-app/home/home.fn.js")
