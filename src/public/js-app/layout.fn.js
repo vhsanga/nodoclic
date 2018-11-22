@@ -31,7 +31,8 @@ function mostrarProductosAterminar(){
                                  '    </li>');
 
 		    }    
-		    $("#numProdAterminar").text(data.length);
+		    $("#nBtnTerminar").text("("+data.length+")");
+        $("#numProdAterminar").text(data.length);
 		    setTimeout(function(){
 		      $("#numProdAterminar").css("font-size",14);
 		      setTimeout(function(){

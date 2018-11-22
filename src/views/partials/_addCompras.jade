@@ -199,3 +199,76 @@
     // /.modal-content
   // /.modal-dialog
 // /.modal
+
+#modalProductoXterminar.modal.fade
+  .modal-dialog
+    .modal-content
+      .modal-header
+        button.close(type='button', data-dismiss='modal', aria-label='Close')
+          span(aria-hidden='true') &times;
+        |                 
+        h4.modal-title Productos por Terminar
+      |               
+      .modal-body
+        ul#ulProductorXterminar.list-group
+      .modal-footer
+        button#btnImprimirProductosXterminar.btn.bg-purple(type='button') 
+          i.fa.fa-print
+          | &nbsp; &nbsp; Imprimir               
+        button.btn.btn-default(type='button', data-dismiss='modal') 
+          i.fa.fa-close
+          | &nbsp; &nbsp; Cerrar
+    // /.modal-content
+  // /.modal-dialog
+// /.modal
+
+
+#modalAddStocks.modal.fade
+  .modal-dialog
+    .modal-content
+      .modal-header
+        button.close(type='button', data-dismiss='modal', aria-label='Close')
+          span(aria-hidden='true') &times;
+        |                 
+        h4.modal-title Añadir Stocks
+      |               
+      .modal-body
+        form#formAddStocks
+          .form-group.row(style="background: #e0e0e0;")
+            .col-md-4
+              label(for='precioConpraPd_a') Precio total de compra:
+              input#precioConpraPd_a.form-control(type='number', placeholder='0.00' onkeyup="calcularPUC('_a')")
+            .col-md-4
+              label(for='cantidadPd_a') Cantidad Comprada:
+              input#cantidadPd_a.form-control(type='number', placeholder='0' onkeyup="calcularPUC('_a')") 
+            .col-md-4
+              label(for='puc_a') Precio Unitario Compra:
+              label#puc_a.form-control 0.00
+
+
+          .form-group.row
+            .col-md-8
+              .row
+                .col-md-6
+                  label(for='pvu_a' ) Precio Venta Unitario
+                  input#pvu_a.form-control(type='number', placeholder='En cuando va a vendar este producto?',  onkeyup="calcularPorcentaje('_a')" style="font-size: 17px; background: #d8eac2;")
+                .col-md-6
+                  label(for='porcentajeGanancia_a' ) Porcentaje de Ganancia:
+                  input#porcentajeGanancia_a.form-control(type='number', placeholder='%' onkeyup="calcularPrecioVentaUnit('_a')" style="font-size: 15px;") 
+              .row
+                .col-md-6
+                  label(for='fechaCompraPd_a') Fecha de Compra:
+                  input#fechaCompraPd_a.form-control(type='text')
+                .col-md-6
+                  label(for='referenciaPd_a') Num Factura: 
+                  input#referenciaPd_a.form-control(type='text')
+      .modal-footer
+        button.btn.btn-default(type='button', data-dismiss='modal')
+          i.fa.fa-close
+          | &nbsp; &nbsp; Cerrar                 
+        button#btnAddStocks.btn.btn-primary(type='button') 
+          i.fa.fa-check
+          | &nbsp; &nbsp; Guardar Cambios
+    // /.modal-content
+  // /.modal-dialog
+// /.modal

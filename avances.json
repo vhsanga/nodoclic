@@ -24,7 +24,10 @@ avances:{
 		"crear un produto en caso de que no exista en la lista en la pagina principal al momento de realizar la venta", 
 		"Editar los datos de usuario en el perfil", 
 		"cambiar el nomrbe de usuario y la contraseña", 
-		"Aumentar el campo id_usuario en la talba ventas, para poder saber las ventas que ha realizado un usuario"
+		"Aumentar el campo id_usuario en la talba ventas, para poder saber las ventas que ha realizado un usuario",
+		"Imprimir y Reimprimir factura",
+		"pintar de rojo los porductos que estar por terminar su stock",
+		"Imprimir la lista de productos por terminar"
 		
 	]
 }

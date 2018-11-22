@@ -353,3 +353,34 @@ function validarFormCompra(char){
 }
 
 
+function mostrarProdcutosXterminar(){
+  var compras=dtCompras.rows().data();
+  console.log(compras);
+  var xTerminar=[];
+  var li="";
+  $("#ulProductorXterminar").empty();
+  for(var i=0; i<compras.length; i++){
+    if(compras[i].stock<MINIMO_STOCK){
+      li=li+'<li class="list-group-item d-flex justify-content-between align-items-center"> '+ 
+                                        compras[i].nombre+". "+compras[i].detalle+
+                                      ' <span class="badge badge-primary badge-pill">'+compras[i].stock+'</span> '+
+                                      '</li>';
+    }
+  }
+  $("#ulProductorXterminar").html(li);
+  $('#modalProductoXterminar').modal({backdrop: 'static', keyboard: false}); 
+}
+
+function anadirStock(idProducto){
+  var prod={};
+  var compras=dtCompras.rows().data();
+  for(var i=0; i<compras.length; i++){
+    if(compras[i].id_producto===idProducto){
+        prod=compras[i];
+    }
+  }
+
+  $('#modalAddStocks').modal({backdrop: 'static', keyboard: false})  
+  $('#pvu_a').val(prod.precio_venta)
+  console.log(prod);
+}

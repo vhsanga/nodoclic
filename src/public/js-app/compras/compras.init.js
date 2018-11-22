@@ -1,6 +1,8 @@
 var dtCompras=null;
 var idCompraSelecionada=0;
 var compraSelecionada=null;
+
+
 $(function() {  
   console.log("iniciando");
   loadTablacompras();
@@ -12,7 +14,7 @@ $(function() {
 
 
 function loadTablacompras(){
-  var dtCompras=$('#tablaCompras').DataTable( {
+  dtCompras=$('#tablaCompras').DataTable( {
 
     "ajax": {
         url: "/compras/list",
@@ -23,6 +25,14 @@ function loadTablacompras(){
         { "data": "nombre" },
         { "data": "detalle" },
         { "data": "cantidad" },
+        { "data": "stock" , render: function(data, type, row){ 
+                            var cont=data;
+                              if(parseInt(data)<MINIMO_STOCK){
+                                  $("#"+row.id).css("background","#f1d9d9")
+                              }
+                            return cont +"&nbsp;&nbsp;<button onclick='anadirStock("+row.id_producto+")'> + añadir </button>";
+                            }
+        },
         { "data": "precio" , render: function(data, type, row){
                                 return  parseInt(data).toFixed(2);
                             }
@@ -40,6 +50,7 @@ function loadTablacompras(){
             className: 'dt-body-right'
         }
       ],
+      
 
   });
 
@@ -48,7 +59,7 @@ function loadTablacompras(){
             cell.innerHTML = i+1;
         } );
     } );
-    dtCompras.on( 'click', 'tr', function () {
+    dtCompras.on( 'dblclick', 'tr', function () {
         if ( $(this).hasClass('selected') ) {
             $(this).removeClass('selected');
         }
@@ -108,6 +119,15 @@ function initElementos(){
   $("#btnGuardarProveedor").click(function(){
       guardarProveedor_compra();
   });
+
+  $("#btnMostrarProdcutosXterminar").click(function(){
+      mostrarProdcutosXterminar();
+  });
+  $("#btnImprimirProductosXterminar").click(function(){
+      imprimirProductosXterminar("ulProductorXterminar");
+  });
+
+
   
 }
 
@@ -147,14 +167,18 @@ function loadTablaComprasMes(mes){
             className: 'dt-body-right'
         }
       ],
+      
 
   });
 
-    dtComprasMes.on( 'order.dt search.dt', function () {
-        dtComprasMes.column(0, {search:'applied', order:'applied'}).nodes().each( function (cell, i) {
-            cell.innerHTML = i+1;
-        } );
-    } );
+  dtComprasMes.on( 'order.dt search.dt', function () {
+      dtComprasMes.column(0, {search:'applied', order:'applied'}).nodes().each( function (cell, i) {
+          cell.innerHTML = i+1;
+      } );
+  } );
+
    
            
 }
+
+

@@ -1,5 +1,6 @@
 moment.locale('es')  ;
 const IVA=12;
+const  MINIMO_STOCK=4
 
 var tempoAlert;
 
@@ -224,10 +225,8 @@ function editarFilaEnTabla(data, dtObject ){
         }
     },1000);       
 }
-//http://localhost:3001/bower_components/bootstrap/dist/css/bootstrap.min.css
-function imprimirDiv(elem, aux)
-{       
 
+function imprimirDiv(elem, aux){       
     var mywindow = window.open('', 'PRINT', 'height=600,width=840');
 
     mywindow.document.write('<html><head><title>' + document.title  + '</title>');
@@ -259,6 +258,23 @@ function imprimirDiv(elem, aux)
     mywindow.print();
     mywindow.close();
     console.log(mywindow.document);
+    return true;
+}
 
+function imprimirProductosXterminar(elem){       
+    var mywindow = window.open('', 'PRINT', 'height=600,width=840');
+    mywindow.document.write('<html><head><title>' + document.title  + '</title>');
+    mywindow.document.write('</head><body style="font-family: \'Source Sans Pro\', \'Helvetica Neue\', Helvetica, Arial, sans-serif;" >');
+    mywindow.document.write('<h3>Productos por Terminar </h3>' );
+    mywindow.document.write(document.getElementById(elem).innerHTML);
+    mywindow.document.write('</body></html>');
+    spans = mywindow.document.getElementsByTagName("SPAN");
+    for( var i =0; i<spans.length; i++){
+        spans[i].innerHTML="["+spans[i].innerHTML+"]";
+    }
+    mywindow.document.close(); // necessary for IE >= 10
+    mywindow.focus(); // necessary for IE >= 10*/
+    mywindow.print();
+    mywindow.close();
     return true;
 }

@@ -14,6 +14,12 @@ block contenido
             button#openModal.btn.btn-success
               i.fa.fa-plus
               | &nbsp; &nbsp; Ingresar nueva compra
+            &nbsp;&nbsp;&nbsp;
+            button#btnMostrarProdcutosXterminar.btn.btn-warning 
+              i.fa.fa-cube
+              i.fa.fa-warning
+              | &nbsp; &nbsp; Imprimir productos por Terminar 
+              span#nBtnTerminar
           div.box-body
             table#tablaCompras.table.table-bordered.table-hover
               thead.tabla_default
@@ -21,12 +27,16 @@ block contenido
                   th #
                   th Producto
                   th Detalles
-                  th Cantidad comprada
+                  th Cant comprada
+                  th Stock actual
                   th Precio
                   th Fecha Compra
                   th Factura
                   th Proveedor        
                 tbody
+            
+            span *** Los productos marcados de Rojo estan agotados o proximos a agotarse
+              
             div#cbarsearea(style="display:none;")
     .row
       div.col-xs-12
