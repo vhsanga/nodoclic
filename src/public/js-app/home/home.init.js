@@ -62,7 +62,9 @@ function initElements(){
 			$("#btn-crear-aux").hide();
 		})	
 	});
-	
+	$("#btnReimprimir").click(function(){
+		imprimirDiv("cuerpoFactura","");
+	});
 
 }
 

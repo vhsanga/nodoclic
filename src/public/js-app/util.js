@@ -225,39 +225,40 @@ function editarFilaEnTabla(data, dtObject ){
     },1000);       
 }
 //http://localhost:3001/bower_components/bootstrap/dist/css/bootstrap.min.css
-function imprimirDiv(elem)
+function imprimirDiv(elem, aux)
 {       
-    var doc = new jsPDF();
-    var specialElementHandlers = {
-        '#editor': function (element, renderer) {
-            return true;
-        }
-    };      
 
-    doc.fromHTML($('#'+elem).html(), 15, 15, {
-        'width': 170,
-            'elementHandlers': specialElementHandlers
-    });
-    doc.save('sample-file.pdf');
-
-    /*var hots=window.location.protocol+'//'+window.location.host;
-    var mywindow = window.open('', 'PRINT', 'height=400,width=600');
+    var mywindow = window.open('', 'PRINT', 'height=600,width=840');
 
     mywindow.document.write('<html><head><title>' + document.title  + '</title>');
-    mywindow.document.write('<link rel="stylesheet" href="'+hots+'/bower_components/bootstrap/dist/css/bootstrap.min.css">');
-    mywindow.document.write('</head><body >');
-    mywindow.document.write('<h1>Comprobante</h1>');
+    mywindow.document.write('</head><body style="font-family: \'Source Sans Pro\', \'Helvetica Neue\', Helvetica, Arial, sans-serif;" >');
+    mywindow.document.write('<h2>Comprobante '+aux+'</h2>' );
     mywindow.document.write(document.getElementById(elem).innerHTML);
     
     mywindow.document.write('</body></html>');
-    //mywindow.document.getElementById("tablaVenta").classList.add("mystyle");;
+    
+    mywindow.document.getElementById("tablaVenta").setAttribute("border", "1");
+    mywindow.document.getElementById("tablaDatosCli").style.borderCollapse="collapse";
+    mywindow.document.getElementById("tablaVenta").style.borderCollapse="collapse";
+    
 
-    //mywindow.document.close(); // necessary for IE >= 10
-   //mywindow.focus(); // necessary for IE >= 10*/
+    mywindow.document.getElementById("tablaDatosFact").style.borderCollapse="collapse";
+    mywindow.document.getElementById("tablaDatosFact").style.width="46%";
+    mywindow.document.getElementById("tablaDatosFact").style.float="right";
+    mywindow.document.getElementById("tablaDatosFact").style.marginTop="-75px";
 
-    /*mywindow.print();
-    //mywindow.close();
+    mywindow.document.getElementById("tablaSumaFact").style.borderCollapse="collapse";
+    mywindow.document.getElementById("tablaSumaFact").style.width="35%";
+    mywindow.document.getElementById("tablaSumaFact").style.marginRight="30px;";
+    mywindow.document.getElementById("tablaSumaFact").style.float="right";
+
+
+    mywindow.document.close(); // necessary for IE >= 10
+    mywindow.focus(); // necessary for IE >= 10*/
+
+    mywindow.print();
+    mywindow.close();
     console.log(mywindow.document);
 
-    return true;*/
+    return true;
 }
