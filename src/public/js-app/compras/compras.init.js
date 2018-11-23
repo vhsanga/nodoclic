@@ -38,7 +38,6 @@ function loadTablacompras(){
                             }
         },
         { "data": "fecha_compra" },
-        { "data": "referencia" },
         { "data": "proveedor" }
       ],
       "language":idiomaEspaniol(),
@@ -102,8 +101,7 @@ function initElementos(){
       abrirModalCrearProveedor();
     }
   });
-  
-  $( "#fechaCompraPd" ).datepicker({
+  $( "#fechaCompraPd, #fechaCompraPd_, #fechaCompraPd_a" ).datepicker({
       showButtonPanel: false,
       defaultDate: today
   });
@@ -125,6 +123,9 @@ function initElementos(){
   });
   $("#btnImprimirProductosXterminar").click(function(){
       imprimirProductosXterminar("ulProductorXterminar");
+  });
+  $("#btnAddStocks").click(function(){
+      addStocks();
   });
 
 

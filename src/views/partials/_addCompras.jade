@@ -233,17 +233,27 @@
         h4.modal-title Añadir Stocks
       |               
       .modal-body
-        form#formAddStocks
+        h4#productoAddStocks
+        h4 Disponibles:
+          span(style="background: #4CAF50; padding: 4px; color: white; border-radius: 17px; margin-left: 7px;")#stockActualAddStocks
+
+        form#formAddStocks 
+          input#idPd_a.form-control(type='hidden')
+          input#idCp_a.form-control(type='hidden')         
           .form-group.row(style="background: #e0e0e0;")
-            .col-md-4
-              label(for='precioConpraPd_a') Precio total de compra:
-              input#precioConpraPd_a.form-control(type='number', placeholder='0.00' onkeyup="calcularPUC('_a')")
             .col-md-4
               label(for='cantidadPd_a') Cantidad Comprada:
               input#cantidadPd_a.form-control(type='number', placeholder='0' onkeyup="calcularPUC('_a')") 
             .col-md-4
+              label(for='precioConpraPd_a') Precio total de compra:
+              input#precioConpraPd_a.form-control(type='number', placeholder='0.00' onkeyup="calcularPUC('_a')")
+            .col-md-4
               label(for='puc_a') Precio Unitario Compra:
               label#puc_a.form-control 0.00
+            .col-md-4(style="display:none")
+              div(style="margin-top: 35px;")
+                input#incluyeIvaPd_a(type="checkbox" checked style="-ms-transform: scale(2); -moz-transform: scale(2); -webkit-transform: scale(2); -o-transform: scale(2);") 
+                label(style="margin-left: 10px;") Incluye IVA (12%)
 
 
           .form-group.row

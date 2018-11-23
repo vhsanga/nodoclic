@@ -29,6 +29,11 @@ avances:{
 		"pintar de rojo los porductos que estar por terminar su stock",
 		"Imprimir la lista de productos por terminar"
 		
+	],
+	"fecha":"2018-11-23", "acciones":[
+		"guardar registros historicos de compras tabla compras_historicos", 
+		"aumentar el stock de un producto, al aumentar un stock debe guardarse como historico, para ver las compras realizadas de un fututo", 
+		
 	]
 }
 }

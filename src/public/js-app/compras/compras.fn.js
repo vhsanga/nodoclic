@@ -73,10 +73,10 @@ function guardarCompra(callback){
   var dataSend=obtenerCamposCompra("");
   console.log(dataSend);
   $.post( "/compras/crear",dataSend).done(function( dataRes ) {
-    callback(dataSend,dataRes);
+      callback(dataSend,dataRes);
     }).fail(function(e) {
       try{
-        console.log(e);
+           console.log(e);
            mostrarMensaje(e.responseJSON.error.message, "danger");
        }catch(e){ console.log(e); mostrarMensaje(_CONST.ERROR_CREAR_AJAX, "danger"); }
     }).always(function() { setTimeout(function(){ cerrarMensaje()},18000)  });
@@ -379,8 +379,33 @@ function anadirStock(idProducto){
         prod=compras[i];
     }
   }
-
-  $('#modalAddStocks').modal({backdrop: 'static', keyboard: false})  
-  $('#pvu_a').val(prod.precio_venta)
+  idCompraSelecionada=prod.id
   console.log(prod);
+  $('#modalAddStocks').modal({backdrop: 'static', keyboard: false})  
+  $('#productoAddStocks').text(prod.nombre + ". "+prod.detalle);  
+  $('#stockActualAddStocks').text(prod.stock)  
+  $('#pvu_a').val(prod.precio_venta)  
+  $('#idPd_a').val(prod.id_producto)  
+  $('#idCp_a').val(prod.id)  
+}
+
+
+function addStocks(){
+  let validado=validarFormCompra("_a");
+  if(!validado){    
+    return false;
+  }
+  var dataSend=obtenerCamposCompra("_a");
+  dataSend["id"]=idCompraSelecionada;
+  $.post( "/compras/actualizarStock",dataSend).done(function( dataRes ) {
+        loadTablacompras()
+        document.getElementById("formAddStocks").reset();
+        mostrarMensaje(_CONST.EXITO_CREAR_AJAX,"success");
+        $('#modalAddStocks').modal('hide');
+        mostrarProductosAterminar();
+    }).fail(function(e) {
+      try{
+           mostrarMensaje(e.responseJSON.error.message, "danger");
+       }catch(e){  mostrarMensaje(_CONST.ERROR_CREAR_AJAX, "danger"); }
+  }).always(function() { setTimeout(function(){ cerrarMensaje()},18000)  });
 }

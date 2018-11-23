@@ -46,11 +46,19 @@ class productoService {
 
     getProductosPorTerminar(id_compania) { 
         return models.sequelize.query(
-            "select stock, id, nombre, detalle  " +
-            " from producto where id_compania="+id_compania+"  and stock < 4 and eliminado=0 " +
+            "SELECT stock, id, nombre, detalle  " +
+            " from producto WHERE id_compania="+id_compania+"  and stock < 4 and eliminado=0 " +
             " order by stock asc ;",            
             {type: models.sequelize.QueryTypes.SELECT});    
     };
+
+    aumentarStock(id_producto,nuevo_stock) { 
+        return models.sequelize.query(
+            "UPDATE producto as p, (select stock from producto WHERE id="+id_producto+") as p1   set p.stock=(p1.stock+ "+nuevo_stock+") "+
+            " WHERE p.id="+id_producto,            
+            {type: models.sequelize.QueryTypes.UPDATE});    
+    };
+   
    
 
 

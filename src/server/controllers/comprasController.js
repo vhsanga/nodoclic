@@ -49,7 +49,7 @@ router.post('/crear', function(req, res, next) {
 				console.log("compra:"+ id_compra[0]);
 				item=compraService.getCompraById(id_compra[0]);
 				item.then(function(compra){
-					
+					console.log("Resuesta Exitosa * * * * * ");
 					res.json(compra[0]);
 					
 				}).catch(function(err){ console.log("1 ", err); res.json({success: false, error: err}, 400); });
@@ -79,6 +79,17 @@ router.post('/editar', function(req, res, next) {
 				
 		}).catch(function(err){ console.log("1 ", err); res.json({success: false, error: err}, 400); });
 			
+	}).catch(function(err){ console.log("1 ", err); res.json({success: false, error: err}, 400); });
+});
+
+router.post('/actualizarStock', function(req, res, next) {	
+	var item=compraService.updateCompraHistorico(req.body, req.body.id, req.user.id_compania);
+	item.then(function(compraUdp){
+		 console.log("updateCompraHistorico * * * * FIN ");
+		item=productoService.aumentarStock(req.body.id_producto, req.body.id);
+		item.then(function(prodUdp){
+			res.json(true);
+		}).catch(function(err){ console.log("1 ", err); res.json({success: false, error: err}, 400); });
 	}).catch(function(err){ console.log("1 ", err); res.json({success: false, error: err}, 400); });
 });
 
