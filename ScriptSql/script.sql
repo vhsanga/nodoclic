@@ -41,3 +41,14 @@ CREATE TABLE `nodoclic`.`compras_historico` (
     ON UPDATE NO ACTION);
 
 -----------------------------------------------
+
+SELECT @@GLOBAL.sql_mode;
+ //STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION
+
+
+ SELECT @@SESSION.sql_mode;
+ //STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION
+
+
+SET GLOBAL sql_mode = 'modes';
+SET SESSION sql_mode = 'modes';
