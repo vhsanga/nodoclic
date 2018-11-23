@@ -278,3 +278,4 @@ function imprimirProductosXterminar(elem){
     mywindow.close();
     return true;
 }
+
