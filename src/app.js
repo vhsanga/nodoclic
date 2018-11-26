@@ -18,7 +18,6 @@ var app = express();
 // view engine setup
 app.set('views', path.join(srcPath, 'views'));
 app.set('view engine', config().views.engine);
-
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -65,5 +64,5 @@ app.use(function(err, req, res, next) {
 });
 
 //module.exports = app;
-
+console.log("Corriendo Nodoclic en "+config().entorno+", en "+config().serverPort );
 app.listen(config().serverPort);
