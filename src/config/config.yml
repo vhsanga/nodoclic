@@ -2,46 +2,4 @@
 production: &default
     serverPort: 3001
 
-    views:
-        engine: .jade
-        extension: .jade
-        layout: agenda/agenda/inicio
-    html:
-        minify: true
-        css:
-            compress: true
-            stylusPrecompile: true
-    controllers:
-        default: home
-    languages:
-        default: en
-        list: [en, es, fr, pt, jp]
-    security:
-        secret: 186.46.139.219
-    session:
-        cookieDomain: 186.46.139.219
-        maxAge: 3600000
-        cookiePrefix: 'svSession_'
-        path: '/'
-        httpOnly: true,
-        secret: 933593b7aedb2c018fab87fb5ada6a2c
-    email:
-        host: 'mail.muzsa.com.ec'
-        defaultFrom: 'sidest@muzsa.com.ec'
-        emailFrom:
-            agenda: convocatoria.despacho@fiscalia.gob.ec
-            disposiciones: disposiciones@fiscalia.gob.ec
-        port: 465
-        secure: true
-        tls:
-            rejectUnauthorized: false
-        auth:
-            user: 'sidest@muzsa.com.ec'
-            pass: 'sidest2017'
-        modules:
-            agenda:
-                from: convocatoria.despacho@fiscalia.gob.ec
-            disposiciones:
-                from: disposiciones@fiscalia.gob.ec
-    upload:
-        root: uploads/files
+    

@@ -8,5 +8,16 @@
     "dialect": "mysql",
     "timezone" : "-05:00"
 
+  },
+  "production": {
+    "username": "root",
+    "password": "toor2018",
+    "database": "nodoclic",
+    "host": "127.0.0.1",
+    "port": "3306",
+    "dialect": "mysql",
+    "timezone" : "-05:00"
+
   }
+}
 }
