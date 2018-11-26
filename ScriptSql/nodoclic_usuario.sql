@@ -37,16 +37,6 @@ CREATE TABLE `usuario` (
   CONSTRAINT `fk_usuario_compania` FOREIGN KEY (`id_compania`) REFERENCES `compania` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `usuario`
---
-
-LOCK TABLES `usuario` WRITE;
-/*!40000 ALTER TABLE `usuario` DISABLE KEYS */;
-INSERT INTO `usuario` VALUES (6,'admin','$2a$10$9z9WccaGZ1Rn1hYeBRfMjuPrhwJeBckMjfL6trg/8fcJipo4HgcWG','jose miraflores','email@email.com','97963696',NULL,0,1);
-/*!40000 ALTER TABLE `usuario` ENABLE KEYS */;
-UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -57,4 +47,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-10-26 18:55:34
+-- Dump completed on 2018-11-26 10:56:05

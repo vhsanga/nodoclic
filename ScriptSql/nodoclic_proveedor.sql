@@ -35,16 +35,6 @@ CREATE TABLE `proveedor` (
   CONSTRAINT `fk_prov_compania` FOREIGN KEY (`id_compania`) REFERENCES `compania` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8 COMMENT='		';
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `proveedor`
---
-
-LOCK TABLES `proveedor` WRITE;
-/*!40000 ALTER TABLE `proveedor` DISABLE KEYS */;
-INSERT INTO `proveedor` VALUES (1,'DristiFacil','av 10 de agosto OE Velez','022323656','Luis Mancero',0,NULL),(2,'DtriVen','Av Velos y carrillo','0326656565','Jose Perez',0,NULL),(3,'distribuidora SAMBA','Keretaro y Brazil','032656963','Gloria Moez',0,NULL),(4,'Dsitribuidora MEGaTell','','','',0,NULL),(5,'Proveeventas','Almagro','','',0,NULL),(6,'Prvvvsssss','','','',0,NULL),(7,'sdsdsdsdsdsc  xd d ','','','',0,NULL),(8,'scscscscs s s s s','','','',0,NULL),(9,'ssss','','','',0,NULL),(10,'sssscc c c c ','','','',0,NULL),(11,'cscsc xxxxxxx','','','',0,NULL),(12,'Casa comercial Machado','Av floresta Oe 11 Guayaquil','042949656','INg Flavio Benitez',0,NULL),(13,'Casa Comercial San Lorenzo','Imbabura y venezuela sector el tejar quito','042365632','Luisa Villa',0,NULL);
-/*!40000 ALTER TABLE `proveedor` ENABLE KEYS */;
-UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -55,4 +45,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-10-26 18:55:34
+-- Dump completed on 2018-11-26 10:56:04

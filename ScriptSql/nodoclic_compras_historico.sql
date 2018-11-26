@@ -16,31 +16,27 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `ventas_detalle`
+-- Table structure for table `compras_historico`
 --
 
-DROP TABLE IF EXISTS `ventas_detalle`;
+DROP TABLE IF EXISTS `compras_historico`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
  SET character_set_client = utf8mb4 ;
-CREATE TABLE `ventas_detalle` (
+CREATE TABLE `compras_historico` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `id_producto` int(11) DEFAULT NULL,
-  `id_venta` int(11) DEFAULT NULL,
   `cantidad` int(11) DEFAULT NULL,
-  `valor_unitario` float DEFAULT NULL,
-  `valor_total` float DEFAULT NULL,
-  `iva` float DEFAULT NULL,
-  `valor_sin_iva` float DEFAULT NULL,
-  `eliminado` tinyint(4) DEFAULT '0',
+  `precio` float DEFAULT NULL,
+  `precio_unitario_compra` float DEFAULT NULL,
+  `fecha_compra` date DEFAULT NULL,
+  `referencia` varchar(45) DEFAULT NULL,
   `id_compania` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
-  KEY `fk_venta_producto_idx` (`id_producto`),
-  KEY `fk_venta_compania_idx` (`id_compania`),
-  KEY `fk_venta_detalle_venta_idx` (`id_venta`),
-  CONSTRAINT `fk_venta_compania` FOREIGN KEY (`id_compania`) REFERENCES `compania` (`id`),
-  CONSTRAINT `fk_venta_detalle_venta` FOREIGN KEY (`id_venta`) REFERENCES `ventas` (`id`),
-  CONSTRAINT `fk_venta_producto` FOREIGN KEY (`id_producto`) REFERENCES `producto` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=61 DEFAULT CHARSET=utf8;
+  KEY `fk_compras_historico_producto_idx` (`id_producto`),
+  KEY `fk_compras_historico_producto_idx1` (`id_compania`),
+  CONSTRAINT `fk_compras_historico_compania` FOREIGN KEY (`id_compania`) REFERENCES `compania` (`id`),
+  CONSTRAINT `fk_compras_historico_producto` FOREIGN KEY (`id_producto`) REFERENCES `producto` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -52,4 +48,4 @@ CREATE TABLE `ventas_detalle` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-11-26 10:56:05
+-- Dump completed on 2018-11-26 10:56:06
