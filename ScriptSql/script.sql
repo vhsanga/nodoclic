@@ -50,3 +50,36 @@ INSERT INTO `nodoclic`.`compania` (`nombre`, `direccion`, `telefono`, `represent
 
 /*crear el usuario administrador de la compania */
 INSERT INTO `nodoclic`.`usuario` (`usuario`, `pass`, `nombres`, `email`, `telefono`, `direccion`, `eliminado`, `id_compania`) VALUES ('admin', '$2a$12$YmKDImpJEkkdZwUCqXBw1.tV.8rGFd14HDh.JZRnkpjMOj3EVVhHG', 'jose miraflores', 'admin@gmail.com', '032949654', 'av la prensa', '0', '1');
+
+
+
+CREATE TABLE `nodoclic`.`rol` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `nombre` VARCHAR(45) NULL,
+  `descripcion` VARCHAR(255) NULL,
+  PRIMARY KEY (`id`))
+COMMENT = 'roles de los usuarios de nodoclic';
+
+
+CREATE TABLE `nodoclic`.`rol_usuario` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `id_rol` INT NULL,
+  `id_usuario` INT NULL,
+  `hora_desde` TIME NULL,
+  `hora_hasta` TIME NULL,
+  `observacion` VARCHAR(45) NULL,
+  PRIMARY KEY (`id`),
+  INDEX `fk_rol_usuario_rol_idx` (`id_rol` ASC),
+  INDEX `fk_rolusuario_usuario_idx` (`id_usuario` ASC),
+  UNIQUE INDEX `idx_unico_rolusuario` (`id_rol` ASC, `id_usuario` ASC),
+  CONSTRAINT `fk_rolusuario_rol`
+    FOREIGN KEY (`id_rol`)
+    REFERENCES `nodoclic`.`rol` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_rolusuario_usuario`
+    FOREIGN KEY (`id_usuario`)
+    REFERENCES `nodoclic`.`usuario` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION);
+

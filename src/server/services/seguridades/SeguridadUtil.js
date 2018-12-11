@@ -5,8 +5,8 @@
 export default class SeguridadUtil {
 
     static isUserInRol(user, rol) {
-        for (let i = 0; i < user.perfiles.length; i++) {
-            if (user.perfiles[i].perfil.pe_nombre == rol) {
+        for (let i = 0; i < user.roles.length; i++) {
+            if (user.roles[i].perfil.nombre == rol) {
                 return true;
             }
         }

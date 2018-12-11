@@ -45,22 +45,6 @@ class usuarioService {
             {type: models.sequelize.QueryTypes.UPDATE}); 
     }
 
-    /*getPerfilesUsuarioByIdUsuario(id_usuario) {
-        return models.sequelize.query(
-            'SELECT  up.id, up.id_perfil, p.nombre_perfil, p.detalle_perfil '+
-            'FROM usuario_perfil up  '+
-            'INNER JOIN perfiles p ON up.id_perfil=p.id   '+
-            'WHERE up.id_usuario='+id_usuario+' AND up.eliminado=FALSE; ',            
-            {type: models.sequelize.QueryTypes.SELECT});    
-    };
-
-    setPass(pass, username) {
-        return models.sequelize.query(
-            'UPDATE usuarios SET pass="'+pass+'" WHERE username="'+username+'"',            
-            {type: models.sequelize.QueryTypes.UPDATE});    
-    };    */
-
-
 
 }
     

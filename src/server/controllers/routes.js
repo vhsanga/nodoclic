@@ -56,8 +56,10 @@ module.exports = function (app) {
                     failureFlash: true }) );
 
     app.use('/loginAdmin', passport.authenticate('local', { successRedirect: '/admin',
-                    failureRedirect: '/admin',
-                    failureFlash: true }) );
+        failureRedirect: '/admin',
+        failureFlash: true }), (req, res)=> {
+                
+    });
 
 
 
