@@ -122,7 +122,7 @@ function mostrarCompra(id){
         $("#detallePd_").val(data.detalle);
         $("#cantidadPd_").val(data.cantidad);
         $("#precioConpraPd_").val(parseFloat(data.precio).toFixed(2));
-        $("#puc_").text(parseFloat(data.precio_compra).toFixed(2));
+        $("#puc_").val(parseFloat(data.precio_compra).toFixed(2));
         $("#pvu_").val(parseFloat(data.precio_venta).toFixed(2));
         $("#porcentajeGanancia_").val(parseFloat(data.procentaje_ganancia).toFixed(2));
         $("#fechaCompraPd_").val(data.fecha_compra);
@@ -213,7 +213,7 @@ function obtenerCamposCompra(char){
   var precio_sin_iva=0.00;
   var valor_iva=0.00;
   if(document.getElementById("incluyeIvaPd"+char).checked){
-      valor_iva= parseFloat((parseFloat($("#puc"+char).text()) * IVA ) /100).toFixed(2);
+      valor_iva= parseFloat((parseFloat($("#puc"+char).val()) * IVA ) /100).toFixed(2);
       precio_sin_iva=parseFloat( parseFloat($("#pvu"+char).val()) - valor_iva ).toFixed(2);
   }else{
       precio_sin_iva=parseFloat($("#pvu"+char).val());
@@ -226,7 +226,7 @@ function obtenerCamposCompra(char){
     detalle:$("#detallePd"+char).val(),
     stock:$("#cantidadPd"+char).val(),
     precio_compra_total:$("#precioConpraPd"+char).val(),
-    precio_compra:$("#puc"+char).text(),
+    precio_compra:$("#puc"+char).val(),
     precio_venta:$("#pvu"+char).val(),
     ganancia:$("#porcentajeGanancia"+char).val(),
     fecha_compra:$("#fechaCompraPd"+char).val(),
@@ -242,18 +242,30 @@ function calcularPUC(char){
   if ($("#precioConpraPd"+char).val()!=="" && $("#cantidadPd"+char).val()!==""){
     var ptc=parseFloat($("#precioConpraPd"+char).val()).toFixed(2);
     var can=parseFloat($("#cantidadPd"+char).val()).toFixed(2);
-    $("#puc"+char).text(parseFloat(ptc/can).toFixed(2));
+    $("#puc"+char).val(parseFloat(ptc/can).toFixed(2));
   }else{
-    $("#puc"+char).text("");
+    $("#puc"+char).val("");
   }
   calcularPorcentaje(char);
 }
 
 
+function calcularPTC(char){
+  console.log("llamando a PTC");
+  if ($("#puc"+char).val()!=="" && $("#cantidadPd"+char).val()!==""){
+    var puc=parseFloat($("#puc"+char).val()).toFixed(2);
+    var can=parseFloat($("#cantidadPd"+char).val()).toFixed(2);
+    $("#precioConpraPd"+char).val(parseFloat(puc*can).toFixed(2));
+  }else{
+    $("#precioConpraPd"+char).val("");
+  }
+  calcularPorcentaje(char);
+}
+
 function calcularPorcentaje(char){
-  if ($("#pvu"+char).val()!=="" && $("#puc"+char).text()!==""){
+  if ($("#pvu"+char).val()!=="" && $("#puc"+char).val()!==""){
     var pvu=parseFloat($("#pvu"+char).val()).toFixed(2);
-    var puc=parseFloat($("#puc"+char).text()).toFixed(2);
+    var puc=parseFloat($("#puc"+char).val()).toFixed(2);
     var differencia=pvu-puc;
     var porcentaje=(differencia*100)/puc;
     console.log(porcentaje);
@@ -264,9 +276,9 @@ function calcularPorcentaje(char){
 }
 
 function calcularPrecioVentaUnit(char){
-  if ($("#porcentajeGanancia"+char).val()!=="" && $("#puc"+char).text()!==""){
+  if ($("#porcentajeGanancia"+char).val()!=="" && $("#puc"+char).val()!==""){
     var pganancia=parseFloat($("#porcentajeGanancia"+char).val()).toFixed(2);
-    var puc=parseFloat($("#puc"+char).text()).toFixed(2);
+    var puc=parseFloat($("#puc"+char).val()).toFixed(2);
     var pvu=parseFloat((pganancia * puc)/100) + parseFloat(puc) ;
     $("#pvu"+char).val(parseFloat(pvu).toFixed(2));
   }else{

@@ -24,15 +24,15 @@
             input#detallePd.form-control(type='text', placeholder='Marca, color, tamaño') 
           
           .form-group.row(style="background: #e0e0e0;")
-            .col-md-3
-              label(for='precioConpraPd') Precio total de compra:
-              input#precioConpraPd.form-control(type='number', placeholder='0.00' onkeyup="calcularPUC('')")
             .col-md-2
               label(for='cantidadPd') Cantidad Comprada:
               input#cantidadPd.form-control(type='number', placeholder='0' onkeyup="calcularPUC('')") 
             .col-md-3
               label(for='puc') Precio Unitario Compra:
-              label#puc.form-control 0.00
+              input#puc.form-control(type='number', placeholder='0' onkeyup="calcularPTC('')")
+            .col-md-3
+              label(for='precioConpraPd') Precio total de compra:
+              input#precioConpraPd.form-control(type='number', placeholder='0.00' onkeyup="calcularPUC('')")
             .col-md-4
               div(style="margin-top: 35px;")
                 input#incluyeIvaPd(type="checkbox" checked style="-ms-transform: scale(2); -moz-transform: scale(2); -webkit-transform: scale(2); -o-transform: scale(2);") 
@@ -89,15 +89,15 @@
             input#detallePd_.form-control(type='text', placeholder='Marca, color, tamaño') 
           
           .form-group.row(style="background: #e0e0e0;")
-            .col-md-3
-              label(for='precioConpraPd_') Precio total de compra:
-              input#precioConpraPd_.form-control(type='number', placeholder='0.00' onkeyup="calcularPUC('_')")
             .col-md-2
               label(for='cantidadPd_') Cantidad Comprada:
               input#cantidadPd_.form-control(type='number', placeholder='0' onkeyup="calcularPUC('_')") 
             .col-md-3
               label(for='puc_') Precio Unitario Compra:
-              label#puc_.form-control 0.00
+              input#puc_.form-control(type='number', placeholder='0' onkeyup="calcularPTC('_')")
+            .col-md-3
+              label(for='precioConpraPd_') Precio total de compra:
+              input#precioConpraPd_.form-control(type='number', placeholder='0.00' onkeyup="calcularPUC('_')")
             .col-md-4
               div(style="margin-top: 35px;")
                 input#incluyeIvaPd_(type="checkbox" checked style="-ms-transform: scale(2); -moz-transform: scale(2); -webkit-transform: scale(2); -o-transform: scale(2);") 
@@ -245,11 +245,11 @@
               label(for='cantidadPd_a') Cantidad Comprada:
               input#cantidadPd_a.form-control(type='number', placeholder='0' onkeyup="calcularPUC('_a')") 
             .col-md-4
+              label(for='puc_a') Precio Unitario Compra:
+              input#puc_a.form-control(type='number', placeholder='0' onkeyup="calcularPTC('_a')")
+            .col-md-4
               label(for='precioConpraPd_a') Precio total de compra:
               input#precioConpraPd_a.form-control(type='number', placeholder='0.00' onkeyup="calcularPUC('_a')")
-            .col-md-4
-              label(for='puc_a') Precio Unitario Compra:
-              label#puc_a.form-control 0.00
             .col-md-4(style="display:none")
               div(style="margin-top: 35px;")
                 input#incluyeIvaPd_a(type="checkbox" checked style="-ms-transform: scale(2); -moz-transform: scale(2); -webkit-transform: scale(2); -o-transform: scale(2);") 

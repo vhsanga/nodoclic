@@ -1,0 +1,30 @@
+extends ../layoutAdmin
+block contenido 
+  section.content-header
+    h1
+      | Usuarios del sistema
+      
+   
+  // Main content
+  section.content.container-fluid
+    div.row
+      div.col-xs-12
+        div.box
+          div.box-header
+            button#openModal.btn.btn-success
+              i.fa.fa-plus
+              | &nbsp; &nbsp; Ingresar nuevo usuario
+           
+          div.box-body
+            table#tablaUsuarios.table.table-bordered.table-hover
+              thead.tabla_default
+                tr
+                  th #
+                  th Username
+                  th Nombres
+                  th 
+                  th Stock actual
+                  th Precio
+                  th Fecha Compra
+                  th Proveedor        
+                tbody

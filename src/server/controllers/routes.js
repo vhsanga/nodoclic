@@ -11,6 +11,8 @@ var cliente;
 var producto;
 var venta;
 var usuario;
+var admin;
+var adminInterno;
 
     
 
@@ -28,8 +30,11 @@ module.exports = function (app) {
     producto = require('./productoController');
     venta = require('./ventaController');
     usuario = require('./usuarioController');
+    admin = require('./adminController');
+    adminInterno
 
     //implantacion d las rutas
+    app.use('/admin', admin);
     app.use('/', index);
     app.use('/compras',AuthMiddleware.isLogged, compras);
     app.use('/proveedor',AuthMiddleware.isLogged, proveedor);
@@ -37,7 +42,7 @@ module.exports = function (app) {
     app.use('/productos',AuthMiddleware.isLogged, producto);
     app.use('/ventas',AuthMiddleware.isLogged, venta);
     app.use('/usuario',AuthMiddleware.isLogged, usuario);
-
+    
 
     //app.use('/home',AuthMiddleware.isLogged, home);
 
@@ -49,6 +54,12 @@ module.exports = function (app) {
     app.use('/login', passport.authenticate('local', { successRedirect: '/',
                     failureRedirect: '/',
                     failureFlash: true }) );
+
+    app.use('/loginAdmin', passport.authenticate('local', { successRedirect: '/admin',
+                    failureRedirect: '/admin',
+                    failureFlash: true }) );
+
+
 
 
     app.use('/loginProvisional', function(req, res, next) {

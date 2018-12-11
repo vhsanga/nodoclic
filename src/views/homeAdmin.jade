@@ -1,0 +1,25 @@
+extends ./layoutAdmin
+block contenido 
+        // Content Header (Page header)
+        section.content-header
+          h1
+            | Bienvenido Administrador
+        // Main content
+        section.content
+          // Default box
+          .box
+            .box-header.with-border
+              h3.box-title Caja
+            .box-body
+              span Información Importante
+            // /.box-body
+
+
+
+block javascript
+  link(rel="stylesheet" href="/bower_components/datatables.net-bs4/css/dataTables.bootstrap4.min.css")
+  link(rel="stylesheet" href="/css-app/autocommplete.css")
+  script(src="/bower_components/datatables.net/js/jquery.dataTables.min.js")
+  script(src="/bower_components/datatables.net-bs4/js/dataTables.bootstrap4.min.js")
+  link(rel="stylesheet" href="/dist/css/datatables.min.css")    
+  
