@@ -30,7 +30,7 @@ class compraService {
             {type: models.sequelize.QueryTypes.SELECT});    
     };
 
-    getCompraById(id_compra) { 
+    getCompraById(id_compra) { //obtener una compra dado su id
         return models.sequelize.query(
             'SELECT c.id, c.id_producto, pr.id_proveedor, pr.nombre, pr.detalle, pr.codigo_barra, pr.precio_compra, pr.precio_venta, pr.procentaje_ganancia, c.cantidad, c.precio, c.fecha_compra, pv.nombre as proveedor '+
             ' FROM compras c '+
@@ -39,6 +39,17 @@ class compraService {
             ' WHERE c.id='+id_compra,            
             {type: models.sequelize.QueryTypes.SELECT});    
     };
+
+    getComprasHistoricasBydProveedor(id_proveedor) {  //obtener las compras historicas realizadas a un proveedor
+        return models.sequelize.query(
+            'select  ch.id, ch.id_producto, pr.id_proveedor, pr.nombre, pr.detalle, pr.codigo_barra, pr.precio_compra, pr.precio_venta, pr.procentaje_ganancia, ch.cantidad, ch.precio, ch.fecha_compra, ch.referencia  '+
+            'from compras_historico ch  '+
+            'inner join producto pr on ch.id_producto=pr.id  '+
+            'left join proveedor pv on pv.id=pr.id_proveedor '+
+            'where pv.id='+id_proveedor,            
+            {type: models.sequelize.QueryTypes.SELECT});    
+    };
+
 
     crearCompra(data, id_compania) { 
         var puv_historico=parseFloat( parseFloat(data.precio_compra_total) / parseInt(data.stock) ).toFixed(2);

@@ -13,7 +13,6 @@ var venta;
 var usuario;
 var admin;
 var adminInterno;
-
     
 
 var AuthMiddleware = require('../../middleware/auth');
@@ -43,6 +42,7 @@ module.exports = function (app) {
     app.use('/ventas',AuthMiddleware.isLogged, venta);
     app.use('/usuario',AuthMiddleware.isLogged, usuario);
     
+
 
     //app.use('/home',AuthMiddleware.isLogged, home);
 

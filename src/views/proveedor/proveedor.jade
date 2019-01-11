@@ -1,0 +1,47 @@
+extends ../layout
+block contenido 
+  section.content-header
+    h1
+      | Mis Proveedores
+  // Main content
+  section.content.container-fluid
+    div.row
+      div.col-xs-12
+        div.box
+          div.box-header
+            button#openModalProveedor.btn.btn-success
+             i.fa.fa-plus
+             | &nbsp; &nbsp; Ingresar proveedor
+          div.box-body
+            .row
+              .col-md-1
+              .col-md-10
+                table#tablaProveedores.table.table-bordered.table-hover
+                  thead.tabla_default
+                    tr
+                      th #
+                      th Nombres
+                      th Dirección
+                      th Teléfono      
+                      th Representante      
+                      th Valor Comprado     
+                      th      
+                    tbody
+              .col-md-1
+    include ../partials/_addProveedor.jade
+
+block javascript
+  
+  script(src="/bower_components/datatables.net/js/jquery.dataTables.min.js")
+  script(src="/bower_components/datatables.net-bs4/js/dataTables.bootstrap4.min.js")
+
+  script(src="../../bower_components/raphael/raphael.min.js")
+  script(src="../../bower_components/morris.js/morris.min.js")
+
+
+  link(rel="stylesheet" href="/bower_components/datatables.net-bs4/css/dataTables.bootstrap4.min.css")        
+  link(rel="stylesheet" href="/dist/css/datatables.min.css")        
+  link(rel="stylesheet" href="/bower_components/morris.js/morris.css")     
+  link(rel="stylesheet" href="../../dist/css/skins/_all-skins.min.css")   
+  script(src="/js-app/proveedor/proveedor.fn.js")                
+  script(src="/js-app/proveedor/proveedor.init.js")                

@@ -5,10 +5,10 @@
         button.close(type='button', data-dismiss='modal', aria-label='Close')
           span(aria-hidden='true') &times;
         |                 
-        h4.modal-title Ingresar Proveedor
+        h4.modal-title Crear Proveedor
       |               
       .modal-body
-        form
+        form#fromCrearProveedor
           .form-group
             label(for='nombrePv') Nombre Proveedor:
             input#nombrePv.form-control(type='text', placeholder=' Nombre del Proveedor')
@@ -25,6 +25,84 @@
 
       .modal-footer
         button#btnGuardarProveedor.btn.btn-primary(type='button') Guardar Proveedor
+    // /.modal-content
+  // /.modal-dialog
+// /.modal
+
+
+#modalEditarProveedor.modal.fade
+  .modal-dialog.modal-sm
+    .modal-content
+      .modal-header
+        button.close(type='button', data-dismiss='modal', aria-label='Close')
+          span(aria-hidden='true') &times;
+        |                 
+        h4.modal-title Editar Datos del Proveedor
+      |               
+      .modal-body
+        form#fromEditarProveedor
+          .form-group
+            label(for='nombrePv_') Nombre Proveedor:
+            input#nombrePv_.form-control(type='text', placeholder=' Nombre del Proveedor')
+          .form-group
+            label(for='direccionPv_') Dirección:
+            input#direccionPv_.form-control(type='text', placeholder=' Dirección')
+          .form-group
+            label(for='dtelefonoPv_') Teléfono de contacto:
+            input#dtelefonoPv_.form-control(type='text', placeholder='Teléfono') 
+          .form-group
+            label(for='representntePv_') Nombre del Representante:
+            input#representntePv_.form-control(type='text', placeholder='Representante')
+          
+
+      .modal-footer
+        button#btnEditarProveedor.btn.btn-primary(type='button') Guardar Proveedor
+    // /.modal-content
+  // /.modal-dialog
+// /.modal
+
+
+
+#modalComprasAProveedor.modal.fade
+  .modal-dialog.modal-lg
+    .modal-content
+      .modal-header
+        button.close(type='button', data-dismiss='modal', aria-label='Close')
+          span(aria-hidden='true') &times;
+        |                 
+        h4.modal-title Compras Realizadas a un Proveedor
+      |               
+      .modal-body
+        b Proveedor: 
+        span#titleProveedorCompra 
+        br
+        b Valor Comprado: 
+        span#titleProveedorvalor 
+        br
+        b Teléfono: 
+        span#titleProveedorTelefono
+        br
+        b Representante: 
+        span#titleProveedorRepresentante
+        br
+        b Dirección: 
+        span#titleProveedorDireccion
+        br
+        hr
+        table#tablaComprasAProveedores.table.table-bordered.table-hover
+                  thead.tabla_default
+                    tr
+                      th #
+                      th Producto
+                      th Cantidad
+                      th Valor
+                      th Fecha      
+                      th # Factura      
+                    tbody
+          
+
+      .modal-footer
+        button.btn.btn-default(type='button' data-dismiss='modal') Cerrar
     // /.modal-content
   // /.modal-dialog
 // /.modal

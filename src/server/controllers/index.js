@@ -35,4 +35,10 @@ router.get('/verificarSesion', function(req, res, next) {
 	}	
 });
 
+/**paginas externas*/
+router.get('/informacion', function(req, res, next) {
+	res.render('external/informacion', {}); 
+});
+
+
 module.exports = router;

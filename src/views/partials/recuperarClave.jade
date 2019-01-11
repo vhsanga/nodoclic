@@ -1,0 +1,30 @@
+#modalRecuperarClave.modal.fade
+  .modal-dialog
+    .modal-content
+      .modal-header
+        button.close(type='button', data-dismiss='modal', aria-label='Close')
+          span(aria-hidden='true') &times;
+        |                 
+        h4.modal-title Recupere su contraseña
+      |               
+      .modal-body
+        p
+          | Para recuperar su contraseña es necesario que ingrese su nombre de usuario o su correo, Le enviaremos una contraseña temporal a su correo electrónico para que usted pueda ingresar al sistema.
+        br
+        .row
+          .col-md-6
+            form
+              .form-group
+                label(for='usuarioRecupera') Nombre de Usuario / Cédula:
+                input#usuarioRecupera.form-control(type='text', placeholder=' Nombre del Proveedor')
+              .form-group
+                label(for='correoRecupera') Correo:
+                input#correoRecupera.form-control(type='email', placeholder=' Dirección')
+          .col-md-6
+            i.fa.fa-fw.fa-key(style="font-size:48px;position: absolute;margin-top: 23px;margin-left: 3px; color: #FF9800;")
+            i.fa.fa-fw.fa-unlock-alt(style="font-size:106px;margin-left: 31px; color: #00a65a;")
+      .modal-footer
+        button#btnGuardarProveedor.btn.btn-primary(type='button') Generar Contraseña Temporal 
+    // /.modal-content
+  // /.modal-dialog
+// /.modal
