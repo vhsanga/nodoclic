@@ -34,7 +34,7 @@ function loadTablacompras(){
                             }
         },
         { "data": "precio" , render: function(data, type, row){
-                                return  parseInt(data).toFixed(2);
+                                return  parseFloat(data).toFixed(2);
                             }
         },
         { "data": "fecha_compra" },

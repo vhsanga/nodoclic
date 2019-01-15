@@ -109,7 +109,7 @@ function mostrarComprasAProveedor(id_proveedor){
         						if(data == null){
         							val=0;
         						}	
-                                return  parseInt(val).toFixed(2);
+                                return  parseFloat(val).toFixed(2);
                             }
         },
         { "data": "fecha_compra" },

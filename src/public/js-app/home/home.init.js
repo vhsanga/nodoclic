@@ -11,12 +11,12 @@ $(function(){
 function initElements(){
 	
 	$("#cli-ci").keyup(function(event){
-		if( event.keyCode === 13 ){
+		if( event.keyCode === UTIL_ENTERKEYCODE ){
 			buscarCedula($("#cli-ci").val());
 		}
 	});
 	$("#pro-codigo-barra").keyup(function(event){
-		if( event.keyCode === 13 ){
+		if( event.keyCode === UTIL_ENTERKEYCODE ){
 			getProductoByCodigoBarra($("#pro-codigo-barra").val());
 		}		
 	});
@@ -66,6 +66,7 @@ function initElements(){
 		imprimirDiv("cuerpoFactura","");
 	});
 
+	$("#pro-nombre").focus();
 }
 
 
@@ -105,8 +106,8 @@ function pre_guardarVenta(cliente){
 	$("#cli-direccion").text(cliente.direccion);
 	$("#cli-telefono").text(cliente.telefono);
 	$('#conf_valor').text($('#sumaTotal').text());
-	$('#conf_valor_recibido').focus();
-	$('#modalPreventa').modal({backdrop: 'static', keyboard: false});
+	$('#modalPreventa').modal({backdrop: 'static', keyboard: false});		
+	setTimeout(function(){  $('#conf_valor_recibido').focus(); 	},1000);
 };
 
 
@@ -118,8 +119,9 @@ function pre_guardarVentaConsumidorFinal(){
 	$("#cli-direccion").text("S/N");
 	$("#cli-telefono").text("S/N");
 	$('#conf_valor').text($('#sumaTotal').text());
-	$('#conf_valor_recibido').focus();
 	$('#modalPreventa').modal({backdrop: 'static', keyboard: false});
+	setTimeout(function(){  $('#conf_valor_recibido').focus(); 	},1000);
+	
 };
 
 function mostrarClienteEditar(cliente){

@@ -1,7 +1,9 @@
 moment.locale('es')  ;
 const IVA=12;
-const  MINIMO_STOCK=4
-
+const  MINIMO_STOCK=4;
+const UTIL_ENTERKEYCODE=13;  //para poner el cursor en el campo de busqueda de producto
+const UTIL_CONTROL_ENTER_VENDER=10;   //atajo para realziar venta 
+const UTIL_CONTROL_ESPACIO_BUSCAR_CLIENTE=0;  //atajo para busar cliente liego de haber ingresado la cedula
 var tempoAlert;
 
 

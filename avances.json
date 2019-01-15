@@ -34,6 +34,12 @@ avances:{
 		"guardar registros historicos de compras tabla compras_historicos", 
 		"aumentar el stock de un producto, al aumentar un stock debe guardarse como historico, para ver las compras realizadas de un fututo", 
 		
+	],
+	"fecha":"2019-1-14", "acciones":[
+		"Ingresar y modificar proveedores /proveedor ", 
+		"ver las compras que se ha hecho a un proveedor /proveedor", 
+		"Atajos para realziar una venta",
+		
 	]
 }
 }

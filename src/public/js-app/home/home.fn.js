@@ -35,7 +35,7 @@ function agrearAtabla(p){
           
       });
 
-      $("#cant-"+p.id).keyup(function() {
+      $("#cant-"+p.id).keyup(function(event) {
         if($("#cant-"+p.id).val()!=""){
           if(parseInt($("#cant-"+p.id).val())>0){
             var pvp=parseFloat( parseInt($("#cant-"+p.id).val()) * parseFloat($("#pvu-"+p.id).text() )).toFixed(2) 
@@ -63,6 +63,11 @@ function agrearAtabla(p){
       });
       sumatoriaFactura();
       $("#clienteForm").show();
+
+      $("#cant-"+p.id).keypress(function(event) {
+          atajosTeclado(event.keyCode);
+      });
+
   }else{
 
     $("#cant-"+productoSelecionados[pos].id_producto).val((productoSelecionados[pos].cantidad +1));
@@ -71,6 +76,14 @@ function agrearAtabla(p){
     modoficarCantidadEnLista( productoSelecionados[pos].id_producto,  parseInt($("#cant-"+productoSelecionados[pos].id_producto).val()), pvp);
   }
       
+}
+function atajosTeclado(keyCode){
+  console.log(keyCode);
+  if(keyCode==UTIL_ENTERKEYCODE){
+      $("#pro-nombre").focus();
+  }if(keyCode==UTIL_CONTROL_ENTER_VENDER){
+      pre_guardarVentaConsumidorFinal();
+  }
 }
 
 function buscarEnLista(id){

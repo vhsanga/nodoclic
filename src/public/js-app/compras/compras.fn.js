@@ -111,7 +111,7 @@ function mostrarCompra(id){
   mostrarMensaje(_CONST.CARGANDO, "process");
   $.get( "/compras/list/"+id).done(function( data ) {
         util_verificarSesionLocal(data);
-
+        console.log(data);
         $("#ProveedorPd_").val(data.id_proveedor);
         if(data.id_proveedor===null){
           $("#ProveedorPd_").val("null");
@@ -133,6 +133,13 @@ function mostrarCompra(id){
           $("#divCD_").show();
         }else{
           $("#noCodBar_").show();
+        }
+        if(data.incluye_iva==1){
+          $("#incluyeIvaPd_").attr("checked","");
+          $("#incluyeIvaPd_").prop('checked',true)
+        }else{
+          $("#incluyeIvaPd_").attr("checked","");
+          $("#incluyeIvaPd_").prop('checked',false)
         }
         $('#modalEditarCompra').modal({backdrop: 'static', keyboard: false})    
         cerrarMensaje();

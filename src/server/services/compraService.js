@@ -32,7 +32,7 @@ class compraService {
 
     getCompraById(id_compra) { //obtener una compra dado su id
         return models.sequelize.query(
-            'SELECT c.id, c.id_producto, pr.id_proveedor, pr.nombre, pr.detalle, pr.codigo_barra, pr.precio_compra, pr.precio_venta, pr.procentaje_ganancia, c.cantidad, c.precio, c.fecha_compra, pv.nombre as proveedor '+
+            'SELECT c.id, c.id_producto, pr.id_proveedor, pr.nombre, pr.detalle, pr.codigo_barra, pr.precio_compra, pr.precio_venta, pr.procentaje_ganancia, pr.incluye_iva, c.cantidad, c.precio, c.fecha_compra, pv.nombre as proveedor '+
             ' FROM compras c '+
             ' inner join producto pr  on c.id_producto=pr.id '+
             ' left join proveedor pv on pr.id_proveedor=pv.id '+

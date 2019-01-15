@@ -43,7 +43,7 @@ function loadTablaProveedores(){
         						if(data == null){
         							val=0;
         						}	
-                                return  parseInt(val).toFixed(2);
+                                return  parseFloat(val).toFixed(2);
                             }
         },
         { "data": null, render: function(data, type, row){
