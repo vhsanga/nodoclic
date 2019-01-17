@@ -13,6 +13,7 @@ var venta;
 var usuario;
 var admin;
 var adminInterno;
+var ganancias
     
 
 var AuthMiddleware = require('../../middleware/auth');
@@ -28,6 +29,7 @@ module.exports = function (app) {
     cliente = require('./clienteController');
     producto = require('./productoController');
     venta = require('./ventaController');
+    ganancias = require('./gananciasController');
     usuario = require('./usuarioController');
     admin = require('./adminController');
     adminInterno
@@ -41,6 +43,7 @@ module.exports = function (app) {
     app.use('/productos',AuthMiddleware.isLogged, producto);
     app.use('/ventas',AuthMiddleware.isLogged, venta);
     app.use('/usuario',AuthMiddleware.isLogged, usuario);
+    app.use('/ganancias',AuthMiddleware.isLogged, ganancias);
     
 
 
