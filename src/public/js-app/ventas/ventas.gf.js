@@ -44,7 +44,10 @@ function loadChartVentasRangoFecha(data){
     parseTime: false,
 
   }).on('click', function(i, row){
+        util_verificarSesionServer(function(){
           loadTablaVentaFecha( moment(data[i].fecha).format('YYYY-MM-DD'),'LL');
-         // mostrarCompraMes(data[i].anio, data[i].mes);          
+         // mostrarCompraMes(data[i].anio, data[i].mes);   
+        });
+                 
     });
 }

@@ -1,18 +1,18 @@
 function getVentasByFecha(fecha, callback){
-  util_verificarSesionServer();
-	$.get( "/ventas/listar_resume/"+fecha).done(function( data ) {
-       callback(data);
-    }).fail(function(e) {
-      try{
-           mostrarMensaje(e.responseJSON.error.message, "danger");
-       }catch(e){  mostrarMensaje(_CONST.ERROR_CARGAR_AJAX+", vuelva a cargar la página", "danger"); }
-    }).always(function() { setTimeout(function(){ cerrarMensaje()},18000)    });
+  util_verificarSesionServer(function(){
+    	$.get( "/ventas/listar_resume/"+fecha).done(function( data ) {
+           callback(data);
+        }).fail(function(e) {
+          try{
+               mostrarMensaje(e.responseJSON.error.message, "danger");
+           }catch(e){  mostrarMensaje(_CONST.ERROR_CARGAR_AJAX+", vuelva a cargar la página", "danger"); }
+        }).always(function() { setTimeout(function(){ cerrarMensaje()},18000)    });
+  });
 }
 
 
 
-function loadTablaVentaFecha(fecha, formato){
-  util_verificarSesionServer();
+function loadTablaVentaFecha(fecha, formato){  
   var dtVentasFecha=$('#tablaVentaFecha').DataTable( {
 
     "ajax": {

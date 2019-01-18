@@ -31,7 +31,9 @@ function initElements(){
 	});
 
 	$("#btnGuardarVenta").click(function(){
-		guardarVenta();
+		util_verificarSesionServer(function(){
+			guardarVenta();
+		})		
 	});
 
 	$("#caja-resume-ventas-hoy").click(function(){

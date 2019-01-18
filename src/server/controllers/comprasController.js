@@ -86,7 +86,9 @@ router.post('/actualizarStock', function(req, res, next) {
 	var item=compraService.updateCompraHistorico(req.body, req.body.id, req.user.id_compania);
 	item.then(function(compraUdp){
 		 console.log("updateCompraHistorico * * * * FIN ");
-		item=productoService.aumentarStock(req.body.id_producto, req.body.id);
+		 console.log(req.body);
+		 console.log(" * * ** * ** * * * * * * * *	");
+		item=productoService.aumentarStock(req.body.id_producto, req.body);
 		item.then(function(prodUdp){
 			res.json(true);
 		}).catch(function(err){ console.log("1 ", err); res.json({success: false, error: err}, 400); });

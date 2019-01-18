@@ -24,7 +24,6 @@ function loadTablacompras(){
         { "data": null },
         { "data": "nombre" },
         { "data": "detalle" },
-        { "data": "cantidad" },
         { "data": "stock" , render: function(data, type, row){ 
                             var cont=data;
                               if(parseInt(data)<MINIMO_STOCK){
@@ -33,7 +32,7 @@ function loadTablacompras(){
                             return cont +"&nbsp;&nbsp;<button onclick='anadirStock("+row.id_producto+")'> + añadir </button>";
                             }
         },
-        { "data": "precio" , render: function(data, type, row){
+        { "data": "precio_venta" , render: function(data, type, row){
                                 return  parseFloat(data).toFixed(2);
                             }
         },
@@ -45,7 +44,7 @@ function loadTablacompras(){
       rowId:'id',
       columnDefs: [
         {
-            targets: 4,
+            targets: [3,4],
             className: 'dt-body-right'
         }
       ],
@@ -82,9 +81,10 @@ function loadTablacompras(){
 function initElementos(){
   var today=moment().format('YYYY-MM-DD');
   $("#openModal").click(function(e){
-      util_verificarSesionServer();
-      document.getElementById("fomrCrearCompra").reset();      
-      $('#modalCrearCompra').modal({backdrop: 'static', keyboard: false});  
+      util_verificarSesionServer(function(){
+         document.getElementById("fomrCrearCompra").reset();      
+         $('#modalCrearCompra').modal({backdrop: 'static', keyboard: false}); 
+      });       
   })
   $("#open-crear-prov").click(function(e){
     abrirModalCrearProveedor();
@@ -108,11 +108,14 @@ function initElementos(){
   $( "#fechaCompraPd" ).val(today);
 
   $("#btnGuardarCompra").click(function(){
-
-      guardarCompraProducto();
+      util_verificarSesionServer(function(){
+          guardarCompraProducto();
+      });
   });
   $("#btnEditarCompra").click(function(){
-      editarCompra();
+      util_verificarSesionServer(function(){
+          editarCompra();
+      });
   });
   $("#btnGuardarProveedor").click(function(){
       guardarProveedor_compra();

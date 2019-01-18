@@ -10,7 +10,7 @@ var models = require('../models/index');
 class productoService {
  
 
-    getProductos(id_compania) { 
+    getProductos(id_compania) { //obtener todos los productos de una compania/almaceen o negocio
         return models.sequelize.query(
             "SELECT p.id, p.nombre, p.detalle, p.precio_compra, p.precio_venta,  p.incluye_iva, p.precio_sin_iva, p.valor_iva, p.stock, p.codigo_barra "+
             " FROM nodoclic.producto p INNER JOIN compras  c ON p.id=c.id_producto"+
@@ -32,7 +32,7 @@ class productoService {
     
     updateProducto(data,id) { 
         return models.sequelize.query(
-            "UPDATE `nodoclic`.`producto` SET `nombre` = '"+data.nombre+"', `detalle` = '"+data.detalle+"', `precio_compra` = '"+data.precio_compra+"', `precio_venta` = '"+data.precio_venta+"', `stock` = '"+data.stock+"', `procentaje_ganancia`= '"+data.ganancia+"', `id_proveedor` = "+data.id_proveedor+" "+
+            "UPDATE `nodoclic`.`producto` SET `nombre` = '"+data.nombre+"', `detalle` = '"+data.detalle+"', `precio_compra` = '"+data.precio_compra+"', `precio_venta` = '"+data.precio_venta+"', `procentaje_ganancia`= '"+data.ganancia+"', `id_proveedor` = "+data.id_proveedor+",  `precio_sin_iva`= '"+data.precio_sin_iva+"', `valor_iva` = '"+data.valor_iva+"', `incluye_iva`="+data.incluye_iva+"   "+
             " WHERE (`id` = '"+id+"');",            
             {type: models.sequelize.QueryTypes.UPDATE});    
     };
@@ -52,9 +52,10 @@ class productoService {
             {type: models.sequelize.QueryTypes.SELECT});    
     };
 
-    aumentarStock(id_producto,nuevo_stock) { 
+    aumentarStock(id_producto,data) { //para aumentar el stock tambien se debe atualziar el precio (compra venta) del nuevo stock
+        console.log(data);
         return models.sequelize.query(
-            "UPDATE producto as p, (select stock from producto WHERE id="+id_producto+") as p1   set p.stock=(p1.stock+ "+nuevo_stock+") "+
+            "UPDATE producto as p, (select stock from producto WHERE id="+id_producto+") as p1   set p.stock=(p1.stock+ "+data.stock+"), p.precio_compra="+data.precio_compra +", p.precio_venta="+data.precio_venta +", p.procentaje_ganancia= '"+data.ganancia+"', p.precio_sin_iva= '"+data.precio_sin_iva+"', p.valor_iva= '"+data.valor_iva+"'  "+
             " WHERE p.id="+id_producto,            
             {type: models.sequelize.QueryTypes.UPDATE});    
     };

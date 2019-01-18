@@ -71,15 +71,15 @@ function guardarCompra(callback){
     return false;
   }
   var dataSend=obtenerCamposCompra("");
-  console.log(dataSend);
+  mostrarMensaje(_CONST.PROCESS,"process");
   $.post( "/compras/crear",dataSend).done(function( dataRes ) {
-      callback(dataSend,dataRes);
-    }).fail(function(e) {
-      try{
-           console.log(e);
-           mostrarMensaje(e.responseJSON.error.message, "danger");
-       }catch(e){ console.log(e); mostrarMensaje(_CONST.ERROR_CREAR_AJAX, "danger"); }
-    }).always(function() { setTimeout(function(){ cerrarMensaje()},18000)  });
+        callback(dataSend,dataRes);
+  }).fail(function(e) {
+        try{
+             console.log(e);
+             mostrarMensaje(e.responseJSON.error.message, "danger");
+         }catch(e){ console.log(e); mostrarMensaje(_CONST.ERROR_CREAR_AJAX, "danger"); }
+  }).always(function() { setTimeout(function(){ cerrarMensaje()},18000)  });
 }
 
 
@@ -90,7 +90,8 @@ function editarCompra(){
   }
   var dataSend=obtenerCamposCompra("_");
   dataSend["id"]=idCompraSelecionada;
-  $.post( "/compras/editar",dataSend).done(function( dataRes ) {
+  console.log(dataSend);
+  $.post( "/compras/editar",dataSend).done(function( dataRes ) {        
         loadTablacompras()
         document.getElementById("fomEditarCompra").reset();
         mostrarMensaje(_CONST.EXITO_CREAR_AJAX,"success");

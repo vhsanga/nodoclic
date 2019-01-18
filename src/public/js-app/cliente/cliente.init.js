@@ -7,8 +7,10 @@ $(function() {
 
 function initElements(){
   $("#openModalCliente").click(function(){
-    util_verificarSesionServer();
-    $('#modalCrearCliente').modal({backdrop: 'static', keyboard: false}); 
+    util_verificarSesionServer(function(){
+       $('#modalCrearCliente').modal({backdrop: 'static', keyboard: false}); 
+    });
+    
   })
   $("#btnGuardarCliente").click(function(){
     guardarCliente(function(cliente){
@@ -76,11 +78,12 @@ function loadTablaClientes(){
         }
         else {
           if(dtClientes.row( this ).data() != null){
-            util_verificarSesionServer();
-            dtClientes.$('tr.selected').removeClass('selected');
-            $(this).addClass('selected');
-            $("#total-ventas-cli").text(" "+parseFloat(dtClientes.row( this ).data().valor_total).toFixed(2));
-            mostrarCliente(dtClientes.row( this ).data());
+            util_verificarSesionServer(function(){
+              dtClientes.$('tr.selected').removeClass('selected');
+              $(this).addClass('selected');
+              $("#total-ventas-cli").text(" "+parseFloat(dtClientes.row( this ).data().valor_total).toFixed(2));
+              mostrarCliente(dtClientes.row( this ).data());
+            });
           }
             
         }

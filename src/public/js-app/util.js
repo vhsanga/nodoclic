@@ -130,7 +130,7 @@ var MESES=["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agos
 
 
 var _CONST={
-    PATRON_CONTENT_INDEX:"<!DOCTYPE html><html></html><head>",
+    PATRON_CONTENT_INDEX:"<!DOCTYPE html>",
     PROCESS:"Espere, Procesando...",
     NO_HAY_PROVEEDORES:"Todavia no tiene proveedores, ingrese un proveedor",
     VALID_NOMBRE_PROVEEDOR:"Ingrese el nombre del proveedor",

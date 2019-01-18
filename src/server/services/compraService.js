@@ -70,8 +70,9 @@ class compraService {
             {type: models.sequelize.QueryTypes.UPDATE});    
     };
 
-    updateCompraHistorico(data,id,id_compania) {  //actualiza una compra y manda a guardar un historico
+    updateCompraHistorico(data,id,id_compania) {  //actualiza una compra y manda a guardar un historico  (actualizar un stock)
         console.log("updateCompraHistorico * * * * 1 ");
+        console.log(data.stock);
         return models.sequelize.query(  
             "UPDATE compras as c, (select cantidad from compras WHERE id="+id+") as c1   set c.cantidad=(c1.cantidad+ "+data.stock+")  , `precio` = '"+data.precio_compra_total+"', `fecha_compra` = '"+data.fecha_compra+"'  "+
             "WHERE (c.id = '"+id+"');",            

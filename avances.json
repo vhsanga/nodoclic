@@ -32,7 +32,7 @@ avances:{
 	],
 	"fecha":"2018-11-23", "acciones":[
 		"guardar registros historicos de compras tabla compras_historicos", 
-		"aumentar el stock de un producto, al aumentar un stock debe guardarse como historico, para ver las compras realizadas de un fututo", 
+		"aumentar el stock de un producto, al aumentar un stock debe guardarse como historico, para ver las compras realizadas de un fututo, es decir para aumentar un stock se debe hacer mediante una compra", 
 		
 	],
 	"fecha":"2019-1-14", "acciones":[

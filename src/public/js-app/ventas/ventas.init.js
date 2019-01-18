@@ -1,8 +1,10 @@
 
 
 $(function() {
-	mostrarVentasResumeMeses();
-	mostrarVentasResumeEstaSemana();
+	util_verificarSesionServer(function(){
+		mostrarVentasResumeMeses();
+		mostrarVentasResumeEstaSemana();
+	});	
 	initElement();
 });
 

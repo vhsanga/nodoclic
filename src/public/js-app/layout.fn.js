@@ -13,6 +13,10 @@ $(function(){
     return false
   });
 
+  $('#modalLogin').on('hidden.bs.modal', function () {
+     util_verificarSesionServer();
+  })
+
 });
 
 
@@ -108,7 +112,7 @@ function util_verificarSesionLocal(data){
 }
 
 
-function util_verificarSesionServer(){ 
+function util_verificarSesionServer(callback){ 
     $.get( "/verificarSesion").done(function( data ) {
         data=JSON.stringify(data)
         console.log(data.toString());
@@ -120,11 +124,17 @@ function util_verificarSesionServer(){
                 $('#modalLogin').modal({backdrop: 'static', keyboard: false});
                 cerrarMensaje();
             },1000);             
+        }else{
+          if(typeof callback === 'function'){
+              callback();
+            }
         }
     }).fail(function(e) {
       console.log(e);
     }).always(function() { setTimeout(function(){ cerrarMensaje()},18000)    });        
 }
+
+
 
 
 
