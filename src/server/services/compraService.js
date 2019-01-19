@@ -96,11 +96,11 @@ class compraService {
             {type: models.sequelize.QueryTypes.SELECT});    
     };
 
-
-
-   
-
-
+    getValorComprasDentroDeRagoFecha(id_compania, fecha_incial, fecha_final) {  //consulta de ventas por dias dentro de un rango de dos fechas       
+        return models.sequelize.query(
+        "select sum(precio) valor_compra from  compras_historico where id_compania="+id_compania+" and (fecha_compra between '"+fecha_incial+"' and '"+fecha_final+"') ",            
+        {type: models.sequelize.QueryTypes.SELECT});
+    };
 
 }
     

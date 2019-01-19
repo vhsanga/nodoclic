@@ -120,7 +120,7 @@ function util_verificarSesionServer(callback){
         if(n!=-1){
             mostrarMensaje(_CONST.PROCESS,"process");
             setTimeout(function(){
-                $('.modal').modal('hide');
+                //$('.modal').modal('hide');
                 $('#modalLogin').modal({backdrop: 'static', keyboard: false});
                 cerrarMensaje();
             },1000);             

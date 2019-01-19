@@ -87,7 +87,7 @@ class ventaService {
         "GROUP BY YEAR(fecha),month(fecha),day(fecha)",            
         {type: models.sequelize.QueryTypes.SELECT});
     };
-
+    
     getResumeVentasAcliente(id_cliente, id_compania) {  //resumen de ventas realizadas a un cliente        
         if(id_cliente ==="null" ){
             return models.sequelize.query(
@@ -102,10 +102,11 @@ class ventaService {
         }        
     };
 
-
-   
-
-
+    getValorVentasDentroDeRagoFecha(id_compania, fecha_incial, fecha_final) {  //consulta de ventas por dias dentro de un rango de dos fechas       
+        return models.sequelize.query(
+        "select sum(valor_total) valor_venta from ventas where id_compania="+id_compania+" and (fecha between '"+fecha_incial+"' and '"+fecha_final+"') ",            
+        {type: models.sequelize.QueryTypes.SELECT});
+    };
 
 }
     
