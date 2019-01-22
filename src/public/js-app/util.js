@@ -174,6 +174,7 @@ var _CONST={
     CAMPO_PASS_VACIO:"Ingrese la contraseña actual ",
     CAMPO_PASS1_VACIO:"Ingrese la nueva contraseña ",
     CAMPO_PASS2_VACIO:"Repita la contraseña nueva",
+    ERROR_CARGAR_VALORES:"No se ha podido cargar los valores",
 
 }
 

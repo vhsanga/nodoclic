@@ -5,4 +5,77 @@ block contenido
       | Margen de Ganancias
       small Estadìsticas
   // Main content
-  section.content.container-fluid 
+  section.content.container-fluid
+    .row
+      div.col-xs-12.col-md-6
+        div.box
+          div.box-header
+            i.fa.fa-edit
+            h3.box-title  Este mes
+          div.box-body
+            .row
+              .col-md-12.col-sx-12
+                p Período
+                  br
+                  b Desde:
+                  span#desdeMesActual
+                  br
+                  b Hasta: 
+                  span#hastaMesActual
+                hr
+            .row
+              .col-md-7.col-lg-7.col-xs-12.col-sm-12
+                div(style="text-align: end;  background: #d5f3d7;")
+                  b  Ventas (Ingresos): &nbsp &nbsp &nbsp
+                  span#ventasMesActual
+                  br
+                  b Compras (Egresos):&nbsp &nbsp &nbsp
+                  span#comprasMesActual
+                  br
+                  b Ganancia Mes:&nbsp &nbsp &nbsp
+                  span#gananciabMesActual
+
+              .col-md-5.col-lg-5.col-xs-12.col-sm-12
+                .chart
+                  canvas#barChart(style="height:270px")
+      div.col-xs-12.col-md-6
+        div.box
+          div.box-header
+            i.fa.fa-edit
+            h3.box-title  Otra Fecha
+          div.box-body
+            .row
+              .col-md-12.col-sx-12
+                p Período
+                  br
+                  b Desde:&nbsp &nbsp
+                  input#desdeMesOtro(placeholder="Escoja")
+                  br
+                  b Hasta:&nbsp &nbsp 
+                  input#hastaMesOtro(placeholder="Escoja")
+                  &nbsp &nbsp 
+                  button#btnConsultarMesOtro.btn.btn-primary 
+                    i.fa.fa-search
+                    |&nbsp Consultar
+                hr
+            .row
+              .col-md-7.col-lg-7.col-xs-12.col-sm-12
+                div(style="text-align: end;  background: #d5f3d7;")
+                  b  Ventas (Ingresos): &nbsp &nbsp &nbsp
+                  span#ventasMesActual_
+                  br
+                  b Compras (Egresos):&nbsp &nbsp &nbsp
+                  span#comprasMesActual_
+                  br
+                  b Ganancia Mes:&nbsp &nbsp &nbsp
+                  span#gananciabMesActual_
+
+              .col-md-5.col-lg-5.col-xs-12.col-sm-12
+                .chart
+                  canvas#barChart_(style="height:270px")
+block javascript
+  
+
+  script(src="../../bower_components/chart.js/Chart.js")
+  script(src="/js-app/ganancias/ganancias.init.js")
+  script(src="/js-app/ganancias/ganancias.gf.js")

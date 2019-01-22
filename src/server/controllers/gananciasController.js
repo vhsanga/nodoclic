@@ -18,12 +18,12 @@ router.get('/', function(req, res, next) {
 /* obtener valor de compra y venta de un rango */
 router.get('/getValorVentasDentroDeRagoFecha/:fecha_i/:fecha_f', function(req, res, next) {
 	var item=ventaService.getValorVentasDentroDeRagoFecha(req.user.id_compania, req.params.fecha_i,req.params.fecha_f);
-	item.then(function(valor_venta){
+	item.then(function(venta){
 		item=compraService.getValorComprasDentroDeRagoFecha(req.user.id_compania, req.params.fecha_i,req.params.fecha_f);
-		item.then(function(valor_compra){
+		item.then(function(compra){
 			res.json({
-				valor_venta:valor_venta,
-				valor_compra:valor_compra
+				valor_venta:venta[0].valor_venta,
+				valor_compra:compra[0].valor_compra
 			});
 		}).catch(function(err){ console.log("1 ", err); res.json({success: false, error: err}, 400); });
 	}).catch(function(err){ console.log("1 ", err); res.json({success: false, error: err}, 400); });
