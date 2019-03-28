@@ -40,8 +40,8 @@ function guardarProveedor_compra(){
     if(dataRes.result){
           mostrarMensaje(_CONST.EXITO_CREAR_PROVEEDOR, "success");
           cargarProveedores(function(){
-            $("#ProveedorPd").val(dataSend.idProveedor[0]);
-            $("#ProveedorPd_").val(dataSend.idProveedor[0]);
+            $("#ProveedorPd").val(dataRes.idProveedor[0]);
+            $("#ProveedorPd_").val(dataRes.idProveedor[0]);
           });
           $('#modalCrearProveedor').modal('hide') ; 
     }
