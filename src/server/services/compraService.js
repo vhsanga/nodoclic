@@ -92,7 +92,8 @@ class compraService {
             "SELECT YEAR(fecha_compra) as anio, MONTH(fecha_compra) as mes, count(id) as num_compras, sum(precio) as precio"+
             " FROM nodoclic.compras "+
             " WHERE id_compania="+id_compania+" and eliminado=0 "+
-            " GROUP BY YEAR(fecha_compra), MONTH(fecha_compra)",            
+            " GROUP BY YEAR(fecha_compra), MONTH(fecha_compra)"+
+            " ORDER BY fecha_compra",            
             {type: models.sequelize.QueryTypes.SELECT});    
     };
 

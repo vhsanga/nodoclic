@@ -30,12 +30,14 @@ function initElement(){
 
 function mostrarValorComprasVentasFechaRango(fecha_i, fecha_f, char){
   $.get( "/ganancias/getValorVentasDentroDeRagoFecha/"+fecha_i+"/"+fecha_f).done(function( data ) {
-        console.log(data);
-        $("#ventasMesActual"+char).text(parseFloat(data.valor_venta).toFixed(2));
-        $("#comprasMesActual"+char).text(parseFloat(data.valor_compra).toFixed(2));
-        var gananciaB=data.valor_venta-data.valor_compra;
+       
+        let v_venta=data.valor_venta==null ? 0.00 : parseFloat(data.valor_venta).toFixed(2);
+        let v_compra=data.valor_compra==null ? 0.00 : parseFloat(data.valor_compra).toFixed(2);
+        $("#ventasMesActual"+char).text( v_venta);
+        $("#comprasMesActual"+char).text(v_compra);
+        var gananciaB=v_venta - v_compra;
         $("#gananciabMesActual"+char).text(parseFloat(gananciaB).toFixed(2));        
-        graficarGananciasMesActual( parseFloat(data.valor_compra).toFixed(2), parseFloat(data.valor_venta).toFixed(2), char);
+        graficarGananciasMesActual( v_compra, v_venta, char);
     }).fail(function(e) {
       try{
             mostrarMensaje(e.responseJSON.error.message, "danger");
