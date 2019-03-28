@@ -36,12 +36,12 @@ function cargarProveedores(callback ){
 
 
 function guardarProveedor_compra(){
-  guardarProveedor(function(data){ // esta funcion se encuentra en /proveedor/proeedor.fn.js
-    if(data.result){
+  guardarProveedor(function(dataSend, dataRes){ // esta funcion se encuentra en /proveedor/proeedor.fn.js
+    if(dataRes.result){
           mostrarMensaje(_CONST.EXITO_CREAR_PROVEEDOR, "success");
           cargarProveedores(function(){
-            $("#ProveedorPd").val(data.idProveedor[0]);
-            $("#ProveedorPd_").val(data.idProveedor[0]);
+            $("#ProveedorPd").val(dataSend.idProveedor[0]);
+            $("#ProveedorPd_").val(dataSend.idProveedor[0]);
           });
           $('#modalCrearProveedor').modal('hide') ; 
     }

@@ -17,9 +17,12 @@ function initElements(){
 	});
 	$('#btnGuardarProveedor').click(function(){		
 		guardarProveedor(function(dataSend, dataRes){
+      console.log(dataRes);
 			if(dataRes.result==true){
 				dataSend["id"]=dataRes.idProveedor
 				agregarFilaATabla(dataSend, dtProveedores);
+        mostrarMensaje(_CONST.EXITO_CREAR_PROVEEDOR, "success");
+        $('#modalCrearProveedor').modal('hide');
 			}else{ mostrarMensaje(_CONST.ERROR_CREAR_AJAX, "danger"); }
 		});
 	});
