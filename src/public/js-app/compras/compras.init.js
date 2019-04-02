@@ -159,7 +159,6 @@ function loadTablaComprasMes(mes){
                             }
         },
         { "data": "fecha_compra" },
-        { "data": "referencia" },
         { "data": "proveedor" }
       ],
       "language":idiomaEspaniol(),

@@ -38,8 +38,14 @@ avances:{
 	"fecha":"2019-1-14", "acciones":[
 		"Ingresar y modificar proveedores /proveedor ", 
 		"ver las compras que se ha hecho a un proveedor /proveedor", 
-		"Atajos para realziar una venta",
-		
+		"Atajos para realziar una venta",		
+	],
+	"fecha":"2019-3-29", "acciones":[
+		"Mostrar el porcentaje de compras y ventas del mes ", 
+		"Cambiar la contraseña ",
+		"PENDIENTE recuperar contraseña ",
+		"aumentar campo  ",
+				
 	]
 }
 }

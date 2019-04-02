@@ -23,6 +23,14 @@ class usuarioService {
             {type: models.sequelize.QueryTypes.SELECT});    
     };
 
+    getUsuarioByEmail(user_email) { 
+        return models.sequelize.query(
+            'SELECT  u.id, u.usuario, u.pass, u.nombres, u.id_compania, c.nombre  '+
+            ' FROM usuario u INNER JOIN  compania c ON u.id_compania=c.id  '+
+            ' WHERE u.email="'+user_email+'" AND u.eliminado=FALSE; ',            
+            {type: models.sequelize.QueryTypes.SELECT});    
+    };
+
     getUsuarioById(id) { 
         return models.sequelize.query(
             "SELECT u.id, u.usuario, u.pass, u.nombres, u.email, u.telefono, u.direccion, u.id_compania, c.nombre as nombre_comp, c. direccion as direccion_comp, c.telefono as telefono_comp, c.representante as representante_comp "+

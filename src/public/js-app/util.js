@@ -171,6 +171,7 @@ var _CONST={
     PASS_ANTERIOR_FAIL:"Su contraseña actual es incorrecta. ",
     NO_USER_FOUND:"No se ha encontrado el usuario. ",
     CAMPO_USER_VACIO:"Ingrese el nombre de usuario ",
+    CAMPO_USER_CORREO_VACIO:"Ingrese el nombre de usuario  o el correo ",
     CAMPO_PASS_VACIO:"Ingrese la contraseña actual ",
     CAMPO_PASS1_VACIO:"Ingrese la nueva contraseña ",
     CAMPO_PASS2_VACIO:"Repita la contraseña nueva",
