@@ -17,7 +17,7 @@ class usuarioService {
 
     getUsuarioByUsername(username) { 
         return models.sequelize.query(
-            'SELECT  u.id, u.usuario, u.pass, u.nombres, u.id_compania, c.nombre  '+
+            'SELECT  u.id, u.usuario, u.email, u.pass, u.nombres, u.id_compania, c.nombre  '+
             ' FROM usuario u INNER JOIN  compania c ON u.id_compania=c.id  '+
             ' WHERE u.usuario="'+username+'" AND u.eliminado=FALSE; ',            
             {type: models.sequelize.QueryTypes.SELECT});    
@@ -46,9 +46,9 @@ class usuarioService {
             {type: models.sequelize.QueryTypes.UPDATE}); 
     }
 
-    updateUserPass(data){
+    setUrlPass(data){
         return models.sequelize.query(
-            "update usuario set usuario='"+data.nombreUsuario+"', pass='"+data.passNuevo+"'  "+
+            "update usuario set urlPass='"+data.urlPass+"'  "+
             "where id="+data.id,             
             {type: models.sequelize.QueryTypes.UPDATE}); 
     }

@@ -5,7 +5,12 @@ development: &default
     views:
         engine: .jade
         extension: .jade
-       
+    email:
+        service: gmail
+        user: vic.vcp1@gmail.com
+        pass: 06037650580
+        from: vic.vcp1@gmail.com
+
     html:
         minify: true
         css:
@@ -36,7 +41,11 @@ production:
     views:
         engine: .jade
         extension: .jade
-       
+    email:
+        service: gmail
+        user: vic.vcp1@gmail.com
+        pass: 06037650580
+        from: vic.vcp1@gmail.com   
     html:
         minify: true
         css:

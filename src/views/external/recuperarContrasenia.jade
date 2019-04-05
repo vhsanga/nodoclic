@@ -1,0 +1,23 @@
+extends ../externalLayout
+block contenido
+	.container
+		h1 Recuperar Contraseña
+		p(style="font-size: 16px;")
+			|Usted ha solicitado la recuperación de su contraseña.
+		.login-box
+			.login-box-body
+				form(action='login', method='post')
+					.form-group.has-feedback
+						input.form-control(type='text', name="username" placeholder='cedula' required="true")
+						|         
+						span.glyphicon.glyphicon-user.form-control-feedback
+						|       
+					.form-group.has-feedback
+						input.form-control(type='password', name="password" placeholder='contraseña' required="true")
+						|         
+						span.glyphicon.glyphicon-lock.form-control-feedback
+						|       
+					.row
+						.col-xs-1
+						.col-xs-10
+							button#btn-login.btn.btn-primary.btn-block.btn-flat(type='submit') Ingresar

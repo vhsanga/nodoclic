@@ -176,6 +176,7 @@ var _CONST={
     CAMPO_PASS1_VACIO:"Ingrese la nueva contraseña ",
     CAMPO_PASS2_VACIO:"Repita la contraseña nueva",
     ERROR_CARGAR_VALORES:"No se ha podido cargar los valores",
+    ENVIO_PASS_TEMP:"Se ha enviado una contraseña temporal a su correo electrónico. ",
 
 }
 
